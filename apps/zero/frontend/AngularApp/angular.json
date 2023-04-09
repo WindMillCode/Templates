@@ -132,6 +132,80 @@
               ],
               "outputHashing": "all"
             },
+            "codesandboxprod": {
+              "outputPath":"./dist/codesandbox",
+              "fileReplacements": [
+                  {
+                      "replace": "src/app/website.ts",
+                      "with": "src/app/cms/website-uploader-dev.ts"
+                  },
+                  {
+                      "replace": "src/environments/environment.ts",
+                      "with": "src/environments/environment.uploader.prod.ts"
+                  }
+              ],
+              "assets": [
+                  "src/assets"
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+
+              "budgets": [
+                  {
+                      "type": "initial",
+                      "maximumWarning": "2mb",
+                      "maximumError": "5mb"
+                  },
+                  {
+                      "type": "anyComponentStyle",
+                      "maximumWarning": "6kb",
+                      "maximumError": "10kb"
+                  }
+              ]
+          },
+          "github": {
+              "outputPath":"../docs",
+              "baseHref":"/Uploader_Project/",
+              "deployUrl":"/Uploader_Project/",
+              "fileReplacements": [
+                  {
+                      "replace": "src/app/website.ts",
+                      "with": "src/app/cms/website-uploader-dev.ts"
+                  },
+                  {
+                      "replace": "src/environments/environment.ts",
+                      "with": "src/environments/environment.uploader.prod.ts"
+                  }
+              ],
+              "assets": [
+                  "src/assets"
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+
+              "budgets": [
+                  {
+                      "type": "initial",
+                      "maximumWarning": "2mb",
+                      "maximumError": "5mb"
+                  },
+                  {
+                      "type": "anyComponentStyle",
+                      "maximumWarning": "6kb",
+                      "maximumError": "10kb"
+                  }
+              ]
+          },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
