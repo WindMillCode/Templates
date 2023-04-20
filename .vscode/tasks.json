@@ -177,6 +177,36 @@
       "promptOnClose": false,
     },
     {
+      "label": "angular frontend: run compodoc",
+      "type": "shell",
+      "command": "cd .\\apps\\zero\\frontend\\AngularApp\\; yarn compodoc:build-and-serve",
+      "osx":{
+        "command": "cd ignore/${input:current_user_0}; ./run-frontend-dev.sh"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "angular frontend: analyze",
+      "type": "shell",
+      "command": "cd .\\apps\\zero\\frontend\\AngularApp\\; yarn analyze",
+      "osx":{
+        "command": "cd ignore/${input:current_user_0}; ./run-frontend-dev.sh"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+
+    },
+    {
       "label": "npm: reinstall npm package",
       "type": "shell",
       "command": "cd .\\apps\\zero\\frontend\\AngularApp\\; yarn remove ${input:update_a_npm_package0};yarn add ${input:update_a_npm_package1} ${input:update_a_npm_package0};",

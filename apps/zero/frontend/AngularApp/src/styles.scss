@@ -25,37 +25,22 @@
 @import "src/app/core/not-found/not-found.component.phone.scss";
 @import "src/app/app.component.global.scss";
 
-// nav
-@import "src/app/shared/components/nav/nav-main/nav-main.component.global.scss";
+
 
 // default layouts
 @import "src/app/layouts/default/default-layout/default-layout.component.phone.scss";
 
-// profile-one-main
-// @import "src/app/pages/profile-one/profile-one-main/profile-one-main.component.global.scss";
 
-// sample-main
-@import "src/app/pages/sample/sample-main/sample-main.component.phone.scss";
 
-// profile-main
-@import "src/app/pages/profile-one/profile-one-main/profile-one-main.component.phone.scss";
 // rating-carousel
 @import "src/app/shared/components/rating-carousel/rating-carousel.component.phone.scss";
 
 // rating-card
 @import "src/app/shared/components/rating-card/rating-card.component.phone.scss";
-// home-main
-@import "src/app/pages/home/home-main/home-main.component.phone.scss";
 
-// join-waitlist-form
-@import "src/app/shared/components/join-waitlist-form/join-waitlist-form.component.global.scss";
-@import "src/app/shared/components/join-waitlist-form/join-waitlist-form.component.phone.scss";
 
-// questionaire-one-main
-@import "src/app/pages/questionaire-one/questionaire-one-main/questionaire-one-main.component.global.scss";
-@import "src/app/pages/questionaire-one/questionaire-one-main/questionaire-one-main.component.phone.scss";
-// candidacy-info-form
-@import "src/app/shared/components/candidacy-info-form/candidacy-info-form.component.global.scss";
+
+
 
 
 :root {

@@ -19,7 +19,7 @@ import { ENV } from '@env/environment';
 
 import { SharedModule } from '@shared/shared.module';
 import { ButtonOneParams, ButtonOneParamsTypeEnum } from '@shared/components/button-one/button-one.component';
-import { FileUploadParams } from '@shared/components/file-upload/file-upload.component';
+
 import { WMLUIProperty } from '@windmillcode/wml-components-base';
 import { HttpClient } from '@angular/common/http';
 
@@ -46,19 +46,6 @@ export class ScratchpadComponent  {
 
   classPrefix = this.utilService.generateClassPrefix('Scratchpad')
 
-  resumeUpload = new FileUploadParams({
-    title:new WMLUIProperty({
-      text:"HomeMain.resumeUpload.title"
-    }),
-    button: new ButtonOneParams({
-      text:new WMLUIProperty({
-        text:"HomeMain.resumeUpload.button"
-      }),
-    }),
-    subText:new WMLUIProperty({
-      text:"HomeMain.resumeUpload.subText"
-    })
-  })
 
   seeIfPreviewIsReturingXml(){
     this.http.get("https://ui.dev.findmyrole.co",{observe:"response"})

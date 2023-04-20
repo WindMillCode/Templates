@@ -47,11 +47,6 @@ class DevConfigs:
     "db":"pfmegrnargs",
   })
 
-  sql_server_manager = SQLServerManager({
-    "pass":"yourpasswordhere",
-    "host":"localhost",
-    "db":"windillcode-mssql-database-0"
-  })
 
 
 class TestConfigs(DevConfigs):

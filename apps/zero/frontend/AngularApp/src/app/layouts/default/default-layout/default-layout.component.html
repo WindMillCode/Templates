@@ -1,9 +1,8 @@
 <div [class]="classPrefix('MainPod')">
-  <nav-main [class]="classPrefix('Pod0')"></nav-main>
+  <nav></nav>
   <div [class]="classPrefix('Pod1')">
     <router-outlet></router-outlet>
   </div>
   <footer [class]="classPrefix('Pod2')">
-    <p>@{{fullYear}}{{"DefaultLayout.footer" | translate}}</p>
   </footer>
 </div>
