@@ -1,0 +1,7 @@
+<div [class]="classPrefix('MainPod')">
+  <div *ngFor="let line of params.multiline;let i = index"
+  [class]="i%2 ===  0 ? classPrefix('MainItem0') : classPrefix('MainItem1')">
+    <h2>{{line.title.text | translate}}</h2>
+    <p *ngFor="let desc of line.desc">{{desc.text | translate}}</p>
+  </div>
+</div>

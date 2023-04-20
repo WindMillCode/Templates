@@ -1,0 +1,35 @@
+#root profile-one-main{
+  @media #{$mobile}{
+    .ProfileOneMainMainPod{
+      padding:$spacing7 0;
+    }
+    sections-two:nth-child(1){
+      .SectionsTwoMainPod{
+        border-radius: 0;
+        border:none;
+      }
+      .SectionsTwoPod0{
+        border-radius: 0;
+      }
+    }
+
+    .ProfileOneMainPod1Text1{
+      border-radius: 0;
+    }
+    .ProfileOneMainPod1Item0{
+      display: none;
+    }
+    .ProfileOneMainPod1Item1{
+      flex-direction: column;
+      margin:$spacing7 $spacing7 0 $spacing7 ;
+    }
+    .ProfileOneMainPod2{
+      margin:$spacing7 0 0 0 ;
+    }
+
+    .CandidacyInfoFormMainPod{
+      flex-direction: column;
+    }
+
+  }
+}

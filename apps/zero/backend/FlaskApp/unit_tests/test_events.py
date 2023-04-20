@@ -83,13 +83,13 @@ def test_purchase_ticket_events(client,monkeypatch,mocker):
   client.post("events/purchase_ticket",json=my_request_body)
   assert post_mock.call_count == 2
   assert generate_twillio_sendgrid_email_mock.call_count == 2
-  admin_from_email =CONFIGS.windmillcode_service_acct[0]["email"]
+  admin_from_email =CONFIGS.nibls_service_acct[0]["email"]
   admin_to_emails = [
-    CONFIGS.windmillcode_service_acct[0]["email"],
-    "DashawnBledsoe@WINDMILLCODEInc771.onmicrosoft.com"
+    CONFIGS.nibls_service_acct[0]["email"],
+    "DashawnBledsoe@NIBLSInc771.onmicrosoft.com"
   ]
 
-  customer_from_email =CONFIGS.windmillcode_service_acct[0]["email"]
+  customer_from_email =CONFIGS.nibls_service_acct[0]["email"]
   customer_to_emails =[
     my_request_body['data']['email']
   ]

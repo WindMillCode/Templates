@@ -12,6 +12,11 @@ faker
 pytz
 sqlalchemy
 pyodbc
+textrazor
+openai
+pypdf
+docx2python
+
 
 translatepy
 pytest
@@ -19,4 +24,6 @@ coverage
 requests-mock
 pytest-watch
 pytest-mock
-psycopg2
+psycopg2-binary
+boto3
+

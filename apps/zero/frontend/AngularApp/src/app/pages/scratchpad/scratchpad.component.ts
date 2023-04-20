@@ -18,8 +18,10 @@ import { takeUntil,tap } from 'rxjs/operators';
 import { ENV } from '@env/environment';
 
 import { SharedModule } from '@shared/shared.module';
-
+import { ButtonOneParams, ButtonOneParamsTypeEnum } from '@shared/components/button-one/button-one.component';
+import { FileUploadParams } from '@shared/components/file-upload/file-upload.component';
 import { WMLUIProperty } from '@windmillcode/wml-components-base';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   standalone:true,
@@ -35,7 +37,7 @@ export class ScratchpadComponent  {
 
   constructor(
     public cdref:ChangeDetectorRef,
-
+    public http:HttpClient,
     public utilService:UtilityService,
     public configService:ConfigService,
     public baseService:BaseService
@@ -44,14 +46,38 @@ export class ScratchpadComponent  {
 
   classPrefix = this.utilService.generateClassPrefix('Scratchpad')
 
+  resumeUpload = new FileUploadParams({
+    title:new WMLUIProperty({
+      text:"HomeMain.resumeUpload.title"
+    }),
+    button: new ButtonOneParams({
+      text:new WMLUIProperty({
+        text:"HomeMain.resumeUpload.button"
+      }),
+    }),
+    subText:new WMLUIProperty({
+      text:"HomeMain.resumeUpload.subText"
+    })
+  })
 
+  seeIfPreviewIsReturingXml(){
+    this.http.get("https://ui.dev.findmyrole.co",{observe:"response"})
+    .pipe(
+      takeUntil(this.ngUnsub),
+      tap((res)=>{
+        console.log(res)
+      })
+    )
+    .subscribe()
 
+  }
 
 
   @HostBinding('class') myClass: string = this.classPrefix(`View`);
   ngUnsub= new Subject<void>()
 
   ngOnInit(): void {
+    this.seeIfPreviewIsReturingXml()
   }
 
   ngOnDestroy(){

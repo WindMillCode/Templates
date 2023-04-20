@@ -1,4 +1,22 @@
 import os
+from db.sql_server_manager import SQLServerManager
+from db.postgres_manager import PostgresManager
+from utils.env_vars import ENV_VARS
+
+
+
+
+def local_deps():
+    import sys
+    if sys.platform == "win32":
+        sys.path.append(sys.path[0] + "\\site-packages\\windows")
+    elif sys.platform =="linux":
+        sys.path.append(sys.path[0] + "/site-packages/linux")
+    elif sys.platform =="darwin":
+        sys.path.append(sys.path[0] + "/site-packages/linux")
+local_deps()
+import boto3
+
 
 class DevConfigs:
 
@@ -6,13 +24,8 @@ class DevConfigs:
     'success':'OK',
     'error':'ERROR',
   }
-  windmillcode_service_acct = [
-    {
-      'email':"Developer@WINDMILLCODEInc771.onmicrosoft.com"
-    }
-  ]
-  NEWSAPI_APIKEY =os.getenv("NEWSAPI_KEY")
-  NEWSAPI_ENDPOINT ="https://newsapi.org/v2/top-headlines"
+
+
   app= {
     'access_control_allow_origin':['https://example.com:4200','https://example.com:4201'],
     'server_name':'example.com:5000',
@@ -22,19 +35,23 @@ class DevConfigs:
     'frontend_angular_app_domain':'example.com'
   }
 
-
-
-  mssql = {
-
-    "conn_string":os.getenv("SQLALCHEMY_PYMSSQL_0_CONN_STRING")
-  }
-
-  postgres ={
-    "conn_string":os.getenv("SQLALCHEMY_POSTGRESSQL_0_CONN_STRING")
-  }
-
   def __init__(self):
     None
+
+  # https://rnacentral.org/help/public-database
+  postgres_manager = PostgresManager({
+    "user":"reader",
+    "pass":"NWDMCE5xdipIjRrp",
+    "host":"hh-pgsql-public.ebi.ac.uk",
+    "port":"5432",
+    "db":"pfmegrnargs",
+  })
+
+  sql_server_manager = SQLServerManager({
+    "pass":"yourpasswordhere",
+    "host":"localhost",
+    "db":"windillcode-mssql-database-0"
+  })
 
 
 class TestConfigs(DevConfigs):
@@ -44,22 +61,35 @@ class PreviewConfigs(DevConfigs):
 
   def __init__(self) -> None:
     super().__init__()
-    self.app['flask_env'] = 'development'
-
+    self.app['flask_env'] = 'production'
+    self.app['access_control_allow_origin'] = ["https://ui.dev.example.co"]
+    self.app.pop('server_name')
+    self.app.pop('domain_name')
+    self.app['frontend_angular_app_url'] = "https://ui.dev.example.co"
+    self.app['frontend_angular_app_domain'] = "ui.dev.example.co"
 
 class ProdConfigs(DevConfigs):
 
   def __init__(self) -> None:
     super().__init__()
     self.app['flask_env'] = 'production'
-    self.app['server_name']= "169.254.129.3"
+    self.app['access_control_allow_origin'] = ["https://www.example.co"]
+    self.app.pop('server_name')
+    self.app.pop('domain_name')
+    self.app['frontend_angular_app_url'] = "https://www.example.co"
+    self.app['frontend_angular_app_domain'] = "www.example.co"
 
-CONFIGS= {
+
+
+CONFIGS:DevConfigs= {
   'PROD':lambda x:ProdConfigs(),
   'PREVIEW':lambda x:PreviewConfigs(),
   'DEV':lambda x:DevConfigs(),
   'TEST':lambda x:TestConfigs(),
-}[os.getenv("FLASK_BACKEND_ENV")](None)
+}[ENV_VARS.get("FLASK_BACKEND_ENV")](None)
+
+
+
 
 
 

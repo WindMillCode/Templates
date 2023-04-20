@@ -1,0 +1,86 @@
+
+@import "src/assets/styles/_layouts.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/spacing.scss";
+@import "src/assets/styles/_fonts.scss";
+
+
+@mixin NavMainIcon0{
+  color:var(--wml-secondary);
+  margin:0 $spacing3 0 0;
+  font-size: $display-small;
+}
+
+
+
+:host {
+
+
+  &.NavMainView{
+    display: block;
+    width: 100%;
+
+
+    .NavMain{
+      &Main{
+        &Pod{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background-color: var(--wml-primary);
+          height: $spacing8;
+          padding:0 $spacing6 0 $spacing12;
+
+        }
+        &Title {
+          &0 {
+            color: var(--wml-white);
+            font-family: "neon-club-music";
+          }
+        }
+        &Icon{
+          &0{
+            @include NavMainIcon0;
+          }
+          &1{
+            @include NavMainIcon0;
+
+          }
+        }
+      }
+      &Pod{
+
+        &0{
+          display: flex;
+          align-items: center;
+
+          &Item {
+            &0{
+              margin:0 $spacing9 0 0 ;
+              * {
+                transition: none;
+              }
+            }
+            &1 {
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          &Btn {
+            &0 {
+              border:none
+            }
+          }
+        }
+
+        &1{
+          display: none;
+        }
+
+
+      }
+    }
+  }
+
+}

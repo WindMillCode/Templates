@@ -1,17 +1,18 @@
 ﻿requests
 flask
-pyngrok
 gunicorn
 gevent
-newsapi-python
-pyngrok
-flask-ngrok
 werkzeug
 sendgrid
 faker
 pytz
 sqlalchemy
 pyodbc
+textrazor
+openai
+pypdf
+docx2python
+
 
 translatepy
 pytest
@@ -20,3 +21,4 @@ requests-mock
 pytest-watch
 pytest-mock
 psycopg2
+boto3

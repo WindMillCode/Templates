@@ -1,0 +1,17 @@
+<div [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <div [class]="classPrefix('Pod0Item0')">
+      <i   [class]=" ' fa-solid fa-suitcase ' + classPrefix('Pod0Icon0') "></i>
+      <h2 [ngStyle]="title.style"  [class]="classPrefix('Pod0Title0')">{{ "global.website" | translate}}</h2>
+    </div>
+    <i (click)="baseService.closePopup()"
+    [class]="classPrefix('Pod0Icon1')+ ' fa-solid fa-xmark'"></i>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <p [class]="classPrefix('Pod1Text0')">{{"DecideToDoSurvey.summary" | translate}}</p>
+    <div [class]="classPrefix('Pod1Item0')">
+      <button-one [params]="finishedBtn"></button-one>
+      <button-one [params]="fillOutSurveyBtn"></button-one>
+    </div>
+  </section>
+</div>

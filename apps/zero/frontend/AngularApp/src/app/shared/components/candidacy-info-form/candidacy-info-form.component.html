@@ -1,0 +1,13 @@
+<div [class]="classPrefix('MainPod')">
+  <div [class]="classPrefix('MainItem0')">
+    <p *ngIf="params.resumeNotRequiredIsPresent" [class]="classPrefix('MainText0')" >{{"CandidacyInfoForm.uploadForm.notify" | translate}}</p>
+
+    <wml-form [params]="resumeForm"></wml-form>
+  </div>
+  <div [class]="classPrefix('MainItem1')">
+    <wml-form [params]="wmlForm"></wml-form>
+  </div>
+  <div [class]="classPrefix('MainItem2')">
+    <button-one [params]="submitBtn"></button-one>
+  </div>
+</div>

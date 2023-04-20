@@ -157,9 +157,7 @@ let saveProfileTypeAnswersLoad = (uiBody:SaveProfileTypeAnswersUIRequestBody): O
 
   let data =new SaveProfileTypeAnswersUIRequestBody(uiBody)
   data[transformFromCamelCaseToSnakeCase("cognitoUserId")] = data.cognitoUserId
-  data[transformFromCamelCaseToSnakeCase("waitListId")] = data.waitListId
   delete data.cognitoUserId
-  delete data.waitListId
   let apiBody = new SaveProfileTypeAnswersAPIRequestBody({data})
   return of(apiBody)
   .pipe(
@@ -184,8 +182,6 @@ export class SaveProfileTypeAnswersUIRequestBody {
   [k:string]:string[]
   // @ts-ignore
   cognito_user_id?:string;
-  // @ts-ignore
-  wait_list_id?:string;
 }
 
 export class SaveProfileTypeAnswersUIResponseBody {

@@ -1,0 +1,18 @@
+#root join-waitlist-form{
+
+  wml-form input{
+    font-size:$display-small;
+    padding:0 $spacing5;
+    border-radius: $wml-border-radius1;
+    &::placeholder{
+      font-weight: 700;
+      font-size: $display-xx-small;
+      color: var(--wml-light-grey);
+    }
+  }
+
+  .JoinWaitlistFormPod1Item0 button-one button{
+    padding:$spacing5 $spacing10;
+  }
+}
+

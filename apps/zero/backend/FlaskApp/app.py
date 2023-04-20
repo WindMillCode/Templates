@@ -1,22 +1,19 @@
 import os
 import sys
 import traceback
-from configs import CONFIGS
-import my_util
-from my_util import print_if_dev,APIError,APIMsgFormat
-my_util.local_deps()
+
+from configs import CONFIGS,ENV_VARS
+import utils.my_util
+from utils.my_util import APIMsgFormat,local_deps
+from utils.api_exceptions import APIError
+local_deps()
 from flask.helpers import make_response
 from flask.json import jsonify
 from flask import Flask, request, redirect
 
 
 # dev additions
-
-
-
-from resume import myresume
-from healthcheck import myhealthcheck
-from intake import myintake
+from endpoints.healthcheck import myhealthcheck
 
 
 app = Flask(__name__)
@@ -25,13 +22,19 @@ app.config.update(
     SECRET_KEY=os.environ.get("FLASK_SOCKET_IO_SECRET_KEY"),
     DEBUG = False,
 )
-if os.getenv("FLASK_BACKEND_ENV") == "DEV":
+if ENV_VARS.get("FLASK_BACKEND_ENV") == "DEV":
   app.config.update(
     DEBUG = True
   )
-app.register_blueprint(myresume)
+  
 app.register_blueprint(myhealthcheck)
-app.register_blueprint(myintake)
+
+@app.before_request
+def before_request():
+  if not request.is_secure:
+    url = request.url.replace('http://', 'https://', 1)
+    code = 301
+    return redirect(url, code=code)
 
 
 @app.after_request
@@ -72,15 +75,19 @@ def handle_unknown_exception(err):
     response = APIMsgFormat({},"This is a server error please contact support if the issue persits")
     return jsonify(response.__dict__), 500
 
-if __name__ == "__main__":
-    port = 5000
-    if os.getenv("FLASK_BACKEND_ENV") == "DEV":
+app.add_url_rule('/', 'index', (lambda: "hello world"))
 
+if __name__ == "__main__":
+
+    if ENV_VARS.get("FLASK_BACKEND_ENV") == "DEV":
+      port = 5000
       # IMPORTANT: do not set this in run_backend_env this is a part of your
       # computers system env vars and you should set it seprately in an admin shell or CMD or powershell
-      ssl_cert = os.getenv("WML_CERT0","cert.pem")
-      ssl_key  = os.getenv("WML_CERT_KEY0","key.pem")
-      app.run(debug=True,ssl_context=(ssl_cert,ssl_key),port=port)
+      ssl_cert = ENV_VARS.get("WML_CERT0","cert.pem")
+      ssl_key  = ENV_VARS.get("WML_CERT_KEY0","key.pem")
+      app.run(
+        exclude_patterns="site-packages",
+        debug=True,ssl_context=(ssl_cert,ssl_key),port=port)
       # app.run(debug=True)
     else:
       app.run()

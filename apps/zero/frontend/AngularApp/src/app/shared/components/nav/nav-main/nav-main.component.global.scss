@@ -1,0 +1,16 @@
+#root nav-main{
+
+}
+#root{
+  .NavMainPod0Menu0{
+    background-color: var(--wml-secondary);
+
+    .mdc-list-item{
+      background-color: var(--wml-secondary);
+    }
+    .mdc-list-item__primary-text span{
+      color: var(--wml-primary);
+    }
+  }
+
+}

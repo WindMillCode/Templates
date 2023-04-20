@@ -1,0 +1,103 @@
+
+
+@import "src/assets/styles/_layouts.scss";
+@import "src/assets/styles/common.scss";
+
+
+:host {
+
+
+  &.HomeMainView{
+    display: block;
+    width:100%;
+    height:100%;
+    .HomeMain{
+      &Main{
+        &Pod{
+          width:100%;
+          height:100%;
+          margin:auto;
+          max-width: $wmlPageMaxWidth0;
+
+          padding:0;
+          background-color: var(--wml-primary);
+          @include WMLFlexColumnCenter;
+          overflow: hidden auto;
+          h2{
+            text-align: center;
+            margin:$spacing7 0 0 0;
+          }
+
+
+
+        }
+        &Title {
+          &0 {
+            color: var(--wml-white);
+          }
+        }
+      }
+      &Pod{
+
+        &0{
+
+          margin:$spacing7 0 0 0;
+
+          display:flex;
+          flex-direction: column;
+          width:50%;
+          * {
+            color:var(--wml-white)
+          }
+
+          &Title {
+            &0 {
+              width:67%;
+              margin:0 0 0 $spacing10;
+            }
+            &1{
+              text-align: center;
+              margin:$spacing7 0 0 0;
+            }
+
+          }
+
+          &Text{
+            &0{
+              font-weight: 500;
+            }
+          }
+
+          &Item {
+            &0 {
+                display: flex;
+                justify-content: space-evenly;
+                margin:$spacing4 0 0 0;
+            }
+          }
+        }
+
+        &1{
+          width:90%;
+          margin: $spacing7 0 0 0;
+        }
+
+        &2{
+          padding: $spacing7 0 0 0;
+          width:100%;
+        }
+
+        &3{
+          width:100%;
+          padding: 0 0 $spacing7 0;
+          * {
+            color:var(--wml-white)
+          }
+        }
+
+
+      }
+    }
+  }
+
+}

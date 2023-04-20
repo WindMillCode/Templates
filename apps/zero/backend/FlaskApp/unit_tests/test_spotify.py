@@ -3,7 +3,7 @@
 import ast
 from urllib import response
 from urllib.parse import parse_qs, urlencode, urlparse
-from my_util import turn_query_params_to_object,turn_cookie_to_object
+from utils.my_util import turn_query_params_to_object,turn_cookie_to_object
 from configs import CONFIGS
 from spotify import client_redirect_url,state_key,get_user_info,get_users_playlists_spotify
 

@@ -1,0 +1,20 @@
+<nav [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <div [class]="classPrefix('Pod0Item0')">
+
+      <i [attr.aria-label]="'NavMain.mainMenuIconAriaLabel' | translate"  mat-icon-button [matMenuTriggerFor]="menu" [class]="'fa-solid fa-bars ' + classPrefix('MainIcon1') "></i>
+      <mat-menu [class]="classPrefix('Pod0Menu0')" #menu="matMenu">
+        <button *ngFor="let item of mainMenuItems" mat-menu-item (click)="item.click($event)">
+          <span>{{item.text| translate}}</span>
+        </button>
+      </mat-menu>
+    </div>
+    <div [class]="classPrefix('Pod0Item1')">
+      <i (click)="navToHome()"  [class]=" ' fa-solid fa-suitcase ' + classPrefix('MainIcon0') "></i>
+      <h3 (click)="navToHome()"  [class]="classPrefix('MainTitle0')">{{"NavMain.title" | translate}}</h3>
+    </div>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <mat-slide-toggle [checked]="darkMode === 'NavMain.darkMode'" (toggleChange)="toggleDarkMode()">{{darkMode | translate}}</mat-slide-toggle>
+  </section>
+</nav>

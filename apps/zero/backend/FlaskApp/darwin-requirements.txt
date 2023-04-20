@@ -20,4 +20,6 @@ requests-mock
 pytest-watch
 pytest-mock
 psycopg2-binary
+boto3
+
 

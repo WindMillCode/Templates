@@ -1,0 +1,12 @@
+#root questionaire-one-main{
+  @media #{$mobile}{
+    .QuestionaireOneMainPod0Text0{
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .QuestionaireOneMainPod0{
+      margin:$spacing3 0;
+    }
+  }
+}

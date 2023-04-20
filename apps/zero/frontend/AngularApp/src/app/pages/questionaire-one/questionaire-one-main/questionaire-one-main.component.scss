@@ -1,0 +1,79 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.QuestionaireOneMainView{
+    display: block;
+    width: 100%;
+    height: 100%;
+    .QuestionaireOneMain{
+      &Main{
+        &Pod{
+          @include MainPodCssRule0;
+          width: 100%;
+          height: 100%;
+
+          position: relative;
+        }
+
+
+
+        &Item {
+          &0 {
+            position: relative;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      &Pod{
+        &0{
+          margin:$spacing10 0 $spacing5 0;
+          &Text {
+            &0 {
+              display: flex;
+              align-items: center;
+              margin: 0  0 0 $spacing7;
+              * {
+                font-size:$display-xx-small;
+              }
+            }
+          }
+        }
+        &1{
+          width: 100%;
+          height: auto;
+          background-color: var(--wml-white);
+
+          padding:$spacing3 $spacing7 ;
+
+          h2{
+            font-size: $wml-p;
+          }
+
+          &Item {
+
+            &0{
+              margin:$spacing7 0 0 0;
+              display: block;
+            }
+            &1 {
+              display: flex;
+              justify-content: flex-end;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

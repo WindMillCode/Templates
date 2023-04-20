@@ -1,0 +1,41 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.AvatarOneView{
+    display: block;
+    .AvatarOne{
+      &Main{
+        &Pod{
+          width: calc(100/16 * 1rem);
+          height: calc(100/16 * 1rem);
+          position: relative;
+          background-color: var(--wml-secondary);
+          padding:$spacing5;
+          border-radius: 100%;
+
+        }
+
+        &Img {
+          &0 {
+            filter:var(--wml-primary-filter)
+          }
+        }
+      }
+      &Pod{
+
+        &0{}
+      }
+    }
+  }
+
+}

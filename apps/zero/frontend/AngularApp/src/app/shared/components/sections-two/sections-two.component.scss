@@ -1,0 +1,133 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.SectionsTwoView{
+    display: block;
+    .SectionsTwo{
+      &Main{
+        &Pod{
+          @include MainPodCssRule0;
+          padding:0;
+          border: calc(1/16 * 1rem) solid var(--wml-primary);
+          border-radius: $wml-border-radius0;
+
+        }
+      }
+      &Pod{
+
+        &0{
+          display: flex;
+          border-radius: $wml-border-radius0 $wml-border-radius0 0 0;
+          justify-content: space-between;
+          background-color: var(--wml-primary);
+          padding:0 $spacing7;
+          > *{
+            color:var(--wml-white);
+          }
+          &Item {
+            &0 {
+              @include WMLFlexColumnCenter;
+
+              > *{
+                color:var(--wml-secondary);
+              }
+            }
+
+          }
+        }
+
+        &1 {
+          padding:$spacing4 0 $spacing8 0;
+          &Item {
+            &0 {
+              height: calc(1/16 * 1rem);
+              background-color: var(--wml-light-grey);
+              margin:$spacing3 0;
+            }
+            &1{
+              display: flex;
+              padding:0 $spacing7;
+              align-items: flex-start;
+              margin:$spacing7 0 0 0;
+              p{
+                font-weight: 700;
+              }
+            }
+
+            &2{
+              display: flex;
+              flex-direction: column;
+              padding:$spacing5 $spacing7;
+              > *{
+                width: 100%;
+              }
+            }
+          }
+
+          &Icon {
+            &0 {
+              border-radius:100%;
+              background-color: var(--wml-secondary);
+              flex: 0 0 calc(30/16 * 1rem);
+              height: calc(30/16 * 1rem);
+              margin:0 $spacing4 0 0;
+              @include WMLFlexColumnCenter;
+              justify-content: center;
+
+              span{
+                font-weight: 700;
+                color:var(--wml-black);
+              }
+            }
+          }
+
+          &Title {
+            &0 {
+              text-align: center;
+            }
+            &1 {
+              @include wmlHighlightedTitle0;
+              background-color: var(--wml-secondary);
+            }
+          }
+
+          &Text {
+            &0 {
+              margin:$spacing4 0 0 $spacing6;
+              font-weight: 500;
+            }
+            &1{
+              >*{
+                display: inline;
+
+              }
+
+            }
+          }
+
+          &Link {
+            &0 {
+              font-weight: 700;
+              word-break: break-all;
+              color: var(--wml-primary);
+            }
+          }
+
+        }
+
+
+      }
+    }
+  }
+
+}

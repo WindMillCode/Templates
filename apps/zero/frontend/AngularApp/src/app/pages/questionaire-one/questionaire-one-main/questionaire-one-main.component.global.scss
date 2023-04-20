@@ -1,0 +1,20 @@
+#root questionaire-one-main{
+  wml-form{
+    .WmlFormPod0 {
+      display: flex;
+      flex-flow:row wrap;
+    }
+    .WmlFormPod0Item0{
+      flex:1 0 50%;
+      min-width: calc(320/16 * 1rem);
+    }
+
+    custom-label:nth-child(1){
+      *{
+
+        font-weight: bold;
+      }
+    }
+
+  }
+}

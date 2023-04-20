@@ -1,0 +1,44 @@
+<div [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <h2>{{params.title.text | translate}}</h2>
+    <div [class]="classPrefix('Pod0Item0')">
+      <i class="fa-solid fa-filter"></i>
+      <p>{{"SectionsTwo.filter" | translate}}</p>
+    </div>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <ng-container *ngFor="let part of $any(params.parts)" >
+      <div [class]="classPrefix('Pod1Item0')" *ngIf="part.type === SectionsTwoParamsPartsType.STRIKETHRU "></div>
+      <h3 [class]="classPrefix('Pod1Title0')" *ngIf="part.type === SectionsTwoParamsPartsType.TITLE ">{{part.text | translate}}</h3>
+      <div [class]="classPrefix('Pod1Item1')" *ngIf="part.type === SectionsTwoParamsPartsType.BULLET ">
+        <div [class]="classPrefix('Pod1Icon0')">
+          <span >{{part.value +1}}</span>
+        </div>
+        <p>{{part.text | translate}}</p>
+      </div>
+      <div [class]="classPrefix('Pod1Item1')" *ngIf="part.type === SectionsTwoParamsPartsType.MULTILINE_BULLET ">
+        <div [class]="classPrefix('Pod1Icon0')">
+          <span >{{part.value +1}}</span>
+        </div>
+        <p  [class]="classPrefix('Pod1Text1')">
+          <ng-container *ngFor="let line of part.multiline">
+            <span *ngIf="line.type === SectionsTwoParamsPartsTypeMultilineBulletType.TEXT">{{line.text | translate}}</span>
+            <a [href]="line.route" [class]="classPrefix('Pod1Link0')" *ngIf="line.type === SectionsTwoParamsPartsTypeMultilineBulletType.LINK">{{line.text|translate}}</a>
+          </ng-container>
+        </p>
+      </div>
+      <div [class]="classPrefix('Pod1Item2')" *ngIf="part.type === SectionsTwoParamsPartsType.JOB_SUMMARY ">
+        <ng-container *ngFor="let line of part.value" >
+          <h4
+          [class]="classPrefix('Pod1Title1')"
+          *ngIf="SectionsTwoParamsPartsTypeJobSummaryType.HEADER === line.type"
+          >{{line.text|translate}}</h4>
+          <h4
+          [class]="classPrefix('Pod1Text0')"
+          *ngIf="SectionsTwoParamsPartsTypeJobSummaryType.CONTENT === line.type"
+          >{{line.text|translate}}</h4>
+        </ng-container>
+      </div>
+    </ng-container>
+  </section>
+</div>

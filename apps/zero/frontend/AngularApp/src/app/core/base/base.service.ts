@@ -8,15 +8,16 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 // wml components
 import { CustomLabelComponent } from '@shared/components/custom-label/custom-label.component';
-import { WmlLabelParams, WMLField, WMLFieldTextAreaFieldParams } from '@windmillcode/wml-field';
+import { WmlLabelParams, WMLField } from '@windmillcode/wml-field';
 import { WmlInputComponent, WmlInputParams } from '@windmillcode/wml-input';
 import { WmlPopupComponentParams } from '@windmillcode/wml-popup';
 import { WmlNotifyBarModel, WmlNotifyBarType, WmlNotifyService } from '@windmillcode/wml-notify';
 import { NotifyBannerComponent, NotifyBannerParams } from '@shared/components/notify-banner/notify-banner.component';
 import { WMLButton, WMLCustomComponent, WMLUIProperty } from '@windmillcode/wml-components-base';
-import { WMLOptionsButton, WmlOptionsComponent, WMLOptionsParams } from '@windmillcode/wml-options';
+import { WMLOptionItemParams, WmlOptionsComponent, WMLOptionsParams } from '@windmillcode/wml-options';
 import { WMLChipsParams, WmlChipsComponent } from '@windmillcode/wml-chips';
 import { UtilityService } from '@core/utility/utility.service';
+import { ENV } from '@env/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +63,6 @@ export class BaseService {
     this.togglePopupSubj.next(false)
   }
 
-
   generateWMLNote = (i18nKey:string ="Success",type:WmlNotifyBarType=WmlNotifyBarType.Success,autoHide=false,autoOpen=true )=>{
     type = type ?? WmlNotifyBarType.Success
     let note =new WmlNotifyBarModel({
@@ -82,18 +82,34 @@ export class BaseService {
     return  note
   }
 
-  generateInputFormField=(labelValue:string,fieldFormControlName,fieldParentForm:FormGroup,errorMsgs?:WmlLabelParams["errorMsgs"],selfType?:WMLField["self"]["type"])=>{
+  generateInputFormField=(params:{
+    labelValue?:string,
+    fieldFormControlName,
+    fieldParentForm:FormGroup,
+    errorMsgs?:WmlLabelParams["errorMsgs"],
+    selfType?:WMLField["self"]["type"],
+    fieldCustomParams?:WmlInputParams
+  })=>{
+      let {
+        labelValue,
+        fieldFormControlName,
+        fieldParentForm,
+        errorMsgs,
+        selfType,
+        fieldCustomParams
+      } = params
     let wmlField
-    wmlField =       new WMLField({
+    wmlField = new WMLField({
       type: "custom",
       custom: {
 
-        selfType: selfType ?? "wml-card",
+        selfType: selfType ?? "standalone",
         fieldParentForm,
         fieldFormControlName,
         labelValue,
         fieldCustomCpnt:WmlInputComponent,
         fieldCustomMeta:new WmlInputParams({
+          ...fieldCustomParams,
           wmlField,
         }),
         errorMsgs: errorMsgs ?? {
@@ -106,6 +122,45 @@ export class BaseService {
     return this.generateFormField(wmlField)
   }
 
+
+  generateTextAreaFormField=(params:{
+    labelValue:string,
+    fieldFormControlName,
+    fieldParentForm,
+    errorMsgs?:WmlLabelParams["errorMsgs"],
+    selfType?:WMLField["self"]["type"],
+    fieldCustomParams?:WmlInputParams
+  })=>{
+    let {
+      labelValue,
+      fieldFormControlName,
+      fieldParentForm,
+      errorMsgs,
+      selfType,
+      fieldCustomParams
+    } = params
+    let wmlField
+    wmlField =  new WMLField({
+      type: "custom",
+      custom: {
+
+        selfType: selfType ?? "standalone",
+        fieldParentForm,
+        fieldFormControlName,
+        labelValue,
+        fieldCustomCpnt:WmlInputComponent,
+        errorMsgs:errorMsgs??{
+          required:"global.errorRequired"
+        },
+        fieldCustomMeta:new WmlInputParams({
+          ...fieldCustomParams,
+          wmlField,
+          type:"textarea"
+        })
+      }
+    })
+    return this.generateFormField(wmlField)
+  }
 
   generateRangeFormField=(labelValue:string,fieldFormControlName,fieldParentForm,errorMsgs?:WmlLabelParams["errorMsgs"],selfType?:WMLField["self"]["type"])=>{
     let wmlField
@@ -124,45 +179,6 @@ export class BaseService {
         fieldCustomMeta:new WmlInputParams({
           wmlField,
           type:"range"
-        })
-      }
-    })
-    return this.generateFormField(wmlField)
-  }
-
-  generateTextAreaFormField=(params:{
-    labelValue:string,
-    fieldFormControlName,
-    fieldParentForm,
-    errorMsgs?:WmlLabelParams["errorMsgs"],
-    selfType?:WMLField["self"]["type"],
-    fieldCustomParams?:WMLFieldTextAreaFieldParams
-  })=>{
-    let {
-      labelValue,
-      fieldFormControlName,
-      fieldParentForm,
-      errorMsgs,
-      selfType,
-      fieldCustomParams
-    } = params
-    let wmlField
-    wmlField =  new WMLField<WMLFieldTextAreaFieldParams>({
-      type: "custom",
-      custom: {
-
-        selfType: selfType ?? "wml-card",
-        fieldParentForm,
-        fieldFormControlName,
-        labelValue,
-        fieldCustomCpnt:WmlInputComponent,
-        errorMsgs:errorMsgs??{
-          required:"global.errorRequired"
-        },
-        fieldCustomParams:fieldCustomParams ?? new WMLFieldTextAreaFieldParams(),
-        fieldCustomMeta:new WmlInputParams({
-          wmlField,
-          type:"textarea"
         })
       }
     })
@@ -214,7 +230,7 @@ export class BaseService {
         },
         fieldCustomCpnt:WmlOptionsComponent,
         fieldCustomMeta:optionsParams ?? new WMLOptionsParams({
-          options:[new WMLOptionsButton({
+          options:[new WMLOptionItemParams({
             text:"use WMLOptionsParams from the wmloptions component and fill me w/ options"
           })]
         })
@@ -267,14 +283,33 @@ export class BaseService {
   }
 
 
-  validateAllFormFields(formGroup: FormGroup) {         //{1}
-    Object.keys(formGroup.controls).forEach(field => {  //{2}
-      const control = formGroup.get(field);             //{3}
-      if (control instanceof FormControl || control instanceof FormArray) {             //{4}
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl || control instanceof FormArray) {
         control.markAsDirty({ onlySelf: true });
         control.updateValueAndValidity({ emitEvent: true });
-      } else if (control instanceof FormGroup) {        //{5}
-        this.validateAllFormFields(control);            //{6}
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+
+
+  resetFormControls(formGroup: FormGroup | FormArray) {
+    // Iterate through all the controls in the form group
+    Object.keys(formGroup.controls).forEach(key => {
+      const control = formGroup.get(key);
+
+      if (control instanceof FormGroup) {
+        // Recursively reset controls in nested FormGroup
+        this.resetFormControls(control);
+      } else if (control instanceof FormControl) {
+        // Reset FormControl to its initial state
+        control.reset();
+      } else if (control instanceof FormArray) {
+        // Reset FormArray to its initial state
+        control.clear();
       }
     });
   }

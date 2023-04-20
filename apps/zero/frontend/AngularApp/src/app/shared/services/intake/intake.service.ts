@@ -49,7 +49,7 @@ let joinWaitListLoad = (uiBody:JoinWaitListUIRequestBody): Observable<JoinWaitLi
 
 let joinWaitListSuccess = (apiBody:JoinWaitListAPIResponseBody):JoinWaitListUIResponseBody=>{
   let uiBody = new JoinWaitListUIResponseBody({
-    waitlistId:apiBody.data.waitlist_id
+    cognitoUserId:apiBody.data.cognito_user_id
   })
   return uiBody
 }
@@ -77,7 +77,7 @@ export class JoinWaitListUIResponseBody {
       }
     )
   }
-  waitlistId:string
+  cognitoUserId:string
 }
 
 export class JoinWaitListAPIRequestBody {
@@ -102,6 +102,6 @@ export class JoinWaitListAPIResponseBody {
     )
   }
   data:{
-    waitlist_id:string
+    cognito_user_id:string
   }
 }

@@ -1,0 +1,9 @@
+<div [class]="params.border.class" wmlDragNDrop (onFileDropped)="chooseFiles($any($event))">
+  <h2 [class]="classPrefix('MainTitle0')" >{{params.title.text | translate}}</h2>
+  <div [class]="classPrefix('MainItem0')">
+    <i [class]="'fa-solid ' + params.icon.class"></i>
+  </div>
+  <button-one [class]="classPrefix('MainBtn0')" [params]="params.button"></button-one>
+  <p [class]="classPrefix('MainText0')">{{params.subText.text | translate}}</p>
+</div>
+<input #fileInput [class]="classPrefix('MainInput0')" type="file" multiple/>

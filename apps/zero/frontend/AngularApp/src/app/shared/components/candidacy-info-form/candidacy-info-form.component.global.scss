@@ -1,0 +1,29 @@
+#root candidacy-info-form{
+  wml-form{
+    .WmlFieldPod0 custom-label label{
+      font-weight: bold;
+
+    }
+
+    .WmlFormPod0Item0 input,textarea{
+      &::placeholder{
+        color:var(--wml-original-white);
+      }
+      color:var(--wml-original-white);
+      background-color: var(--wml-tertiary);
+    }
+    .WmlFormPod0Item0:nth-child(1) input{
+      padding:$spacing3;
+    }
+    .WmlFormPod0Item0:nth-child(1) custom-label label *{
+      font-size: $display-small;
+    }
+    .WmlFormPod0Item0:nth-child(2) textarea{
+      height: calc(500/16 * 1rem);
+    }
+    .WmlFormPod0Item0:nth-child(2) custom-label label *{
+      font-size: $display-xx-small;
+    }
+
+  }
+}

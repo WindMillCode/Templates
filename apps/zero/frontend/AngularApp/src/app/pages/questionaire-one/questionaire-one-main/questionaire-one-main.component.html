@@ -1,0 +1,16 @@
+<div [class]="classPrefix('MainPod')">
+
+  <section [class]="classPrefix('Pod0')">
+    <span [class]="classPrefix('Pod0Text0')">
+      <h2>{{"QuestionaireOneMain.title" | translate}}</h2>
+      <p>{{"QuestionaireOneMain.subtitle" | translate}}</p>
+    </span>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <p>{{ "QuestionaireOneMain.summary" | translate}}</p>
+    <wml-form [class]="classPrefix('Pod1Item0')" [params]="wmlForm"></wml-form>
+    <div [class]="classPrefix('Pod1Item1')">
+      <button-one [params]="submitBtn"></button-one>
+    </div>
+  </section>
+</div>

@@ -9,7 +9,9 @@ class ProdEnv extends DevEnv  {
 
   constructor(){
     super()
+    this.app.freeTrialEndsAfter = 1
     this.type = "prod"
+    this.backendDomain0 = "https://api.findmyrole.co"
     traverseClassAndRemoveAutomationForProduction(this)
   }
 }

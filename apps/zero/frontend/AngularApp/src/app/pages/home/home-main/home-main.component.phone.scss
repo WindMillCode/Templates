@@ -1,0 +1,34 @@
+
+#root{
+  join-waitlist-form.HomeMain{
+    width: 90%;
+  }
+
+  home-main{
+    @media #{$mobile}{
+      .HomeMainMainPod{
+        padding:0 $spacing7;
+      }
+      .HomeMainPod0{
+        width:100%
+      }
+      .HomeMainPod0Title0{
+        margin:0;
+        width: 100%;
+      }
+      .HomeMainPod0Item0{
+        flex-flow:row wrap
+      }
+      .HomeMainPod0Item0 button-one{
+        margin:$spacing3 0 0 $spacing3 ;
+      }
+
+      .CandidacyInfoFormMainPod{
+        flex-direction: column;
+      }
+
+
+    }
+  }
+}
+

@@ -1,7 +1,7 @@
 {
   "global":{
-    "website":"WindMillCode",
-    "logoImgAlt":"WindMillCode",
+    "website":"FINDMYROLE",
+    "logoImgAlt":"FINDMYROLE",
     "errorRequired":"This field is required",
     "errrorMin0":"At least one value must be provided",
     "avatarImgAlt":"Avatar Img",
@@ -17,17 +17,217 @@
     "systemError":"An error has occured please try again later or contact support if the issue persists",
     "submiBtn":"Submit"
   },
-  "app":{
-    "startBackend":"You may need to start the backend task"
+  "siteOffine":{
+    "title":"Site Offline",
+    "subtitle":"The site is currently unavailable due to scheduled maintenance, Please try again later"
   },
   "notFound":{
     "lines":[
       "404",
       "Whoops! This is not what you were looking for",
-      "But you just found the ball we'd lost, thanks. Try your luck by going back to the home page."
+      "But you just found the resume we'd lost, thanks. Try your luck by going back to the ",
+      "home page."
     ],
-    "someImgAlt":"Tech Ball"
-  }
+    "someImgAlt":"Resume"
+  },
+  "app":{
+    "freeTrialEnded":"Your free trial has ended please contact customer support for additional options"
+  },
+  "NavMain":{
+    "title":"FINDMYROLE",
+    "lightMode":"Light Mode",
+    "darkMode":"Dark Mode",
+    "mainMenuIconAriaLabel":"Click me to open the main menu",
+    "mainMenuItems":[
+      "Home",
+      "Profile",
+      "Sample",
+      "Results"
+    ]
+  },
+  "CandidacyInfoForm":{
+    "resumeUpload":{
+      "title":"Upload new resume!",
+      "button":"Upload your resume",
+      "subText":"as .pdf or .docx"
+    },
+    "uploadForm":{
+      "title":"Upload resume or job role description for new results",
+      "notify":"Not required unless you want to upload new resume",
+      "resumeUploadField":{
+        "error":{
+          "required":"A resume is required",
+          "extension":"File must be Microsoft Word Document or PDF. Please upload the correct file type"
+        }
+      },
+      "companyField":{
+        "label":"Company",
+        "placeholder":"company name",
+        "error":{
+          "required":"A job description is required"
+        }
+      },
+      "jobDescField":{
+        "label":"Job Description",
+        "placeholder":"copy and paste job description...",
+        "error":{
+          "required":"A job description is required"
+        }
+      }
+    }
+  },
+  "HomeMain":{
+    "title":"Find Your Role, Master The Interview",
+    "mainDesc":"FindMyRole utilizes AI-generated questions that are tailored to the specific job and company you’re applying to, which are then matched with sample answers that reflect your unique resume/cover letter experience and skills.",
+    "viewSampleBtn":"VIEW SAMPLE",
+    "freeTrailBtn":"JOIN WAITLIST",
+    "worksSubtitle":"How FindMyRole works",
+    "workSteps":[
+      "Upload resume/cover letter",
+      "Add job role/company",
+      "View Results"
+    ],
+    "freeTrialSubtitle":"Try For Free!",
+    "benefits":{
+      "title":"How FindMyRole can benefit you",
+      "sections":[
+        {
+          "title":"Personalized Interview Preparation",
+          "desc":"FindMyRole's AI-generated questions are tailored to the specific job and company the your applying to, allowing you to prepare for potential interview questions in a personalized way. This can help you feel more confident and better prepared for the interview."
+        },
+        {
+          "title":"Enhanced Communication Skills",
+          "desc":"FindMyRole's AI-generated questions are tailored to the specific job and company the your applying to, allowing you to prepare for potential interview questions in a personalized way. This can help you feel more confident and better prepared for the interview."
+        },
+        {
+          "title":"Time savings",
+          "desc":" You don't have to spend as much time researching and practicing potential interview questions, as FindMyRole provides you with the questions and answers you need. This can free up time for other job search activities, such as applying to more jobs or networking."
+        }
+      ]
+    },
+    "ratings":{
+      "subTitle":"What our customers are saying!",
+      "avatarAlt":"Default Avatar"
+    }
+  },
+  "DefaultLayout":{
+    "footer":" FindMyRole,LLC"
+  },
+  "SampleMain":{
+    "title":"Sample Generated Results",
+    "companyLogoAlt":"Company Logo",
+    "companyLogoText":"Junior Software Engineer @ NBA",
+    "position":{
+      "title":"Job Role"
+    },
+    "sections":{
+      "results":{
+        "title":"Results",
+        "questions":{
+          "title":"Questions",
+          "bullets":[
+            "In your opinion, what are some of the biggest challenges facing the NBA in terms of technology and software development? How would you address these challenges?",
+            "The NBA collects a vast amount of data on players, teams, and games. How would you go about analyzing this data and presenting it in a way that is useful to coaches, players, and fans?",
+            "What experience do you have with agile software development methodologies? How do you prioritize tasks and manage your time in a fast-paced, constantly changing environment?"
+          ]
+        },
+        "answers":{
+          "title":"Answers",
+          "bullets":[
+            "Some of the biggest challenges for the NBA in terms of technology and software development include scalability and effective data management and analysis. These challenges require creative solutions and innovative approaches to ensure a seamless user experience and deliver actionable insights for players and teams.",
+            "Designing software applications that meet the needs of the NBA's diverse audience requires a user-centric approach, incorporating feedback and insights from fans, coaches, and players. By prioritizing usability and delivering a seamless user experience, we can ensure that our applications are both engaging and accessible to all fans, regardless of their level of interest in the game.",
+            "I have experience with agile software development methodologies, and I understand the importance of prioritizing tasks and managing time effectively in a fast-paced environment. I believe that communication and collaboration are key to success in agile teams, and I strive to keep my team informed and engaged throughout the development process. I also understand the importance of adapting to changing requirements and being flexible in my approach to problem-solving."
+          ]
+        }
+      },
+      "facts":{
+        "title":"Facts",
+        "bullets":[
+          "Player Tracking Technology: The NBA has developed a sophisticated player tracking system that uses sensors and cameras to collect real-time data on player movements and performance. This data is used by coaches and teams to analyze and improve player performance, and by broadcasters to provide fans with detailed statistics during games.",
+          "Data Analytics: The NBA uses data analytics to drive decision-making across a range of areas, from player recruitment and team strategy to fan engagement and marketing. The league collects data on everything from player performance and injuries to fan behavior and social media trends, and uses this data to inform its decisions and strategy.",
+          "Motion Capture Technology: The NBA also uses motion capture technology to create realistic 3D animations of players for use in video games and other applications. This technology captures the movements of players and turns them into digital animations that can be used in a range of applications, from video games to training simulations."
+        ]
+      },
+      "news":{
+        "title":"Latest News",
+        "bullets":[
+          "NBA teams experimenting with new technology to monitor player health: ",
+          "NBA launches virtual reality app for fans: ",
+          "NBA expands use of instant replay technology: "
+        ]
+      },
+      "questions":{
+        "title":"Questions",
+        "bullets":[
+          "How does the NBA ensure that its software applications meet the needs of its diverse audience, from casual fans to diehard supporters?",
+          "How does the NBA incorporate fan feedback and user testing into its software development process, and what opportunities are there for developers to interact with fans and users directly?",
+          "Can you tell me about any upcoming or in-development projects that the software development team at the NBA is working on, and what kind of impact do you anticipate these projects will have on the fan experience or the broader organization?"
+        ]
+      }
+    }
+  },
+  "SectionsTwo":{
+    "filter":"Filter"
+  },
+  "ProfileOneMain":{
+    "title":"Welcome, Alou",
+    "lastAnalysis":{
+      "title":"Last Result"
+    },
+    "uploadForm":{
+      "title":"Upload resume or job role description for new results"
+    },
+    "helpUs":{
+      "title":"Help us get to know you!",
+      "desc":"Answer a few questions that will help us better understand how to improve your experience.",
+      "mabyeLater":"Maybe Later",
+      "submitPersonalInfo":"Yes, take me!"
+    }
+  },
+  "AvatarOne":{
+    "iconAlt":"Avatar Image"
+  },
+  "JoinWaitlistForm":{
+    "title":"Join Waitlist",
+    "subtitle":"Elevate your interview skills and land your dream job!",
+    "summary":"Be among the first to experience our product by joining our waitlist and receiving exclusive updates on our official launch.",
+    "mainForm":{
+      "nameField":{
+        "label":"Name",
+        "error":{
+          "required":"A name is required"
+        }
+      },
+      "phoneField":{
+        "label":"Phone"
+      },
+      "emailField":{
+        "label":"Email",
+        "error":{
+          "email":"Please provide email in the correct format"
+        }
 
+      }
+    }
+  },
+  "QuestionaireOneMain":{
+    "backdropImgAlt":"background",
+    "title":"Product Improvement Survey: ",
+    "subtitle":"Your feedback is critical to our success",
+    "summary":"We want to make sure our product meets your needs. Please take a moment to answer the following questions and help us tailor it to you:",
+    "fields":{
+      "waitListId":{
+        "label":"Waitlist ID"
+      },
+      "cognitoUserId":{
+        "label":"User ID"
+      }
+    }
+  },
+  "DecideToDoSurvey":{
+    "summary":"Thanks for signing up for our waitlist! Please take a moment to answer our short survey question. Your feedback is valuable and will help us understand how our product can best help you!",
+    "finishedBtn":"Not, right now",
+    "fillOutSurveyBtn":"Sure, let's go!"
+  }
 
 }

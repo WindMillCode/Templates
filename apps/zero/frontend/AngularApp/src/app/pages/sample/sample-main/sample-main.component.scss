@@ -1,0 +1,94 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.SampleMainView{
+    display: block;
+
+    * {
+      color: var(--wml-black)
+    }
+    .SampleMain{
+      &Main{
+        &Pod{
+          @include MainPodCssRule0;
+          background-color: var(--wml-default-layout-background);
+        }
+
+        &Title {
+          &0 {
+            margin:0 0 0 $spacing10;
+          }
+        }
+      }
+      &Pod{
+
+        @for $i from 0 through 3 {
+          &#{$i} {
+            margin:$spacing7 0 0 0;
+          }
+        }
+
+        &0{
+          display:flex;
+          flex-direction: column;
+          background-color: var(--wml-tertiary);
+          border-radius: $wml-border-radius2;
+          padding:$spacing3;
+          &Img {
+            &0 {
+              width: calc(45/16 * 1rem);
+              height: auto;
+              border-radius: 100%;
+              margin:0 $spacing3 0 0;
+            }
+          }
+          p{
+            color: var(--wml-white);
+          }
+          &Item {
+            &0 {
+              display: flex;
+            }
+          }
+          &Text {
+            &0 {
+
+              display:none
+            }
+          }
+        }
+
+        &2{
+          display: flex;
+          justify-content: space-between;
+          &Item {
+            &0 {
+              flex: 0 0 49%;
+            }
+          }
+        }
+
+        &3{
+          display: flex;
+          justify-content: space-between;
+          &Item {
+            &0 {
+              flex: 0 0 49%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
