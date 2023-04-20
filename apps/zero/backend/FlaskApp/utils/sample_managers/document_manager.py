@@ -1,14 +1,7 @@
 
 from utils.api_exceptions import APIClientError
 from utils.singleton_exception import SingletonException
-def local_deps():
-  import sys
-  if sys.platform == 'win32':
-    sys.path.append(sys.path[0] + '.\site-packages\windows')
-  elif sys.platform =='linux':
-    sys.path.append(sys.path[0] + './site-packages/linux')
-  elif sys.platform =='darwin':
-    sys.path.append(sys.path[0] + './site-packages/linux')
+from utils.local_deps import  local_deps
 local_deps()
 from pypdf import PdfReader
 from docx2python import docx2python

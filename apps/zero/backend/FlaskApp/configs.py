@@ -2,18 +2,7 @@ import os
 from db.sql_server_manager import SQLServerManager
 from db.postgres_manager import PostgresManager
 from utils.env_vars import ENV_VARS
-
-
-
-
-def local_deps():
-    import sys
-    if sys.platform == "win32":
-        sys.path.append(sys.path[0] + "\\site-packages\\windows")
-    elif sys.platform =="linux":
-        sys.path.append(sys.path[0] + "/site-packages/linux")
-    elif sys.platform =="darwin":
-        sys.path.append(sys.path[0] + "/site-packages/linux")
+from utils.local_deps import  local_deps
 local_deps()
 import boto3
 

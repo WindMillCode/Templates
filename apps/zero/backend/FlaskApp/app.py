@@ -4,8 +4,9 @@ import traceback
 
 from configs import CONFIGS,ENV_VARS
 import utils.my_util
-from utils.my_util import APIMsgFormat,local_deps
+from utils.my_util import APIMsgFormat
 from utils.api_exceptions import APIError
+from utils.local_deps import  local_deps
 local_deps()
 from flask.helpers import make_response
 from flask.json import jsonify
@@ -26,7 +27,7 @@ if ENV_VARS.get("FLASK_BACKEND_ENV") == "DEV":
   app.config.update(
     DEBUG = True
   )
-  
+
 app.register_blueprint(myhealthcheck)
 
 @app.before_request
