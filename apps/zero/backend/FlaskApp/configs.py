@@ -1,6 +1,9 @@
 import os
+from managers.cron_task_runner import CronTasksRunner
+from managers.sentry_manager import SentryManager
 from db.sql_server_manager import SQLServerManager
 from db.postgres_manager import PostgresManager
+from managers.watchdog_manager import WatchdogManager
 from utils.env_vars import ENV_VARS
 from utils.local_deps import  local_deps
 local_deps()
@@ -35,6 +38,9 @@ class DevConfigs:
     "port":"5432",
     "db":"pfmegrnargs",
   })
+  sentry_manager = SentryManager()
+  cron_task_runner =  CronTasksRunner()
+  watchdog_manager = WatchdogManager()
 
 
 

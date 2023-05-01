@@ -207,6 +207,16 @@
 
     },
     {
+      "label": "angular frontend: generate page module",
+      "type": "shell",
+      "command": ".\\ignore\\Windmillcode\\angular_frontend_generate_page_module.ps1 ${input:generate_page_module0} ${input:generate_page_module1} ${input:generate_page_module2} ${input:generate_page_module3} ${input:generate_page_module4} ${input:generate_page_module5} ${input:generate_page_module6} ${input:generate_page_module7}",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
       "label": "npm: reinstall npm package",
       "type": "shell",
       "command": "cd .\\apps\\zero\\frontend\\AngularApp\\; yarn remove ${input:update_a_npm_package0};yarn add ${input:update_a_npm_package1} ${input:update_a_npm_package0};",

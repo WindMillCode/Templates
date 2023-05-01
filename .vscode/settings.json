@@ -22,7 +22,8 @@
   "python.analysis.extraPaths": [
     "./apps/zero/backend/FlaskApp/site-packages/windows",
     "./apps/zero/backend/FlaskApp/site-packages/linux",
-    "./apps/zero/backend/FlaskApp/site-packages/darwin"
+    "./apps/zero/backend/FlaskApp/site-packages/darwin",
+    "./apps/zero/backend/FlaskApp"
   ],
   "java.configuration.updateBuildConfiguration": "automatic",
   "java.compile.nullAnalysis.mode": "automatic",

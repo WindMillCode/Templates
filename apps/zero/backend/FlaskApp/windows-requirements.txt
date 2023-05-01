@@ -12,7 +12,8 @@ textrazor
 openai
 pypdf
 docx2python
-
+sentry_sdk
+schedule
 
 translatepy
 pytest
