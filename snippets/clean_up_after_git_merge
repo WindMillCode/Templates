@@ -1,1 +1,0 @@
-git checkout master;git pull origin master;git branch --delete michael-fantastic;git checkout -b michael-fantastic
