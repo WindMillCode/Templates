@@ -1,0 +1,78 @@
+
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+@import "src/assets/styles/_fonts.scss";
+
+
+:host {
+
+
+  &.DefaultLayoutView{
+    display: block;
+    width:99.9vw;
+    height:99.9vh;
+
+    .DefaultLayout{
+      &Main{
+        &Pod{
+
+          // max-width: 100%;
+          max-height: 100%;
+          width: 100%;
+          height: 100%;
+          margin: auto;
+          max-width: none !important;
+          @include WMLFlexColumnCenter;
+          @include MainPodCssRule0;
+          padding:0;
+          position: relative;
+          background-color: rgba(var(--wml-tertiary));
+
+        }
+
+
+      }
+      &Pod{
+
+        &0 {
+          height: 100%;
+          position: absolute;
+          max-width:none !important;
+        }
+        &1{
+          flex: 0 0 calc(42/10.6 * 1rem);
+
+
+        }
+        &2{
+          flex:1 0 calc(100% - 42/10.6 * 1rem );
+          max-height: calc(100% - 42/10.6 * 1rem );
+          width: 100%;
+          // @include WMLFlexColumnCenter;
+          display: flex;
+          margin:0 0 $spacing7 0;
+          &Item {
+            &0 {
+              height: 100%;
+            }
+            &1{
+              display: none;
+            }
+          }
+
+        }
+        &3{
+          max-height: 100%;
+          @include WMLFlexColumnCenter;
+          overflow: hidden auto;
+          align-items: stretch;
+          margin: 0 0 $spacing11 0;
+
+        }
+
+
+      }
+    }
+  }
+
+}

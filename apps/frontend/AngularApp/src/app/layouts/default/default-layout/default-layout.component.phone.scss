@@ -1,0 +1,22 @@
+#root default-layout{
+  @media #{$mobile}{
+    .NavZeroPod1{
+      display:none
+    }
+    .NavZeroPod0Icon0{
+      display: block;
+    }
+    .DefaultLayoutPod2{
+      flex-direction: column;
+    }
+    .DefaultLayoutPod2Item0{
+      display: none;
+    }
+    .DefaultLayoutPod2Item1{
+      display: block;
+      margin:$spacing7 0 0 0;
+      max-height: 20%;
+    }
+
+  }
+}

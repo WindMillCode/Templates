@@ -1,0 +1,122 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+:host {
+
+  @keyframes zoomOut{
+    0%{
+      transform: scale(1,1);
+    }
+    100%{
+      transform: scale(1.2,1.2);
+    }
+  }
+
+  &.CarouselZeroView{
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    &Shared {
+      &Item {
+        &0 {
+          width: 100%;
+          height: 100;
+        }
+      }
+    }
+    .CarouselZero{
+      &Main{
+        &Pod{
+          width: 100%;
+          height: 100%;
+          @include MainPodCssRule0;
+          padding:0;
+          display: flex;
+        }
+      }
+      &Pod{
+
+        &0{
+          flex:0 0 70%;
+          &Img {
+            &0 {
+              height: 100%;
+              position: relative;
+            }
+            &1{
+              animation: $wml-animation-duration-1 zoomOut;
+              transform: scale(1.2,1.2);
+            }
+          }
+        }
+        &1{
+          flex:0 0 30%;
+          display: flex;
+          flex-direction: column;
+          padding-left:$spacing5;
+
+          &Title {
+            &0 {
+              font-family: 'AvontuurGardeGoshikkutai';
+              color:rgb(var(--wml-tertiary));
+              text-align: center;
+            }
+          }
+          &Text {
+            &0 {
+              color:rgb(var(--wml-white));
+              font-size: $display-xx-small;
+            }
+          }
+          &Item {
+
+            &0 {
+              flex: 0 0 70%;
+              max-height: 70%;
+
+
+            }
+            &1 {
+              padding-top:$spacing5;
+              flex: 0 0 30%;
+            }
+            &2{
+              display: flex;
+              flex: 1 1 auto;
+              flex-flow:row wrap;
+              justify-content: space-evenly;
+              align-items: none;
+            }
+            &3{
+              width: calc(40/10.6 * 1rem);
+              height: calc(40/10.6 * 1rem);
+              @include WMLFlexColumnCenter;
+              color:rgb(var(--wml-black));
+              align-items: center;
+              text-align: center;
+              border-radius: 100%;
+              padding:$spacing3;
+              background:  var(--wml-white-gradient);
+            }
+          }
+
+          &Icon {
+            &0 {
+              font-size: $display-x-large;
+              color:rgb(var(--wml-black));
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+}

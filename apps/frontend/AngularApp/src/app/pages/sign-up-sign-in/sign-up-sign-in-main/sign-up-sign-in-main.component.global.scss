@@ -1,0 +1,40 @@
+#root sign-up-sign-in-main{
+  .SignUpSignInMainPod0Btn0{
+    &Btn{
+      width: 100%;
+      padding-top: $spacing5 ;
+      padding-bottom: $spacing5 ;
+    }
+    &Google {
+      background: $wml-google-primary;
+      *{
+        color:$wml-black
+      }
+      &:hover{
+        .WmlButtonZeroMainButton0Text0{
+          color:$wml-black
+        }
+      }
+    }
+    &Facebook {
+      background: $wml-facebook-primary;
+    }
+    &Twitter {
+      background: $wml-twitter-primary;
+    }
+    &Yahoo {
+      background: $wml-yahoo-primary;
+    }
+    &Microsoft {
+      background: $wml-microsoft-primary;
+    }
+    &Github {
+      background: $wml-github-primary;
+    }
+    &Apple {
+      background: $wml-apple-primary;
+    }
+
+  }
+
+}

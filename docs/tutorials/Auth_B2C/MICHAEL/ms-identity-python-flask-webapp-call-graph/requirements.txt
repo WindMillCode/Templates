@@ -1,6 +1,0 @@
-Flask
-werkzeug
-flask-session
-requests
-git+https://github.com/azure-samples/ms-identity-python-samples-common
-pyopenssl

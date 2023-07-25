@@ -1,4 +1,9 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/WindMillCode/Template/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/WindMillCode/Template/tree/master)
+# How to start
+* install the [vscode extension](https://marketplace.visualstudio.com/items?itemName=windmillcode-publisher-0.windmillcode-extension-pack-0) to start to more efficiently use the project
+* then run tasks > windmillcode > updateworkspace with latest tasks, as you continue through the project
+
+
 # Summary
 
 ## Projects
@@ -42,43 +47,33 @@ Only members of the project can read the README.md from the ignore folder
 # Stack
 
 ## Frontend
-* Framework -
-  Angular v15, node 18
-* I18N
-  - ngx-translate: 14.0.0
+* Framework - Angular :15.1.0, node 18.12.1
+* I18N  - ngx-translate: 14.0.0
 * time management
-* online forms-
-  angular reactive forms:15.1.0
-* icons lib -
-  font awesome
-* component lib-
-  @windmillcode/wml-components
-* unit testing
-  jasmine:4.20
-
-
+* online forms- angular reactive forms:15.1.0
+* icons lib - font awesome
+* component lib- @windmillcode/wml-components
+* unit testing jasmine:4.20
 
 
 
 
 ## Backend
 
-* framework
-  flask v 2.3,python v3.11
-* unit testing -
-  pytest v 7.2.1
-* email -
-  sendgrid
-* db
-  sqlalchemy
-* error monitoring
-  * sentry
+* framework flask v 2.2.2,python v3.11.1
+* unit testing - pytest v 7.2.1
+* email -sendgrid
+
 ## Mobile
 * Framework - Flutter
 
 
+
+
+
 ### E2E Testing
 * java selenium
+
 
 ## Hosting
 
@@ -102,7 +97,7 @@ Sentry
 * Github
 
 ## Communication
-[Trello](Board url here)
+[Trello](https://trello.com/b/L1K0hxKK/windmillcodesite)
 [communnication channel here]
 
 

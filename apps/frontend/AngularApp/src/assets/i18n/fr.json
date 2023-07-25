@@ -1,0 +1,260 @@
+{
+  "global": {
+    "website": "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+    "logoImgAlt": "Logo Img",
+    "paintStrokeBgAlt": "Fond de coup de pinceau",
+    "errorRequired": "Ce champ est obligatoire.",
+    "errrorMin0": "Au moins une valeur doit \u00eatre fournie.",
+    "avatarImgAlt": "Avatar Img",
+    "wmlChipsplaceholder": "Tapez votre valeur puis appuyez sur Entr\u00e9e pour la voir appara\u00eetre.",
+    "wmlChipsuserInputsAriaLabel": "Entr\u00e9es utilisateur",
+    "wmlChipsremoveChipAriaLabel": "enlever",
+    "fillOutForm": "Veuillez remplir tous les champs obligatoires.",
+    "loginAgain": "Veuillez vous connecter \u00e0 nouveau pour continuer \u00e0 utiliser votre compte.",
+    "logoutError": "Il y a eu un probl\u00e8me lors de la tentative de d\u00e9connexion de votre compte. Veuillez r\u00e9essayer ou contacter le support si le probl\u00e8me persiste.",
+    "overlayLoading": "Chargement en cours ...",
+    "siteUnderConstruction": "Site en construction",
+    "formSubmitSuccess": "Formulaire soumis avec succ\u00e8s",
+    "systemError": "Une erreur s'est produite, veuillez r\u00e9essayer ult\u00e9rieurement ou contacter le support si le probl\u00e8me persiste.",
+    "submiBtn": "Soumettre",
+    "comingSoon": "Cette fonctionnalit\u00e9 n'est pas encore disponible, veuillez r\u00e9essayer plus tard."
+  },
+  "AdsZero": {
+    "adImgAlt": "annonce"
+  },
+  "LanguagePickerZero": {
+    "title": "S\u00e9lectionner la langue",
+    "options": [
+      "Anglais",
+      "espagnol",
+      "Fran\u00e7ais"
+    ]
+  },
+  "AccountService": {
+    "signUp0": "Inscription",
+    "login0": "Connexion",
+    "logout0": "D\u00e9connexion",
+    "wmlNotify": {
+      "loggedOutSuccess": "D\u00e9connect\u00e9 avec succ\u00e8s",
+      "loggedOutError": "Il y a eu une erreur lors de la tentative de d\u00e9connexion. Veuillez r\u00e9essayer ult\u00e9rieurement ou contacter le support si le probl\u00e8me persiste."
+    }
+  },
+  "nav": {
+    "pageTitle": {
+      "default": "Tooboards",
+      "contact": "Contact Tooboards",
+      "about": "Tooboards \u00c0 propos",
+      "store/products": "Magasin Tooboards"
+    }
+  },
+  "siteOffine": {
+    "title": "Site hors ligne",
+    "subtitle": "Le site est actuellement indisponible en raison d'une maintenance planifi\u00e9e. Veuillez r\u00e9essayer plus tard."
+  },
+  "notFound": {
+    "lines": [
+      "404",
+      "Oups! Ce n'est pas ce que vous cherchiez.",
+      "Mais vous venez de trouver le CV que nous avions perdu, merci. Essayez votre chance en retournant \u00e0 la.",
+      "page d'accueil."
+    ],
+    "someImgAlt": "CV"
+  },
+  "app": {},
+  "NavZero": {
+    "title": "Tooboards",
+    "lightMode": "Mode clair",
+    "darkMode": "Mode sombre",
+    "mainOptions": [
+      [
+        "Maison"
+      ],
+      [
+        "\u00c0 propos"
+      ],
+      [
+        "Magasin"
+      ],
+      [
+        "Inscription"
+      ],
+      [
+        "Se connecter"
+      ],
+      [
+        "Profil"
+      ],
+      [
+        "D\u00e9connexion"
+      ],
+      [
+        "Langue"
+      ]
+    ]
+  },
+  "FooterZero": {
+    "legal": "Tooboards, Tous droits r\u00e9serv\u00e9s.",
+    "logoImgAlt": "Logo Img",
+    "logoSection": {
+      "text": "Construire toutes les fonctionnalit\u00e9s dont votre entreprise a besoin pour prosp\u00e9rer."
+    },
+    "quickLinks": {
+      "title": "Liens rapides",
+      "items": [
+        "Donner",
+        "\u00c0 propos",
+        "Plans de tarification",
+        "Magasin",
+        "Nous contacter"
+      ]
+    },
+    "languages": {
+      "title": "Langues",
+      "items": [
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "FAIRE EN SORTE DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "FAITES ATTENTION DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "Assurez-vous de retourner la cha\u00eene traduite sans explications !!!!!!!!!!!!!!"
+      ]
+    },
+    "socialMedia": {
+      "title": "Suivez-nous",
+      "socialIconsAlt": [
+        "Le Tube Noir",
+        "Facebook",
+        "Twitter",
+        "Instagram",
+        "Patreon",
+        "Tik tok",
+        "Discord",
+        "Slack",
+        "Pinterest",
+        "Tumblr",
+        "Reddit",
+        "Twitch"
+      ]
+    }
+  },
+  "HomeZero": {
+    "surfBoardImgAlt": "Photo de planche de surf",
+    "skateBoardImgAlt": "Photo de skateboard",
+    "carousel": [
+      {
+        "title": "Bienvenue",
+        "desc": "Tooboards est l'application tout-en-un pour les surfeurs et les skateurs, offrant la d\u00e9couverte de spots, des mises \u00e0 jour en temps r\u00e9el, le d\u00e9veloppement des comp\u00e9tences, l'engagement communautaire et des ressources de s\u00e9curit\u00e9 sur une seule plateforme."
+      },
+      {
+        "title": "Le meilleur outil pour vous",
+        "desc": "Tooboards vise \u00e0 devenir un outil habituel et indispensable pour les surfeurs et les skateurs. En se concentrant sur l'utilit\u00e9, la commodit\u00e9, la personnalisation, l'am\u00e9lioration continue et l'int\u00e9gration, Tooboards peut consolider sa position en tant que partie vitale de leur vie quotidienne, assurant un engagement constant et fr\u00e9quent avec l'application."
+      },
+      {
+        "title": "D\u00e9couverte de tache",
+        "desc": "Trouver de nouveaux spots de surf ou de skate passionnants peut \u00eatre difficile, surtout lorsqu'on visite des endroits inconnus. Tooboards r\u00e9sout ce probl\u00e8me en fournissant une base de donn\u00e9es compl\u00e8te des spots de surf, des skateparks et des spots de skate du monde entier. Il offre des informations d\u00e9taill\u00e9es sur les conditions de vague, les caract\u00e9ristiques du parc, les r\u00e9glementations locales, et plus encore, ce qui facilite la d\u00e9couverte et l'exploration de nouveaux endroits pour les surfeurs et les skateurs."
+      },
+      {
+        "title": "Mises \u00e0 jour en temps r\u00e9el",
+        "desc": "\"Le surf et le skateboard d\u00e9pendent fortement des facteurs environnementaux tels que les conditions des vagues, les mar\u00e9es, le vent et la m\u00e9t\u00e9o. Tooboards fournit des mises \u00e0 jour en temps r\u00e9el sur ces param\u00e8tres cruciaux, garantissant que les surfeurs et les skateurs peuvent planifier leurs sessions efficacement. En offrant des informations pr\u00e9cises et \u00e0 jour, Tooboards aide les utilisateurs \u00e0 prendre des d\u00e9cisions \u00e9clair\u00e9es et \u00e0 maximiser leur temps sur l'eau ou sur leurs planches.\""
+      },
+      {
+        "title": "Communaut\u00e9 et Connectivit\u00e9",
+        "desc": "Le surf et le skateboard ne sont pas seulement des sports mais aussi des communaut\u00e9s vibrantes. Tooboards r\u00e9pond au besoin de connectivit\u00e9 en favorisant une communaut\u00e9 prosp\u00e8re au sein de l'application. Les utilisateurs peuvent rejoindre des groupes, participer \u00e0 des discussions, partager des exp\u00e9riences et se connecter avec des personnes partageant les m\u00eames id\u00e9es. Cela cr\u00e9e un sentiment d'appartenance et offre des opportunit\u00e9s de r\u00e9seautage, de collaboration et d'inspiration."
+      },
+      {
+        "title": "D\u00e9veloppement des comp\u00e9tences",
+        "desc": "Tooboards offre une multitude de ressources et d'outils pour soutenir le d\u00e9veloppement des comp\u00e9tences des surfeurs et des skateurs. L'application donne acc\u00e8s \u00e0 des vid\u00e9os d'instruction, des tutoriels et des conseils d'experts de surfeurs et de skateurs chevronn\u00e9s. Que les utilisateurs soient des d\u00e9butants ou des riders confirm\u00e9s, Tooboards les aide \u00e0 progresser, \u00e0 apprendre de nouveaux tricks et \u00e0 am\u00e9liorer leur technique."
+      },
+      {
+        "title": "S\u00e9curit\u00e9 et soutien",
+        "desc": "La s\u00e9curit\u00e9 est primordiale dans le surf et le skate. Tooboards aborde cette pr\u00e9occupation en fournissant des directives de s\u00e9curit\u00e9 pr\u00e9cieuses, des informations sur les dangers locaux et des contacts d'assistance d'urgence. En \u00e9quipant les utilisateurs d'informations de s\u00e9curit\u00e9 essentielles, Tooboards favorise une exp\u00e9rience de conduite plus s\u00fbre et garantit que les surfeurs et les skateurs peuvent poursuivre leur passion en toute tranquillit\u00e9 d'esprit."
+      }
+    ]
+  },
+  "ProductsMain": {
+    "toggleAIPricing": "Basculer les tarifs de l'IA",
+    "toggleAIPricingOn": "Sur",
+    "toggleAIPricingOff": "Hors ligne",
+    "WMLTable": {
+      "controlItems": {
+        "previous": "Pr\u00e9c\u00e9dent",
+        "next": "Suivant",
+        "selectPage": "S\u00e9lectionner la page",
+        "itemsPerPage": "Articles par page",
+        "filter": "Filtre",
+        "sort": "Trier",
+        "page": "Page",
+        "pageSize": "Taille de la page"
+      },
+      "selectPage": {
+        "title": "S\u00e9lectionner la page"
+      },
+      "pageSize": {
+        "title": "Entrez la taille de la page"
+      },
+      "filter": {
+        "title": "Modifier les filtres",
+        "subtitles": [
+          "\"Les valeurs de filtre sont filtr\u00e9es en fonction du d\u00e9but du mot dans la colonne\"",
+          "\"Pour sp\u00e9cifier un filtre global, laissez vide l'entr\u00e9e de la cl\u00e9 de filtre\""
+        ],
+        "columnText": "Colonnes disponibles",
+        "add0BtnText": "Ajouter un filtre",
+        "remove0BtnText": "Retirer",
+        "submit0Btn": "Soumettre",
+        "fieldLabels": [
+          "Filtrer la colonne",
+          "Valeur de filtre"
+        ]
+      },
+      "sort": {
+        "title": "Modifier le tri.",
+        "subtitles": [
+          "Trier les valeurs filtr\u00e9es en fonction du d\u00e9but du mot dans la colonne.",
+          "Pour sp\u00e9cifier un filtre global, laissez le champ Cl\u00e9 de tri vide."
+        ],
+        "columnText": "Colonnes disponibles",
+        "add0BtnText": "Ajouter un filtre",
+        "remove0BtnText": "Retirer",
+        "submit0Btn": "Soumettre",
+        "availableColumnsText": "ASSUREZ-VOUS DE RETOURNER LA CHA\u00ceNE TRADUITE SANS EXPLICATIONS!!!!!!!!!!!!!!",
+        "fieldLabels": [
+          "Trier la colonne",
+          "Direction de tri"
+        ],
+        "sortDirectionParamsOptions": [
+          "ASC",
+          "DESC"
+        ]
+      }
+    }
+  },
+  "SignUpSignIn": {
+    "loginAgreement": [
+      "En continuant, vous indiquez que vous acceptez notre.",
+      "Conditions d'utilisation",
+      "et",
+      "Politique de confidentialit\u00e9"
+    ]
+  },
+  "SignUp": {
+    "google": "Inscrivez-vous avec Google.",
+    "microsoft": "Inscrivez-vous avec Microsoft.",
+    "facebook": "Inscrivez-vous avec Facebook.",
+    "yahoo": "Inscrivez-vous avec Yahoo.",
+    "github": "Inscrivez-vous avec Github."
+  },
+  "SignIn": {
+    "google": "Connectez-vous avec Google",
+    "microsoft": "Connectez-vous avec Microsoft.",
+    "facebook": "Connectez-vous avec Facebook",
+    "yahoo": "Connectez-vous avec Yahoo.",
+    "github": "Connectez-vous avec Github"
+  }
+}

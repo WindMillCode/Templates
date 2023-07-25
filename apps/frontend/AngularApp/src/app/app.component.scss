@@ -1,0 +1,67 @@
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+:host {
+
+
+  &.AppView{
+    max-width: 100vw;
+    max-height: 100vh;
+    @include WMLFlexColumnCenter;
+    position: relative;
+    overflow: hidden;
+    .App{
+      &Main{
+        &Pod{
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+
+        &Notify,&Loading {
+          &0 {
+            z-index: 10;
+          }
+        }
+
+
+
+      }
+
+      &Pod{
+          &0{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            inset:0;
+          }
+          &1{
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top:0;
+            z-index:7;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+          }
+
+
+
+
+
+
+      }
+    }
+  }
+
+
+}

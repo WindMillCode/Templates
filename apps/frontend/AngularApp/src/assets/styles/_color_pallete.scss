@@ -1,0 +1,131 @@
+@use "sass:string";
+
+@function to-number($value) {
+    @if type-of($value) == 'number' {
+      @return $value;
+    } @else if type-of($value) != 'string' {
+      $_: log('Value for `to-number` should be a number or a string.');
+    }
+
+    $result: 0;
+    $digits: 0;
+    $minus: str-slice($value, 1, 1) == '-';
+    $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+
+    @for $i from if($minus, 2, 1) through str-length($value) {
+      $character: str-slice($value, $i, $i);
+
+      @if not (index(map-keys($numbers), $character) or $character == '.') {
+        @return to-length(if($minus, -$result, $result), str-slice($value, $i))
+      }
+
+      @if $character == '.' {
+        $digits: 1;
+      } @else if $digits == 0 {
+        $result: $result * 10 + map-get($numbers, $character);
+      } @else {
+        $digits: $digits * 10;
+        $result: $result + map-get($numbers, $character) / $digits;
+      }
+    }
+
+    @return if($minus, -$result, $result);;
+  }
+
+@function convert-to-rgb($color) {
+  $channels: string.split($color, ",");
+  // @debug to-number(nth($channels, 1));
+  @return rgb(to-number(nth($channels, 1)),to-number(nth($channels, 2)),to-number(nth($channels, 3)));
+}
+
+
+
+$wml-white: "255,255,255";
+$wml-black: "0,0,0";
+$wml-secondary: "0,45,4";
+$wml-primary: "157,78,221";
+$wml-tertiary: "183,117,48";
+$wml-quaternary:"255,255,0";
+$wml-star-selected: "255,215,0";
+$wml-alert: "255,0,0";
+$wml-nav-color: "0,0,0";
+$wml-nav-color-dark: "0,45,4";
+$wml-input-background-color-light-0: "211,211,211";
+$wml-input-background-color-dark-0: "59,59,59";
+$wml-google-primary: "255,255,255";
+$wml-facebook-primary: "59,89,152";
+$wml-twitter-primary: "29,161,242";
+$wml-yahoo-primary: "67,2,151";
+$wml-apple-primary: "0,0,0";
+$wml-microsoft-primary: "127,186,0";
+$wml-github-primary: "24,23,23";
+$wml-popup-background:"112, 112, 112";
+
+
+
+
+
+$wml-primary-filter:invert(12%) sepia(29%) saturate(3165%) hue-rotate(104deg) brightness(95%) contrast(106%);
+$wml-secondary-filter: invert(33%) sepia(39%) saturate(3782%) hue-rotate(254deg) brightness(95%) contrast(82%);
+$wml-tertiary-filter:invert(46%) sepia(95%) saturate(349%) hue-rotate(350deg) brightness(88%) contrast(90%);
+$wml-quaternary-filter:invert(93%) sepia(84%) saturate(938%) hue-rotate(356deg) brightness(107%) contrast(107%);
+
+$wml-primary-gradient: radial-gradient(farthest-corner at 100% 0px,  convert-to-rgb($wml-primary) 0%,grey 200%);
+$wml-secondary-gradient: radial-gradient(farthest-corner at 100% 0px,convert-to-rgb($wml-secondary) 0%,grey 150%);
+
+$wml-white-gradient: radial-gradient(farthest-corner at 100% 0px, convert-to-rgb($wml-white) 0%,black 150%);
+$wml-black-gradient: radial-gradient(farthest-corner at 100% 0px, convert-to-rgb($wml-black) 0%,white 250%);
+
+:root {
+
+
+    --wml-primary-filter:#{$wml-primary-filter};
+    --wml-original-primary-filter:#{$wml-primary-filter};
+    --wml-secondary-filter:#{$wml-secondary-filter};
+    --wml-original-secondary-filter:#{$wml-secondary-filter};
+    --wml-tertiary-filter:#{$wml-tertiary-filter};
+    --wml-original-tertiary-filter:#{$wml-tertiary-filter};
+    --wml-quaternary-filter:#{$wml-quaternary-filter};
+    --wml-original-quaternary-filter:#{$wml-quaternary-filter};
+
+    --wml-input-background-color-light-0:#{$wml-input-background-color-light-0};
+    --wml-original-input-background-color-light-0:#{$wml-input-background-color-light-0};
+    --wml-input-background-color-dark-0:#{$wml-input-background-color-dark-0};
+    --wml-original-input-background-color-dark-0:#{$wml-input-background-color-dark-0};
+    --wml-quaternary:#{$wml-quaternary};
+    --wml-original-quaternary:#{$wml-quaternary};
+
+    --wml-white:#{$wml-white};
+    --wml-original-white:#{$wml-white};
+    --wml-black:#{$wml-black};
+    --wml-original-black:#{$wml-black};
+    --wml-primary:#{$wml-primary};
+    --wml-original-primary:#{$wml-primary};
+    --wml-secondary:#{$wml-secondary};
+    --wml-original-secondary:#{$wml-secondary};
+    --wml-star-selected:#{$wml-star-selected};
+    --wml-original-star-selected:#{$wml-star-selected};
+    --wml-alert:#{$wml-alert};
+    --wml-original-alert:#{$wml-alert};
+    --wml-popup-background:#{$wml-popup-background};
+    --wml-original-popup-background:#{$wml-popup-background};
+
+
+    --wml-primary-gradient:#{$wml-primary-gradient};
+    --wml-original-primary-gradient:#{$wml-primary-gradient};
+    --wml-secondary-gradient:#{$wml-secondary-gradient};
+    --wml-original-secondary-gradient:#{$wml-secondary-gradient};
+    --wml-tertiary:#{$wml-tertiary};
+    --wml-original-tertiary:#{$wml-tertiary};
+    --wml-nav-color:#{$wml-nav-color};
+    --wml-original-nav-color:#{$wml-nav-color};
+
+    --wml-white-gradient:#{$wml-white-gradient};
+    --wml-original-white-gradient:#{$wml-white-gradient};
+    --wml-black-gradient:#{$wml-black-gradient};
+    --wml-original-black-gradient:#{$wml-black-gradient};
+
+}
+
+
+

@@ -1,0 +1,33 @@
+#root  wml-mobile-nav-zero{
+  .WmlMobileNavZeroPod0{
+    background: var(--wml-primary-gradient);
+    flex:0 0 45% ;
+  }
+
+  .WmlSampleInfiniteDropdownItemMainItem1{
+    color:rgba(var(--wml-secondary));
+    border-bottom: calc(1.6/10.6 * 1rem) solid rgba(var(--wml-secondary));
+  }
+
+  .MobileNavLogoDisplay{
+    @include WMLFlexColumnCenter;
+    padding:$spacing7 0;
+    border-bottom: calc(1.6/10.6 * 1rem) solid rgba(var(--wml-secondary));
+
+    .LogoDisplayZeroMainPod{
+      @include WMLFlexColumnCenter;
+      height: calc(100/10.6 * 1rem);
+    }
+
+
+  }
+}
+
+.WMLDarkMode #root wml-mobile-nav-zero{
+  .WmlSampleInfiniteDropdownItemMainItem1,
+  .MobileNavLogoDisplay{
+    filter: brightness(200%);
+  }
+}
+
+

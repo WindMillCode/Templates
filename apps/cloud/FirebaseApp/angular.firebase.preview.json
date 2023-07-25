@@ -1,0 +1,31 @@
+{
+
+  "hosting": {
+    "site":"default-preview",
+    "public": "dist/angular-app-preview",
+    "headers":[
+      {
+        "source": "/**/!(*.*)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/assets/media/scratchpad/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+
+  }
+}

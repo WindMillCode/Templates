@@ -7,31 +7,65 @@
     "amplify/#current-cloud-backend": true,
     "amplify/backend/amplify-meta.json": true,
     "amplify/backend/awscloudformation": true,
-    "apps/zero/frontend/AngularAppOld":true
+    "**/.git": false
   },
+  "typescript.tsdk":"../apps/frontend/AngularApp/node_modules/typescript/lib",
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,
     "examples/**":true,
-    "docs/**":true
+    "docs/**":true,
+    "issues/**":true
   },
   "workbench.colorTheme": "Base16 Dark Ashes",
   "task.allowAutomaticTasks": "on",
   "python.formatting.provider": "black",
   "python.analysis.extraPaths": [
-    "./apps/zero/backend/FlaskApp/site-packages/windows",
-    "./apps/zero/backend/FlaskApp/site-packages/linux",
-    "./apps/zero/backend/FlaskApp/site-packages/darwin",
-    "./apps/zero/backend/FlaskApp"
+    "./apps/backend/FlaskApp/site-packages/windows",
+    "./apps/backend/FlaskApp/site-packages/linux",
+    "./apps/backend/FlaskApp/site-packages/darwin",
+    "./apps/backend/FlaskApp"
   ],
   "java.configuration.updateBuildConfiguration": "automatic",
   "java.compile.nullAnalysis.mode": "automatic",
   "java.test.config": {
     "name":"myTestConfiguration",
     "testKind": "testng",
-    "preLaunchTask": "testng e2e: setup vscode java testing extension",
-    "vmArgs": ["-DparamBrowser=FIREFOXHEADLESS","-DparamEnv=DEV"]
-  }
+    "preLaunchTask": "testng: e2e setup vscode extension",
+    "vmArgs": ["-DparamBrowser=CHROME","-DparamEnv=DEV"]
+  },
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "password": "my-secret-pw",
+      "username": "myadmin",
+      "database": "windmillcodesite_mysql_database_0",
+      "name": "windmillcode-dev-0",
+      "group": "dev"
+    }
+  ],
+  "windmillcode-extension-pack-0":{
+    "flaskBackendHelperScript":"ignore\\Local\\flask_backend_shared.go",
+    "dockerInitContainerHelperScript":"ignore\\Local\\docker_init_container.go",
+    "pythonVersion":"3.11.4",
+    "openAIAPIKey0":"",
+    "langCodes0":"zh, es, hi, uk, ar, bn, ms, fr, de, sw, am",
+    "sqlDockerContainerName":"default-postgres-local-0",
+    "databaseName":"default_postgres_database_0",
+    "databaseOptions":[
+      "mysql",
+      "postgres",
+      "mssql",
+      "oraclesql"
+    ]
+  },
+  "json.copyJsonPath.useBracketNotation": false
 
 }

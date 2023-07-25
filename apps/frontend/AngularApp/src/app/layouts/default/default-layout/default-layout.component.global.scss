@@ -1,0 +1,23 @@
+#root default-layout{
+  .DefaultLayoutPod1{
+    router-outlet + * {
+      flex: 1 0 auto;
+
+    }
+
+  }
+
+  .DefaultLayoutPod2Item0{
+    .AdsZeroMainPod{
+      height: 100%;
+      max-height: none;
+      max-width: 100%;
+      flex-direction: column-reverse;
+    }
+
+    .AdsZeroMainText0{
+      align-self: flex-end;
+      margin:0;
+    }
+  }
+}

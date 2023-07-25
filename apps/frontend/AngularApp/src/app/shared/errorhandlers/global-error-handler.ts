@@ -1,0 +1,30 @@
+import { Inject, inject, Injectable } from '@angular/core';
+import { BaseService } from '@core/base/base.service';
+import { WmlNotifyBarType } from '@windmillcode/angular-wml-notify';
+import { SentryErrorHandler,ErrorHandlerOptions } from '@sentry/angular-ivy';
+import { ENV } from '@env/environment';
+
+
+class SentryErrorHandlerOptions implements ErrorHandlerOptions{
+
+}
+@Injectable()
+export class GlobalErrorHandler extends SentryErrorHandler {
+  constructor(@Inject(SentryErrorHandlerOptions) private configs:ErrorHandlerOptions) {
+    super(configs)
+    this.baseService =  inject(BaseService);
+
+  }
+  private baseService
+  override handleError(error:Error) {
+    this.baseService.generateWMLNote('global.systemError',WmlNotifyBarType.Error);
+
+    if(ENV.type!=="dev"){
+      super.handleError(error);
+    }
+    else{
+      console.error(error)
+    }
+    this.handleError = ()=>{}
+  }
+}

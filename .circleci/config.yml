@@ -1,68 +1,233 @@
 version: 2.1
 # orbs:
-#   browser-tools: circleci/browser-tools@1.4.0
+#   browser-t
+ools: circleci/browser-tools@1.4.0
+commands:
+  install-deps:
+    steps:
+      - restore_cache:
+          keys:
+            - frontend-npm-deps-v3-{{ checksum "/root/project/apps/frontend/AngularApp/package.json" }}
+      - restore_cache:
+          keys:
+            - e2e-mvn-deps-v3-{{ checksum "/root/project/apps/testing/testng/pom.xml" }}
+      - restore_cache:
+          keys:
+            - cloud-npm-deps-v3-{{ checksum "/root/project/apps/cloud/FirebaseApp/package.json" }}
+      - restore_cache:
+          keys:
+            - backend-pip-deps-v3-{{ checksum "/root/project/apps/backend/FlaskApp/linux-requirements.txt" }}
+
+      - run:
+          . /etc/profile.d/01-custom-docker-setup.sh;
+          cd ~/project/apps/frontend/AngularApp/;
+          yarn install;
+          cd ~/project/apps/cloud/FirebaseApp/;
+          yarn install;
+          # cd ~/project/apps/backend/FlaskApp;
+          # pip install -r linux-requirements.txt --upgrade;
+          # cd ~/project/apps/testing/testng;
+          # mvn install -DskipTests;
+
+      - save_cache:
+          key: frontend-npm-deps-v3-{{ checksum "/root/project/apps/frontend/AngularApp/package.json" }}
+          paths:
+            - /root/project/apps/frontend/AngularApp/node_modules
+      - save_cache:
+          key: cloud-npm-deps-v3-{{ checksum "/root/project/apps/cloud/FirebaseApp/package.json" }}
+          paths:
+            - /root/project/apps/cloud/FirebaseApp/node_modules
+      - save_cache:
+          key: e2e-mvn-deps-v3-{{ checksum "/root/project/apps/testing/testng/pom.xml" }}
+          paths:
+            - /root/project/apps/testing/testng/target
+      - save_cache:
+          key: backend-pip-deps-v3-{{ checksum "/root/project/apps/backend/FlaskApp/linux-requirements.txt" }}
+          paths:
+            - /root/.pyenv/versions/3.11.3/lib/python3.11/site-packages
+
+  deploy-frontend-app:
+    parameters:
+      app-env:
+          enum: ["preview","prod"]
+          default: "preview"
+          type: "enum"
+
+    steps:
+      - run:
+          . /etc/profile.d/01-custom-docker-setup.sh;
+          cd ~/project/apps/frontend/AngularApp/;
+          yarn build:<< parameters.app-env >>;
+          cd ~/project/apps/cloud/FirebaseApp/;
+          mv angular.firebase.<< parameters.app-env >>.json ~/project/apps/frontend/AngularApp/firebase.json;
+          mv ~/project/apps/devops/AngularFirebase/credentials /root/.config/configstore;
+          npx firebase use windmillcodesite;
+          npx firebase deploy --non-interactive --only hosting   --config "../../frontend/AngularApp/firebase.json"   ;
+
+
+  deploy-database:
+    parameters:
+      app-env:
+          enum: ["preview","prod"]
+          default: "preview"
+          type: "enum"
+    steps:
+      - run:
+
+          cd ~/project/apps/database/mysql/<< parameters.app-env >>/4-26-23;
+          APPENV=<< parameters.app-env >>;
+          AWS_MYSQLPASS=$([ << parameters.app-env >>  == "preview" ] && echo $AWS_MYSQLPASS_PREVIEW || echo $AWS_MYSQLPASS_PROD);
+          AWS_MYSQLHOST=$([ << parameters.app-env >>  == "preview" ] && echo "windmillcodesite-db-mysql-preview-0.c2yr2opzfzj9.us-east-1.rds.amazonaws.com" || echo "windmillcodesite-db-mysql-prod-0.c2yr2opzfzj9.us-east-1.rds.amazonaws.com");
+          mysql -u myadmin --password=$AWS_MYSQLPASS -h $AWS_MYSQLHOST  windmillcodesite_mysql_database_0 < update.sql
+          # mysql -u myadmin -p $AWS_MYSQLPASS -h $AWS_MYSQLHOST  -e "source 4-26-23/update.sql" windmillcode_site_mysql_database_0
+          # will check to see if I can create a database directly from update.sql in prod
+          # MYSQL_PASSWORD=$AWS_MYSQLPASS psql -h  $AWS_MYSQLHOST -p 5432 -U postgres  -f create_main_db.sql;
+
+  gcp-oidc-generate-cred-config-file:
+    description: "Authenticate with GCP using a CircleCI OIDC token."
+    parameters:
+      project_id:
+        type: env_var_name
+        default: GCP_PROJECT_ID
+      workload_identity_pool_id:
+        type: env_var_name
+        default: GCP_WIP_ID
+      workload_identity_pool_provider_id:
+        type: env_var_name
+        default: GCP_WIP_PROVIDER_ID
+      service_account_email:
+        type: env_var_name
+        default: GCP_SERVICE_ACCOUNT_EMAIL
+      gcp_cred_config_file_path:
+        type: string
+        default: /root/gcp_cred_config.json
+      oidc_token_file_path:
+        type: string
+        default: /root/oidc_token.json
+    steps:
+      - run:
+          command: |
+            # Store OIDC token in temp file
+            echo $CIRCLE_OIDC_TOKEN > << parameters.oidc_token_file_path >>
+            # Create a credential configuration for the generated OIDC ID Token
+            gcloud iam workload-identity-pools create-cred-config \
+                "projects/${<< parameters.project_id >>}/locations/global/workloadIdentityPools/${<< parameters.workload_identity_pool_id >>}/providers/${<< parameters.workload_identity_pool_provider_id >>}"\
+                --output-file="<< parameters.gcp_cred_config_file_path >>" \
+                --service-account="${<< parameters.service_account_email >>}" \
+                --credential-source-file=<< parameters.oidc_token_file_path >>
+
+  gcp-oidc-authenticate:
+    description: "Authenticate with GCP using a GCP credentials file."
+    parameters:
+      gcp_cred_config_file_path:
+        type: string
+        default: /root/gcp_cred_config.json
+    steps:
+      - run:
+          command: |
+            # Configure gcloud to leverage the generated credential configuration
+            gcloud auth login --brief --cred-file "<< parameters.gcp_cred_config_file_path >>"
+            # Configure ADC
+            echo "export GOOGLE_APPLICATION_CREDENTIALS='<< parameters.gcp_cred_config_file_path >>'" | tee -a "$BASH_ENV"
+
+  deploy-backend:
+    parameters:
+      app-env:
+          enum: ["preview","prod"]
+          default: "preview"
+          type: "enum"
+    steps:
+      - gcp-oidc-generate-cred-config-file
+      - gcp-oidc-authenticate
+      - run:
+          . /etc/profile.d/01-custom-docker-setup.sh;
+          mv ~/project/apps/devops/FlaskGAE/app.<< parameters.app-env >>.yaml ~/project/apps/backend/FlaskApp/app.yaml;
+          cd ~/project/apps/backend/FlaskApp/;
+          gcloud config set project windmillcodesite;
+          gcloud app deploy --quiet;
+
 jobs:
-  fullstack:
+
+  fullstack-prod:
     docker:
-      - image: windmillcode/angular-flask-capybara-log4j2:0.0.8
+      - image: windmillcode/docker-img-0:0.0.8
+
     parallelism: 1
-    environment:
-      REACT_APP_REACT_ENVIRONMENT: "prod"
+
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - install-deps
+      # - deploy-frontend-app
+
+      # - deploy-database:
+      #     app-env: prod
+      - deploy-backend:
+          app-env: prod
+
+
+  fullstack-preview:
+    docker:
+      - image: windmillcode/docker-img-0:0.0.8
+
+    parallelism: 1
+
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - install-deps
+      # - deploy-frontend-app
+
+      # - deploy-database
+      - deploy-backend
+
+  fullstack-configure:
+    docker:
+      - image: windmillcode/docker-img-0:0.0.8
+    parallelism: 1
+
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
       # - browser-tools/install-browser-tools
       - checkout
-      - restore_cache:
-          keys:
-            - frontend-npm-deps-v1-{{ checksum "/root/project/apps/zero/frontend/AngularApp/package.json" }}
-      - restore_cache:
-          keys:
-            - cloud-npm-deps-v1-{{ checksum "/root/project/apps/zero/cloud/firebase/package.json" }}
-      - restore_cache:
-          keys:
-            # Find a cache corresponding to this specific package-lock.json
-            - backend-pip-deps-v1-{{ checksum "/root/project/apps/zero/backend/flask/dev/requirements.txt" }}
-
-      - run:
-          . /etc/profile.d/01-custom-docker-setup.sh;
-
-          cd ~/project/apps/zero/frontend/AngularApp/;
-          npm install -s ;
-
-
-      - save_cache:
-          key: frontend-npm-deps-v1-{{ checksum "/root/project/apps/zero/frontend/AngularApp/package.json" }}
-          paths:
-            - /root/project/apps/zero/frontend/AngularApp/node_modules
-      - save_cache:
-          key: cloud-npm-deps-v1-{{ checksum "/root/project/apps/zero/cloud/firebase/package.json" }}
-          paths:
-            - /root/project/apps/zero/cloud/firebase/node_modules
-      - save_cache:
-          key: backend-pip-deps-v1-{{ checksum "/root/project/apps/zero/backend/flask/dev/requirements.txt" }}
-          paths:
-            - /root/project/apps/zero/backend/flask/dev/site-packages/linux
-      - run:
-          . /etc/profile.d/01-custom-docker-setup.sh;
-          cd ~/project/apps/zero/frontend/AngularApp/;
-          npm run test;
-
-      - run:
-          . /etc/profile.d/01-custom-docker-setup.sh;
-          cd ~/project/apps/zero/frontend/AngularApp/;
-          export ADDTL_ENV_VAR=prod;
-          export CI=false;
-          npm run build:preview;
-          # additional deploy steps
+      - install-deps
+      - deploy-frontend-app:
+          app-env: prod
+      # - deploy-database
+      # - deploy-backend
 
 
 
 workflows:
-  e2e:
+  test-build-deploy:
     jobs:
-      - fullstack:
+      - fullstack-prod:
+          context:
+              - org-global
+              - Context_0
           filters:  # using regex filters requires the entire branch to match
             branches:
               only:  # only branches matching the below regex filters will run
-                - prod
+              - dont-run
+      - fullstack-preview:
+          context:
+              - org-global
+              - Context_0
+          filters:  # using regex filters requires the entire branch to match
+            branches:
+              only:  # only branches matching the below regex filters will run
+                - dont-run
+      - fullstack-configure:
+          context:
+              - org-global
+              - Context_0
+          filters:  # using regex filters requires the entire branch to match
+            branches:
+              only:  # only branches matching the below regex filters will run
+                - dont-run
+
+
+

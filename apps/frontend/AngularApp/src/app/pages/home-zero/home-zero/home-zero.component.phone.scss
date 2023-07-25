@@ -1,0 +1,36 @@
+#root home-zero{
+  @media #{$mobile}{
+    .CarouselZeroMainPod{
+      flex-direction: column;
+    }
+    .HomeZeroPod0{
+      padding: $spacing4;
+    }
+    .HomeZeroMainPod{
+      padding:0;
+    }
+
+    .CarouselZeroPod0,.CarouselZeroPod1{
+       width: 100%;
+    }
+    .CarouselZeroMainPod{
+      height: 100%;
+    }
+    .CarouselZeroPod1{
+      order:0;
+      padding-left: 0;
+      flex: 0 0 50%;
+      max-height: 50%;
+    }
+    .CarouselZeroPod0{
+      margin-top: $spacing5;
+      order:1;
+      flex: 0 0 50%;
+      max-height: 50%;
+    }
+    .CarouselZeroPod0Item1{
+      flex: 0 0 50%;
+      max-height: 50%;
+    }
+  }
+}

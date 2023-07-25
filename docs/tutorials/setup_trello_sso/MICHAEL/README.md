@@ -1,1 +1,0 @@
-# [Set Trello SSO](https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/trello-tutorial)

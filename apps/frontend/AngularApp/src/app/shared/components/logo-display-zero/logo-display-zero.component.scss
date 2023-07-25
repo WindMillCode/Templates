@@ -1,0 +1,59 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+:host {
+
+
+  &.LogoDisplayZeroView{
+    display: block;
+    .LogoDisplayZero{
+      &Main{
+        &Pod{
+          @include MainPodCssRule0;
+          padding:0;
+          height: 100%;
+        }
+      }
+      &Pod{
+
+        &0{
+          position:relative;
+          display:flex;
+          height:100%;
+          min-width:calc(178/10.6 * 1rem);
+
+          &Title {
+            &0 {
+              font-family: 'Freelancer';
+              color:rgb(var(--wml-original-secondary));
+              display:inline;
+              z-index:6;
+              margin:auto;
+              position: relative;
+              inset:0;
+            }
+          }
+
+          &Img {
+            &0 {
+              z-index:4;
+              width: 100%;
+              height: 100%;
+              display:inline;
+              position: absolute;
+              filter: var(--wml-original-quaternary-filter);
+
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

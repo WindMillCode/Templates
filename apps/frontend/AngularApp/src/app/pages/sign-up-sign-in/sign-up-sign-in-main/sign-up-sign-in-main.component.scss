@@ -1,0 +1,70 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.SignUpSignInMainView{
+    display: block;
+    height: 100%;
+    .SignUpSignInMain{
+      &Main{
+        &Pod{
+          height: 100%;
+          @include WMLFlexColumnCenter;
+          justify-content: center;
+        }
+      }
+      &Pod{
+
+        &0{
+          border: calc(1/10.6 * 1rem) solid $wml-black;
+          width: 50%;
+          height: 90%;
+          @include WMLFlexColumnCenter;
+          padding: $spacing7;
+          max-width: calc(373/10.6 * 1rem);
+          overflow:hidden auto;
+          &::-webkit-scrollbar {
+            display:none
+          }
+
+
+          &Item {
+            &0 {
+              flex: 0 0 20%
+            }
+            &1{
+              align-self: stretch;
+            }
+          }
+
+
+          &Img {
+            &0 {
+              border-radius: 100%;
+              border: calc(1/10.6 * 1rem) solid $wml-black;
+              width:calc(90/10.6 * 1rem) ;
+              height: auto;
+            }
+          }
+
+          &Btn {
+            &0 {
+              margin:$spacing5 0 0 0;
+
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

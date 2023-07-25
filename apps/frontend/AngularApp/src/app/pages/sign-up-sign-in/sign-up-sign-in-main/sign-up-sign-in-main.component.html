@@ -1,0 +1,27 @@
+<div [class]="classPrefix('MainPod') ">
+  <section [class]="classPrefix('Pod0') + ' glassmorphism'">
+    <div [class]="classPrefix('Pod0Item0')">
+      <img [class]="classPrefix('Pod0Img0')"
+      (click)="specificService.logoImg().click()"
+      [src]=specificService.logoImg().src
+      [alt]="specificService.logoImg().alt | translate" />
+    </div>
+    <div [class]="classPrefix('Pod0Item1')">
+      <wml-button-one
+      [class]="classPrefix('Pod0Btn0')"
+      [params]="option"
+      *ngFor="let option of socialSignBtns"
+      ></wml-button-one>
+    </div>
+    
+    <p>
+      <ng-container *ngFor="let text of enTranslations.SignUpSignIn.loginAgreement;let i = index">
+        <span *ngIf="[0,2].includes(i)">{{"SignUpSignIn.loginAgreement."+i | translate}}</span>
+        <a [routerLink]="legalLinks[i]" *ngIf="[1,3].includes(i)">
+          {{"SignUpSignIn.loginAgreement."+i | translate}}
+        </a>
+      </ng-container>
+    </p>
+  </section>
+
+</div>

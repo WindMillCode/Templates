@@ -1,0 +1,32 @@
+<div [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <container-zero>
+      <img [class]="currentItem.img.class" [src]=currentItem.img.src [alt]="currentItem.img.alt | translate" />
+    </container-zero>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <container-zero [class]="classPrefix('Pod1Item0')">
+      <h2 [class]="classPrefix('Pod1Title0')">{{currentItem.title.text | translate}}</h2>
+      <p [class]="classPrefix('Pod1Text0')">{{currentItem.desc.text | translate}}</p>
+    </container-zero>
+    <container-zero [class]="classPrefix('Pod1Item1')">
+      <i
+      (click)="moveLeft()"
+      [class]="'fa-solid fa-chevron-left ' +classPrefix('Pod1Icon0')">
+      </i>
+       <div [class]="classPrefix('Pod1Item2')">
+        <div
+        [class]="classPrefix('Pod1Item3')"
+        *ngFor="let item of params.items.slice(0,5)">
+        <p>{{item.index | translate}}</p>
+        </div>
+       </div>
+      <i
+        (click)="moveRight()"
+        [class]="'fa-solid fa-chevron-right ' +classPrefix('Pod1Icon0')"
+      >
+      </i>
+    </container-zero>
+  </section>
+</div>
+
