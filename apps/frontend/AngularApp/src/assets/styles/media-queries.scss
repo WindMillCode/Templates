@@ -25,43 +25,13 @@ $largeDesktopDown:        	    'only screen and (max-width: 1599px)';
 $xlDesktop:           		    'only screen and (min-width: 1600px)';
 $xlDesktopDown:           	    'only screen and (max-width: 1919px)';
 $xxlDesktop:           		    'only screen and (min-width: 1920px)';
+
 $xxxlDesktop:           	    'only screen and (min-width: 2000px)';
 $dekstopDownForCampaigns:	    'only screen and (max-width: 1250px)';
+
 /* media queries for header */
 $tabletForHeader:              	'only screen and (min-width: 768px) and (max-width: 1230px)';
 $tabletLandscapeForHeader:     	'only screen and (min-width: 992px) and (max-width: 1230px)';
 $tabletLandscapeDownForHeader: 	'only screen and (max-width: 1230px)';
 $desktopForHeader:             	'only screen and (min-width: 1231px)';
 $laptopForHeader:              	'only screen and (min-width: 1231px) and (max-width: 1440px)';
-
-
-:root {
-  --wml-mobile-font: #{$mobileFont};
-  --wml-mobile: #{$mobile};
-  --wml-small-mobile: #{$smallMobile};
-  --wml-medium-mobile: #{$mediumMobile};
-  --wml-tablet: #{$tablet};
-  --wml-tablet-portrait: #{$tabletPortrait};
-  --wml-tablet-portrait-down: #{$tabletPortraitDown};
-  --wml-tablet-landscape: #{$tabletLandscape};
-  --wml-small-desktop: #{$smallDesktop};
-  --wml-tablet-landscape-down: #{$tabletLandscapeDown};
-  --wml-desktop: #{$desktop};
-  --wml-not-mobile: #{$notMobile};
-  --wml-laptop: #{$laptop};
-  --wml-laptop-down: #{$laptopDown};
-  --wml-laptop-tablet: #{$laptopTablet};
-  --wml-laptop-tablet-landscape: #{$laptopTabletLandscape};
-  --wml-large-desktop: #{$largeDesktop};
-  --wml-large-desktop-down: #{$largeDesktopDown};
-  --wml-xl-desktop: #{$xlDesktop};
-  --wml-xl-desktop-down: #{$xlDesktopDown};
-  --wml-xxl-desktop: #{$xxlDesktop};
-  --wml-xxxl-desktop: #{$xxxlDesktop};
-  --wml-dekstop-down-for-campaigns: #{$dekstopDownForCampaigns};
-  --wml-tablet-for-header: #{$tabletForHeader};
-  --wml-tablet-landscape-for-header: #{$tabletLandscapeForHeader};
-  --wml-tablet-landscape-down-for-header: #{$tabletLandscapeDownForHeader};
-  --wml-desktop-for-header: #{$desktopForHeader};
-  --wml-laptop-for-header: #{$laptopForHeader};
-}

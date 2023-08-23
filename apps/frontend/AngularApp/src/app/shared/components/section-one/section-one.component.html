@@ -1,0 +1,33 @@
+<div [class]="classPrefix('MainPod')">
+  <ng-container *ngIf="params.type === SectionOneParamsType.PRIMARY">
+    <ng-container
+    [ngTemplateOutlet]="titleBox"
+    [ngTemplateOutletContext]="{ container:'Pod0' }"
+    ></ng-container>
+    <ng-container *ngTemplateOutlet="textBox"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="params.type === SectionOneParamsType.SECONDARY">
+    <ng-container *ngTemplateOutlet="textBox"></ng-container>
+    <ng-container
+    [ngTemplateOutlet]="titleBox"
+    [ngTemplateOutletContext]="{ container:'Pod1' }"
+    ></ng-container>
+  </ng-container>
+</div>
+
+<ng-template #titleBox let-container="container">
+  <div [class]="classPrefix(container)">
+    <div [class]="classPrefix(container+'Item0')"  ></div>
+    <div [class]="classPrefix(container+'Item1')">
+      <h2>{{params.title.text | translate}}</h2>
+    </div>
+  </div>
+</ng-template>
+<ng-template #textBox>
+  <div  [class]="classPrefix('Pod2')">
+    <div [class]="classPrefix('Pod2Item0')" >
+      <p>{{params.text.text | translate}}</p>
+    </div>
+    <img [class]="classPrefix('Pod2Img0')" [src]=params.textImage.src [alt]=params.textImage.alt />
+  </div>
+</ng-template>

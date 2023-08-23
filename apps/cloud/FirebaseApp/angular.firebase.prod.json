@@ -1,7 +1,7 @@
 {
 
   "hosting": {
-    "site": "default-prod",
+    "site": "your-app-prod",
     "public": "dist/angular-app-prod",
     "headers":[
       {
@@ -17,8 +17,7 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "**/assets/media/scratchpad/**"
+      "**/node_modules/**"
     ],
     "rewrites": [
       {

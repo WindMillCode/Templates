@@ -1,5 +1,6 @@
 from functools import wraps
 from utils.api_exceptions import APIAuthenticationError
+from utils.iterable_utils import flatten_list, list_get
 from utils.local_deps import local_deps
 from utils.print_if_dev import print_if_dev
 
@@ -29,23 +30,15 @@ class FirebaseManager:
                     None,
                     {
                         "authDomain": "127.0.0.1",
-                        "storageBucket": "default.appspot.com",
+                        "storageBucket": "yourapp.appspot.com",
                     },
                 )
 
-            elif flask_backend_env in ["PREVIEW"]:
+            elif flask_backend_env in ["PREVIEW","PROD"]:
                 self._connect_to_firebase_https(
-                    "default.appspot.com", "default.firebaseapp.com"
-                )
-            elif flask_backend_env in ["PROD"]:
-                self._connect_to_firebase_https(
-                    "default.appspot.com", "default.firebaseapp.com"
+                    "yourapp.appspot.com", "yourapp.firebaseapp.com"
                 )
             self.bucket = storage.bucket()
-
-
-
-
 
     def _connect_to_firebase_https(self, storage_bucket, auth_domain):
         firebase_admin.initialize_app(
@@ -66,12 +59,33 @@ class FirebaseManager:
             result.append(file_objects)
         return result
 
-    def delete_user(self, uid, retry=5):
+    def delete_users(self, uids, retry=5):
+        for uid in uids:
+            try:
+                auth.delete_user(uid)
+            except BaseException as e:
+                if retry != 0:
+                    self.delete_user(uid, retry - 1)
+
+
+    def list_users(self, uids, retry=5):
+      all_users =[]
+      page_obj = None
+      def get_users(retry_0 =5):
         try:
-            auth.delete_user(uid)
+          nonlocal page_obj
+          page_obj = auth.list_users()
+          all_users.append(page_obj.users)
         except BaseException as e:
-            if retry != 0:
-                self.delete_user(uid, retry - 1)
+          if retry_0 != 0:
+            get_users(retry_0-1)
+      get_users(retry)
+      while page_obj.has_next_page:
+        get_users(retry)
+      all_users = flatten_list(all_users)
+      all_users = list(filter(lambda x:x.uid in uids,all_users))
+      return all_users
+
 
     def set_env_for_user(self, uid):
         user = auth.get_user(uid)

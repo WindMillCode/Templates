@@ -13,7 +13,7 @@ yarn build:prod
 
 cp  -r $app_dist_source $angular_build_destination
 cd $fb_dest
-npx firebase deploy  --only hosting:tooboards-57f9c --config angular.firebase.prod.json
+npx firebase deploy  --only hosting:your-app-prod --config angular.firebase.prod.json
 rm -r $angular_build_destination
 rm -r $app_dist_source
 Set-Location ..\..\..

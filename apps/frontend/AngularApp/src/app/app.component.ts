@@ -1,9 +1,9 @@
 // angular
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, HostBinding, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 // rxjs
-import { merge, of, Subject, takeUntil, tap, timer } from 'rxjs';
+import { catchError, merge, Subject, takeUntil, tap } from 'rxjs';
 
 // services
 import { BaseService } from '@core/base/base.service';
@@ -18,12 +18,11 @@ import { HttpClient } from '@angular/common/http';
 import { WmlNotifyService } from '@windmillcode/angular-wml-notify';
 import { toggleDarkMode } from '@core/utility/common-utils';
 import { SITE_OFFLINE_ENUM } from '@core/site-offline/site-offline.component';
-
-import { AccountService } from '@shared/services/account/account.service';
-import { generateClassPrefix, WMLImage } from '@windmillcode/angular-wml-components-base';
 import { NavService } from '@shared/services/nav/nav.service';
-import { AdsZeroParams, AdsZeroTypeParams } from '@shared/components/ads-zero/ads-zero.component';
-
+import { StoreService } from '@shared/services/store/store.service';
+import { AccountsService } from '@shared/services/accounts/accounts.service';
+import { generateClassPrefix } from '@windmillcode/angular-wml-components-base';
+import { restoreOriginalConsoleObject } from '@core/utility/env-utils';
 
 
 @Component({
@@ -41,18 +40,17 @@ export class AppComponent implements AfterViewInit {
     public router:Router,
     public http:HttpClient,
     public wmlNotifyService:WmlNotifyService,
-    public accountService:AccountService,
     public navService:NavService,
+    public storeService:StoreService,
+    public accountsService:AccountsService
   ) {
-    // this.listenForChangesOutSideChangeDetection().subscribe()
+    this.listenForChangesOutSideChangeDetection().subscribe()
   }
 
   classPrefix = generateClassPrefix(ENV.classPrefix.app)
   @HostBinding('class') myClass: string = this.classPrefix(`View`);
   ngUnsub = new Subject<void>()
-  ad  = new AdsZeroParams({
-    type:AdsZeroTypeParams.HORIZ,
-  })
+
 
   listenForChangesOutSideChangeDetection = ()=>{
     return merge(
@@ -68,16 +66,18 @@ export class AppComponent implements AfterViewInit {
 
   }
 
-
-
   ngOnInit() {
     this.doMiscConfigs()
     toggleDarkMode(true)
-    this.accountService.manageUsersLoginInfo()
-
+    .pipe(
+      takeUntil(this.ngUnsub),
+    )
+    .subscribe()
+    this.accountsService.manageUsersLoginInfo()
   }
 
   ngAfterViewInit (){
+    restoreOriginalConsoleObject()
     this.cdref.detectChanges()
   }
 
@@ -99,9 +99,17 @@ export class AppComponent implements AfterViewInit {
     ENV.nav.urls.initialURL = window.location.pathname
     this.http.get(ENV.app.backendHealthCheck())
     .pipe(
-      takeUntil(this.ngUnsub)
+      takeUntil(this.ngUnsub),
+      tap({
+        error:()=>{
+          if(ENV.type !== "dev"){
+            this.router.navigateByUrl(ENV.nav.urls.siteOffline)
+          }
+        }
+      })
     )
-    // .subscribe()
+    .subscribe()
+
 
   }
 

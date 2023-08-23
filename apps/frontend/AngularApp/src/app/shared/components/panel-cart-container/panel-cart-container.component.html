@@ -1,0 +1,16 @@
+<div [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <span [class]="classPrefix('Pod0Item0')" (click)="params.close()">X</span>
+    <div [class]="classPrefix('Pod0Item1')">
+      <div [class]="classPrefix('Pod0Item2')">
+        <wml-button-zero [params]="addCartBtn"></wml-button-zero>
+        <wml-button-zero [params]="removeCartBtn"></wml-button-zero>
+      </div>
+
+      <h4>{{"PanelCartContainer.currentCart" | translate}}
+        <span>{{currentCartNumber}}</span>
+      </h4>
+    </div>
+  </section>
+  <wml-tabs [class]="classPrefix('Pod1')" [params]="tabParams"></wml-tabs>
+</div>

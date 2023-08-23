@@ -1,9 +1,4 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/WindMillCode/Template/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/WindMillCode/Template/tree/master)
-# How to start
-* install the [vscode extension](https://marketplace.visualstudio.com/items?itemName=windmillcode-publisher-0.windmillcode-extension-pack-0) to start to more efficiently use the project
-* then run tasks > windmillcode > updateworkspace with latest tasks, as you continue through the project
-
-
 # Summary
 
 ## Projects

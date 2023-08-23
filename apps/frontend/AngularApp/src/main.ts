@@ -10,10 +10,10 @@ import { ENV, environment } from './environments/environment';
 
 Sentry.init({
   environment:"Angular_"+ENV.type.toUpperCase(),
-  dsn: "https://6cbf3bf3ac3c4659906e0b7036023ac5@o4505122556215296.ingest.sentry.io/4505490809225216",
+  dsn: "[YOUR DSN HERE]",
   integrations: [
     new BrowserTracing({
-      tracePropagationTargets: ["localhost", "https://tooboards.com","https://ui.preview.tooboards.com"],
+      tracePropagationTargets: ["localhost", "https://your-app.com","https://ui.preview.your-app.com"],
       routingInstrumentation: Sentry.routingInstrumentation,
     }),
   ],
@@ -22,7 +22,7 @@ Sentry.init({
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
-  tracesSampleRate: ENV.type == "dev"? 0.2: 1.0,
+  tracesSampleRate: ENV.type == "dev"? 0.0: 1.0,
 });
 
 

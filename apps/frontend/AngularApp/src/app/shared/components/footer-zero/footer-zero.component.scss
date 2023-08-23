@@ -1,0 +1,109 @@
+
+@import "src/assets/styles/_global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+
+
+:host {
+
+
+  &.FooterZeroView{
+    display: block;
+    .FooterZero{
+      &Main{
+        &Pod{
+          @include WMLFlexColumnCenter;
+          height: calc(300/16 * 1rem);
+        }
+      }
+      &Pod{
+        @for $i from 0 through 1 {
+          &#{$i} {
+            width: 100%;
+          }
+        }
+
+        &0{
+          background-color: var(--wml-white);
+          flex:0 0 80%;
+          display: flex;
+          justify-content: center;
+          padding:$spacing7 0 0 0;
+
+
+
+
+          &Text {
+            &0 {
+              font-size: calc(18/16 * 1rem);
+            }
+          }
+
+          &Item {
+            &0 {
+              flex: 0 0 30%
+            }
+
+            &2{
+              width: 80%;
+              display: flex;
+              flex-flow:row wrap;
+              justify-content: center;
+              align-items: stretch;
+              > *{
+                padding:0 $spacing7 0 0;
+                margin: 0 0 $spacing7 0;
+              }
+              section-zero{
+                max-height: calc(200/16 * 1rem);
+                width: calc(225/16 * 1rem);
+
+              }
+            }
+            &3{
+              h3{
+                padding: 0 0 $spacing3 0;
+                font-size: $display-xx-small;
+                font-weight: 500;
+              }
+              max-height: calc(300/16 * 1rem);
+              width: calc(280/16 * 1rem);
+            }
+          }
+
+          &Img {
+
+            &1{
+              width: calc(40/16 * 1rem);
+              height:auto;
+              border:calc(3/16 * 1rem) solid $wml-black;
+              background-color: $wml-white;
+              padding:$spacing3;
+              border-radius: 100%;
+              margin:0 $spacing5 $spacing5 0;
+            }
+          }
+
+        }
+
+        &1{
+          background: var(--wml-gradient-0);
+          @include WMLFlexColumnCenter;
+          justify-content: center;
+
+          flex:0 0 20%;
+          *{
+            color:var(--wml-white);
+          }
+        }
+      }
+    }
+  }
+
+}

@@ -19,8 +19,8 @@ import { ENV } from '@env/environment';
 import { SpecificService } from '@core/specific/specific.service';
 import enTranslations from "src/assets/i18n/en.json";
 import { WmlButtonZeroParams, WMLButtonParamsTypeEnum,WmlButtonOneParams} from '@windmillcode/angular-wml-button-zero';
-import { makeTitleCase } from '@core/utility/common-utils';
-import { AccountService } from '@shared/services/account/account.service';
+import { makeTitleCase } from '@core/utility/string-utils';
+import { AccountsService } from '@shared/services/accounts/accounts.service';
 
 
 @Component({
@@ -41,7 +41,7 @@ export class SignUpSignInMainComponent  {
     public utilService:UtilityService,
     public baseService:BaseService,
     public specificService:SpecificService,
-    public accountService:AccountService
+    public accountsService:AccountsService
   ) { }
 
   classPrefix = generateClassPrefix('SignUpSignInMain')
@@ -51,9 +51,13 @@ export class SignUpSignInMainComponent  {
   optionsObj = {
     [ENV.nav.urls.signIn]:{
       i18nObj:"SignIn",
+      action:"signin",
+      idPrefix:ENV.idPrefix.signIn
     },
     [ENV.nav.urls.signUp]:{
       i18nObj:"SignUp",
+      action:"signup",
+      idPrefix:ENV.idPrefix.signUp
 
     }
   }[this.utilService.router.url]
@@ -68,7 +72,8 @@ export class SignUpSignInMainComponent  {
         "microsoft-logo.png",
         "facebook-logo.png",
         "yahoo-logo.png",
-        "github-logo.png"
+        "github-logo.png",
+        "twitter.png"
       ][index0]
 
       let wmlButton = new WmlButtonOneParams({
@@ -77,11 +82,18 @@ export class SignUpSignInMainComponent  {
         btnClass:"SignUpSignInMainPod0Btn0Btn SignUpSignInMainPod0Btn0"+makeTitleCase(key),
         iconSrc,
         iconIsPresent:true,
+        id:this.optionsObj.idPrefix + ["googleBtn" ,"microsoftBtn" , "facebookBtn" , "yahooBtn", "githubBtn","twitterBtn"][index0],
         click:()=>{
-          this.accountService.createUserViaFirebaseProvider(
+          this.accountsService.authenticateViaFirebaseProvider(
             // @ts-ignore
-            ["GOOGLE" ,"MICROSOFT" , "FACEBOOK" , "YAHOO"  , "GITHUB"][index0]
+            ["GOOGLE" ,"MICROSOFT" , "FACEBOOK" , "YAHOO"  , "GITHUB","TWITTER"][index0],
+            this.optionsObj.action
           )
+          .pipe(
+            takeUntil(this.ngUnsub),
+          )
+          .subscribe()
+
         }
       })
       return wmlButton

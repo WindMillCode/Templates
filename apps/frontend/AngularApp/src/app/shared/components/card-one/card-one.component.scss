@@ -1,0 +1,45 @@
+
+@import "src/assets/styles/_global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+
+:host {
+
+
+  &.CardOneView{
+    display: block;
+    height: 100%;
+    .CardOne{
+      &Main{
+        &Title {
+          &0 {
+            padding: 0 0 $spacing5 0;
+
+          }
+        }
+        &Pod{
+          height: 100%;
+          @include MainPodCssRule0;
+          padding: $spacing3 $spacing5 $spacing5 $spacing5 ;
+          background: var(--wml-gradient-1);
+
+        }
+      }
+      &Pod{
+
+        &0{
+          border-bottom: calc(2/10.6 * 1rem) solid var(--wml-black);
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
+
+}

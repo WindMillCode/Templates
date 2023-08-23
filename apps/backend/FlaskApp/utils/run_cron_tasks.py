@@ -26,6 +26,9 @@ class CronTasksRunner(Thread):
     async def my_task(self):
         CONFIGS = self.CONFIGS
         while True:
+            print("retrieving information")
+            CONFIGS.blog_manager.grab_articles(CONFIGS.mysql_manager)
+            CONFIGS.events_manager.grab_events(CONFIGS.mysql_manager)
             await asyncio.sleep(24 * 60 * 60)  # wait 24 hours
 
     async def cron_job_main(self):

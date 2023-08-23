@@ -1,0 +1,10 @@
+<div  [class]="classPrefix('MainPod')">
+  <h3 [class]="classPrefix('MainTitle0')">{{params.title.text | translate}}</h3>
+  <div [class]="classPrefix('MainItem0')">
+    <div [class]="classPrefix('MainItem1')"  *ngFor="let item of params.items">
+      <i [class]="classPrefix('MainIcon0')+ ' '+ 'fa-solid fa-record-vinyl'"></i>
+      <a  (click)="item.click($event)">{{item.text | translate}}</a>
+    </div>
+  </div>
+
+</div>

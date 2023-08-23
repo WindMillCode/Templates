@@ -1,5 +1,17 @@
 #root carousel-zero{
   @media #{$mobile}{
+    .CarouselZeroPod1{
+      margin:$spacing7 0 0 0
+    }
+    .CarouselZeroPod1Item0 {
+      .CardTwoPod1Item0,.CardTwoPod1Item1,.CardTwoPod0Img0{
+        display: none;
+      }
+    }
+    .CarouselZeroPod2Item0{
+      display: block;
+      height: 100%;
 
+    }
   }
 }

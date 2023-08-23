@@ -1,0 +1,88 @@
+
+@import "src/assets/styles/_global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.PanelCartView{
+    display: block;
+    height: 100%;
+    .PanelCart{
+      &Main{
+        &Pod{
+          @include MainPodCssRule2;
+          height: 100%;
+
+        }
+        &StrikeThru {
+          &0 {
+            margin:$spacing5 0;
+            @include GlobalStrikeThru0
+          }
+        }
+      }
+      &Pod{
+        &0{
+          display: flex;
+          padding:$spacing5;
+          flex-direction: column;
+          &Img {
+            &0 {
+              width: calc(150/16 * 1rem);
+              height: auto;
+            }
+          }
+          &Text {
+            &0 {
+              display: flex;
+              align-items: center;
+              > *:nth-child(1){
+                flex: 0 0 60%;
+              }
+            }
+          }
+          &Item {
+            &0 {
+              margin:0 0 0 $spacing5;
+              flex: 1 0 auto;
+            }
+            &1{
+              display: flex;
+              width: 100%;
+            }
+          }
+          &Btn {
+            &0 {
+              margin:$spacing3 0 0 0;
+            }
+          }
+        }
+        &1{
+          display: flex;
+          flex-direction: column;
+          padding:$spacing5;
+          &Item {
+            &0 {
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+          &Btn {
+            &0 {
+              align-self: flex-end;
+              margin:$spacing7 0 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

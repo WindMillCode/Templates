@@ -3,8 +3,9 @@ import { ENV } from '@env/environment';
 import { fromEvent, map } from 'rxjs';
 
 
-export let makeLowerCase = new LowerCasePipe().transform
-export let makeTitleCase = new TitleCasePipe().transform
+
+
+
 
 export   function eventDispatcher(event: string, element: HTMLElement | Window | Element,keyboardCharCode:number =13) {
 
@@ -174,10 +175,12 @@ export function isPlainObject(value) {
   }
   return Object.getPrototypeOf(value) === proto
 }
+
 export let transformObjectKeys =(obj:Object,predicate)=>{
   if(["string","number","boolean","function","symbol","bigint","undefined"].includes(typeof obj)){
     return obj
   }
+
   let myArray = Object.entries(obj)
   .map(([key,val])=>{
     if(typeof val ==="string"){
@@ -188,7 +191,6 @@ export let transformObjectKeys =(obj:Object,predicate)=>{
       return [predicate(key),transformObjectKeys(val,predicate)]
     }
     else if(Array.isArray(val)){
-
       let newVal = val.map((valy,index0)=>{
         return transformObjectKeys(valy,predicate)
       })
@@ -197,19 +199,14 @@ export let transformObjectKeys =(obj:Object,predicate)=>{
 
     return [predicate(key),val]
   })
+  if(Array.isArray(obj)){
+    return myArray.map(([key,val])=>{
+      return val
+    })
+  }
   return Object.fromEntries(myArray)
 }
-export let transformFromCamelCaseToSnakeCase = (str) =>
-  str[0].toLowerCase() +
-  str
-    .slice(1, str.length)
-    .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 
-export let transformFromSnakeCaseToCamelCase = (str) => {
-  return str
-    .toLowerCase()
-    .replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace('_', ''));
-};
 
 export let retriveValueFromPXUnit = (str: string) => {
   return str.match(/\d+/)[0];
@@ -287,44 +284,16 @@ let appTransitionTime = rootStyle().getPropertyValue(
   '--wml-app-transition-time0'
 );
 export let CSSVARS = {
-  wmlMobileFont: rootStyle().getPropertyValue('--wml-mobile-font'),
-  wmlMobile: rootStyle().getPropertyValue('--wml-mobile'),
-  wmlSmallMobile: rootStyle().getPropertyValue('--wml-small-mobile'),
-  wmlMediumMobile: rootStyle().getPropertyValue('--wml-medium-mobile'),
-  wmlTablet: rootStyle().getPropertyValue('--wml-tablet'),
-  wmlTabletPortrait: rootStyle().getPropertyValue('--wml-tablet-portrait'),
-  wmlTabletPortraitDown: rootStyle().getPropertyValue('--wml-tablet-portrait-down'),
-  wmlTabletLandscape: rootStyle().getPropertyValue('--wml-tablet-landscape'),
-  wmlSmallDesktop: rootStyle().getPropertyValue('--wml-small-desktop'),
-  wmlTabletLandscapeDown: rootStyle().getPropertyValue('--wml-tablet-landscape-down'),
-  wmlDesktop: rootStyle().getPropertyValue('--wml-desktop'),
-  wmlNotMobile: rootStyle().getPropertyValue('--wml-not-mobile'),
-  wmlLaptop: rootStyle().getPropertyValue('--wml-laptop'),
-  wmlLaptopDown: rootStyle().getPropertyValue('--wml-laptop-down'),
-  wmlLaptopTablet: rootStyle().getPropertyValue('--wml-laptop-tablet'),
-  wmlLaptopTabletLandscape: rootStyle().getPropertyValue('--wml-laptop-tablet-landscape'),
-  wmlLargeDesktop: rootStyle().getPropertyValue('--wml-large-desktop'),
-  wmlLargeDesktopDown: rootStyle().getPropertyValue('--wml-large-desktop-down'),
-  wmlXlDesktop: rootStyle().getPropertyValue('--wml-xl-desktop'),
-  wmlXlDesktopDown: rootStyle().getPropertyValue('--wml-xl-desktop-down'),
-  wmlXxlDesktop: rootStyle().getPropertyValue('--wml-xxl-desktop'),
-  wmlXxxlDesktop: rootStyle().getPropertyValue('--wml-xxxl-desktop'),
-  wmlDekstopDownForCampaigns: rootStyle().getPropertyValue('--wml-dekstop-down-for-campaigns'),
-  wmlTabletForHeader: rootStyle().getPropertyValue('--wml-tablet-for-header'),
-  wmlTabletLandscapeForHeader: rootStyle().getPropertyValue('--wml-tablet-landscape-for-header'),
-  wmlTabletLandscapeDownForHeader: rootStyle().getPropertyValue('--wml-tablet-landscape-down-for-header'),
-  wmlDesktopForHeader: rootStyle().getPropertyValue('--wml-desktop-for-header'),
-  wmlLaptopForHeader: rootStyle().getPropertyValue('--wml-laptop-for-header'),
   wmlInputBackgroundColorLight0:'var(--wml-input-background-color-light-0)',
-  wmlOriginalInputBackgroundColorLight0:'var(--wml-original-input-background-color-light-0)',
+  wmlOrigInputBackgroundColorLight0:'var(--wml-orig-input-background-color-light-0)',
   wmlInputBackgroundColorDark0:'var(--wml-input-background-color-dark-0)',
-  wmlOriginalInputBackgroundColorDark0:'var(--wml-original-input-background-color-dark-0)',
+  wmlOrigInputBackgroundColorDark0:'var(--wml-orig-input-background-color-dark-0)',
   wmlwhiteopacity0: 'var(--wml-white-opacity-0)',
-  wmloriginalwhiteopacity0: rootStyle().getPropertyValue('--wml-original-white-opacity-0'),
+  wmlOrigwhiteopacity0: rootStyle().getPropertyValue('--wml-orig-white-opacity-0'),
   wmlblackopacity0:rootStyle().getPropertyValue('--wml-black-opacity-0'),
-  wmloriginalblackopacity0:rootStyle().getPropertyValue('--wml-original-black-opacity-0'),
+  wmlOrigblackopacity0:rootStyle().getPropertyValue('--wml-orig-black-opacity-0'),
   wmlblackopacity1:rootStyle().getPropertyValue('--wml-black-opacity-1'),
-  wmloriginalblackopacity1:rootStyle().getPropertyValue('--wml-original-black-opacity-1'),
+  wmlOrigblackopacity1:rootStyle().getPropertyValue('--wml-orig-black-opacity-1'),
   darkGreyColor: rootStyle().getPropertyValue('--dark-grey'),
   displayXXLarge: rootStyle().getPropertyValue('--display-xx-large'),
   displayXLarge: rootStyle().getPropertyValue('--display-x-large'),
@@ -349,37 +318,24 @@ export let CSSVARS = {
   wmlblack: rootStyle().getPropertyValue('--wml-black') ,
   wmlprimary: rootStyle().getPropertyValue('--wml-primary') ,
   wmlsecondary: rootStyle().getPropertyValue('--wml-secondary') ,
-  wmlTertiary:rootStyle().getPropertyValue('--wml-tertiary'),
-  wmlOriginalTertiary:rootStyle().getPropertyValue('--wml-original-tertiary'),
-  wmlQuaternary:rootStyle().getPropertyValue('--wml-quaternary'),
-  wmlOriginalQuaternary:rootStyle().getPropertyValue('--wml-original-quaternary'),
-  wmlWhiteGradient:rootStyle().getPropertyValue('--wml-white-gradient'),
-  wmlOriginalWhiteGradient:rootStyle().getPropertyValue('--wml-original-white-gradient'),
-  wmlBlackGradient:rootStyle().getPropertyValue('--wml-black-gradient'),
-  wmlOriginalBlackGradient:rootStyle().getPropertyValue('--wml-original-black-gradient'),
-
   wmlprimaryfilter: rootStyle().getPropertyValue('--wml-primary-filter') ,
-  wmloriginalprimaryfilter: rootStyle().getPropertyValue('--wml-original-primary-filter') ,
   wmlsecondaryfilter: rootStyle().getPropertyValue('--wml-secondary-filter') ,
-  wmloriginalsecondaryfilter: rootStyle().getPropertyValue('--wml-original-secondary-filter'),
-  wmlQuaternaryFilter:rootStyle().getPropertyValue('--wml-quaternary-filter'),
-  wmlOriginalQuaternaryFilter:rootStyle().getPropertyValue('--wml-original-quaternary-filter'),
-
-
   wmlstarselected: rootStyle().getPropertyValue('--wml-star-selected'),
-  wmlgradient0: rootStyle().getPropertyValue('--wml-secondary-gradient'),
-  wmlgradient1: 'var(--wml-primary-gradient)',
-  wmloriginalgradient0: rootStyle().getPropertyValue('--wml-original-secondary-gradient'),
-  wmloriginalgradient1: rootStyle().getPropertyValue('--wml-original-primary-gradient'),
-  wmlorginalwhite: rootStyle().getPropertyValue('--wml-original-white') ,
-  wmlorginalblack: rootStyle().getPropertyValue('--wml-original-black') ,
-  wmlorginalprimary: rootStyle().getPropertyValue('--wml-original-primary') ,
-  wmlorginalsecondary: rootStyle().getPropertyValue('--wml-original-secondary') ,
-  wmlorginalstarselected: rootStyle().getPropertyValue('--wml-original-star-selected'),
 
-  wmlAlert:  rootStyle().getPropertyValue('--wml-original-alert'),
+  wmlgradient0: rootStyle().getPropertyValue('--wml-gradient-0'),
+  wmlgradient1: 'var(--wml-gradient-1)',
+  wmlOriggradient0: rootStyle().getPropertyValue('--wml-orig-gradient-0'),
+  wmlOriggradient1: rootStyle().getPropertyValue('--wml-orig-gradient-1'),
+  wmlorginalwhite: rootStyle().getPropertyValue('--wml-orig-white') ,
+  wmlorginalblack: rootStyle().getPropertyValue('--wml-orig-black') ,
+  wmlorginalprimary: rootStyle().getPropertyValue('--wml-orig-primary') ,
+  wmlorginalsecondary: rootStyle().getPropertyValue('--wml-orig-secondary') ,
+  wmlorginalstarselected: rootStyle().getPropertyValue('--wml-orig-star-selected'),
+  wmlOrigprimaryfilter: rootStyle().getPropertyValue('--wml-orig-primary-filter') ,
+  wmlOrigsecondaryfilter: rootStyle().getPropertyValue('--wml-orig-secondary-filter') ,
+  wmlAlert:  rootStyle().getPropertyValue('--wml-orig-alert'),
   wmlNavColor:rootStyle().getPropertyValue('--wml-nav-color'),
-  wmloriginalNavColor:rootStyle().getPropertyValue('--wml-original-nav-color'),
+  wmlOrigNavColor:rootStyle().getPropertyValue('--wml-orig-nav-color'),
   appTransitionTime,
   javascriptAppTransitionTime:
     parseFloat(appTransitionTime.split('s')[0]) * 1000,
@@ -437,7 +393,6 @@ export let toggleDarkMode = (init=false,colorMode?:"light"|"dark") => {
   )
 
 
-
   if(webStorage.darkMode){
     root.classList.remove("WMLLightMode")
     root.classList.add("WMLDarkMode")
@@ -446,26 +401,12 @@ export let toggleDarkMode = (init=false,colorMode?:"light"|"dark") => {
     root.classList.add("WMLLightMode")
     root.classList.remove("WMLDarkMode")
   }
+
   root.style.setProperty(
     'color-scheme',
     !webStorage.darkMode
       ? 'light'
       : 'dark'
-  );
-
-
-  root.style.setProperty(
-    '--wml-white-gradient',
-    !webStorage.darkMode
-      ? CSSVARS.wmlOriginalWhiteGradient
-      : CSSVARS.wmlOriginalBlackGradient
-  );
-
-  root.style.setProperty(
-    '--wml-black-gradient',
-    !webStorage.darkMode
-      ? CSSVARS.wmlOriginalBlackGradient
-      : CSSVARS.wmlOriginalWhiteGradient
   );
 
   root.style.setProperty(
@@ -497,13 +438,6 @@ export let toggleDarkMode = (init=false,colorMode?:"light"|"dark") => {
   );
 
   root.style.setProperty(
-    '--wml-quaternary',
-    !webStorage.darkMode
-      ? CSSVARS.wmlOriginalQuaternary
-      : CSSVARS.wmlorginalprimary
-  );
-
-  root.style.setProperty(
     '--wml-alert',
     !webStorage.darkMode
       ? CSSVARS.wmlAlert
@@ -513,79 +447,72 @@ export let toggleDarkMode = (init=false,colorMode?:"light"|"dark") => {
   root.style.setProperty(
     '--wml-primary-filter',
     !webStorage.darkMode
-    ? CSSVARS.wmloriginalprimaryfilter
-    : CSSVARS.wmloriginalsecondaryfilter
+    ? CSSVARS.wmlOrigprimaryfilter
+    : CSSVARS.wmlOrigsecondaryfilter
   );
 
   root.style.setProperty(
     '--wml-secondary-filter',
     !webStorage.darkMode
-    ? CSSVARS.wmloriginalsecondaryfilter
-    : CSSVARS.wmloriginalprimaryfilter
+    ? CSSVARS.wmlOrigsecondaryfilter
+    : CSSVARS.wmlOrigprimaryfilter
   );
 
   root.style.setProperty(
-    '--wml-quaternary-filter',
+    '--wml-gradient-0',
     !webStorage.darkMode
-    ? CSSVARS.wmlOriginalQuaternaryFilter
-    : CSSVARS.wmloriginalprimaryfilter
+      ? CSSVARS.wmlOriggradient0
+      : CSSVARS.wmlOriggradient1
   );
 
   root.style.setProperty(
-    '--wml-secondary-gradient',
+    '--wml-gradient-1',
     !webStorage.darkMode
-      ? CSSVARS.wmloriginalgradient0
-      : CSSVARS.wmloriginalgradient1
-  );
-
-  root.style.setProperty(
-    '--wml-primary-gradient',
-    !webStorage.darkMode
-      ? CSSVARS.wmloriginalgradient1
-      : CSSVARS.wmloriginalgradient0
+      ? CSSVARS.wmlOriggradient1
+      : CSSVARS.wmlOriggradient0
   );
 
   root.style.setProperty(
     '--wml-gradient-2',
     !webStorage.darkMode
-      ? CSSVARS.wmloriginalgradient0
+      ? CSSVARS.wmlOriggradient0
       : "transparent"
   );
 
   root.style.setProperty(
     '--wml-nav-color',
     !webStorage.darkMode
-      ? CSSVARS.wmloriginalNavColor
+      ? CSSVARS.wmlOrigNavColor
       : CSSVARS.wmlorginalprimary
   );
 
   root.style.setProperty(
     '--wml-white-opacity-0',
     !webStorage.darkMode
-      ? CSSVARS.wmloriginalwhiteopacity0
-      : CSSVARS.wmloriginalblackopacity0
+      ? CSSVARS.wmlOrigwhiteopacity0
+      : CSSVARS.wmlOrigblackopacity0
   );
 
 
   root.style.setProperty(
     '--wml-black-opacity-1',
     !webStorage.darkMode
-      ? CSSVARS.wmloriginalblackopacity1
-      : CSSVARS.wmloriginalwhiteopacity0
+      ? CSSVARS.wmlOrigblackopacity1
+      : CSSVARS.wmlOrigwhiteopacity0
   );
 
   root.style.setProperty(
     '--wml-input-background-color-light-0',
     !webStorage.darkMode
-      ? CSSVARS.wmlOriginalInputBackgroundColorLight0
-      : CSSVARS.wmlOriginalInputBackgroundColorDark0
+      ? CSSVARS.wmlOrigInputBackgroundColorLight0
+      : CSSVARS.wmlOrigInputBackgroundColorDark0
   );
 
   root.style.setProperty(
     '--wml-input-background-color-dark-0',
     !webStorage.darkMode
-      ? CSSVARS.wmlOriginalInputBackgroundColorDark0
-      : CSSVARS.wmlOriginalInputBackgroundColorLight0
+      ? CSSVARS.wmlOrigInputBackgroundColorDark0
+      : CSSVARS.wmlOrigInputBackgroundColorLight0
   );
 
 

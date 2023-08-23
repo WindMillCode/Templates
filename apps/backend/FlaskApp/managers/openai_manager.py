@@ -79,3 +79,19 @@ class OpenAIManager():
       else:
         sentry_sdk.capture_message(my_str[i*section_length:((i+1)*section_length)])
 
+  def determine_product_options_based_on_user_info(self,user_info,options,product_name,model=OpenAIModelChatCompletionEnum.GPT_35_TURBO_0301):
+
+    prompt = """
+      based on the given  user information {} about
+      a session on an ecommerce site,
+      determine the appropriate {} for a {}
+      that will get the user to buy a {},
+      return Array of values in the same order as the options
+      """.format(user_info,options,product_name,product_name)
+    content = self._ask_chatgpt(prompt,model)
+    return json.loads(content)
+
+    """
+return JSON where key is an option in the array and value,
+      is your answer for that option no explanation
+    """

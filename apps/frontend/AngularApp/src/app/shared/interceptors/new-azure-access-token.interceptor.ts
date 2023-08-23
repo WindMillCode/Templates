@@ -10,20 +10,20 @@ import {
 import { catchError, concatMap, Observable, tap, throwError } from 'rxjs';
 
 // services
-import { AccountService } from '@shared/services/account/account.service';
+import { AccountsService } from '@shared/services/accounts/accounts.service';
 import { WmlNotifyService } from '@windmillcode/angular-wml-notify';
 import { BaseService } from '@core/base/base.service';
 
 @Injectable({ providedIn: 'root' })
 export class NewAzureAccessTokenInterceptor implements HttpInterceptor {
-  accountService:AccountService
+  accountsService:AccountsService
   baseService:BaseService
   constructor(
     public injector:Injector,
     public wmlNotifyService:WmlNotifyService,
   ) {
     setTimeout(()=>{
-      // this.accountService = this.injector.get(AccountService);
+      // this.accountsService = this.injector.get(AccountsService);
       this.baseService = this.injector.get(BaseService)
     })
   }
@@ -37,12 +37,12 @@ export class NewAzureAccessTokenInterceptor implements HttpInterceptor {
 
       catchError((err:HttpErrorResponse) => {
         if(err.status === 403){
-          return this.accountService.getNewAzureAccessToken()
+          return this.accountsService.getNewAzureAccessToken()
           .pipe(
             concatMap(()=>{
               request = request.clone({body:{
                 data:request.body.data,
-                access_token:this.accountService.getAzureAccessToken(),
+                access_token:this.accountsService.getAzureAccessToken(),
               }})
               return next.handle(request)
             }),
@@ -50,7 +50,7 @@ export class NewAzureAccessTokenInterceptor implements HttpInterceptor {
               error:()=>{
                 let note = this.baseService.generateWMLNote("global.loginAgain")
                 this.wmlNotifyService.create(note)
-                this.accountService.login()
+                this.accountsService.login()
               }
             })
           )

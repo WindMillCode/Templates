@@ -113,7 +113,6 @@ func main() {
 			Default: "3306",
 		},
 	)
-	fmt.Print(mySQLDatabaseport)
 	dockerPort :=  mySQLDatabaseport+":3306"
 	RunCommand("docker",[]string{"stop",settings.ExtensionPack.SQLDockerContainerName})
 	RunCommand("docker",[]string{"rm",settings.ExtensionPack.SQLDockerContainerName})

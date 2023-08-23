@@ -10,6 +10,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import {  WMLField } from '@windmillcode/angular-wml-field';
 import { WmlInputComponent, WmlInputParams } from '@windmillcode/angular-wml-input';
+import { WMLSelectZeroComponent, WMLSelectZeroParams } from '@windmillcode/angular-wml-select-zero';
 import {  WMLPopupParams } from '@windmillcode/angular-wml-popup';
 import { WmlNotifyBarModel, WmlNotifyBarType, WmlNotifyService } from '@windmillcode/angular-wml-notify';
 import { WMLAPIError, WMLAPIPaginationRequestModel, WMLAPIPaginationResponseModel, WMLButton, WMLCustomComponent, generateRandomColor, selectRandomOptionFromArray } from '@windmillcode/angular-wml-components-base';
@@ -17,7 +18,7 @@ import { WMLOptionItemParams, WmlOptionsComponent, WMLOptionsParams } from '@win
 import { WMLChipsParams, WmlChipsComponent } from '@windmillcode/angular-wml-chips';
 import { UtilityService } from '@core/utility/utility.service';
 import { ENV } from '@env/environment';
-import { GenerateFieldParams, generateFormField, resetFormControls } from '@core/utility/form-utils';
+import { GenerateFieldParams,  createWMLFormField,  resetFormControls } from '@core/utility/form-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,7 @@ export class BaseService {
 
   updateOverlayLoadingText:string = "global.overlayLoading"
   closeOverlayLoading = finalize(()=>{
+
     this.toggleOverlayLoadingSubj.next(false)
   })
   openOverlayLoading = ()=>{
@@ -86,200 +88,80 @@ export class BaseService {
     return  note
   }
 
-  generateInputFormField=(params:GenerateFieldParams)=>{
-      let {
-        labelValue,
-        fieldFormControlName,
-        fieldParentForm,
-        errorMsgs,
-        selfType,
-        fieldCustomParams
-      } = params
-    let wmlField
-    wmlField = new WMLField({
-      type: "custom",
-      custom: {
-
-        selfType: selfType ?? "standalone",
-        fieldParentForm,
-        fieldFormControlName,
-        labelValue,
-        fieldCustomCpnt:WmlInputComponent,
-        fieldCustomMeta:new WmlInputParams({
-          ...fieldCustomParams,
-          wmlField,
-        }),
-        errorMsgs: errorMsgs ?? {
-          required:"global.errorRequired"
-        }
-      }
-    })
-
-
-    return generateFormField(wmlField)
+  createInputFormField=(params:GenerateFieldParams)=>{
+    let wmlField = createWMLFormField(params)
+    return wmlField
   }
 
-  generateTextAreaFormField=(params:GenerateFieldParams)=>{
+  createTextAreaFormField=(params:GenerateFieldParams)=>{
+
+    let wmlField = createWMLFormField(params)
+    wmlField.field.custom.params.type  ="textarea"
+    return wmlField
+  }
+
+  createRangeFormField=(params:GenerateFieldParams )=>{
+
+    let wmlField = createWMLFormField(params)
+    wmlField.field.custom.params.type  ="range"
+    return wmlField
+  }
+
+  createCheckboxFormField=(params:GenerateFieldParams )=>{
+
+    let wmlField = createWMLFormField(params)
+    wmlField.field.custom.params.type  ="checkbox"
+    return wmlField
+  }
+
+  createSelectField=(params:GenerateFieldParams<WMLSelectZeroParams>)=>{
+
     let {
-      labelValue,
-      fieldFormControlName,
-      fieldParentForm,
-      errorMsgs,
-      selfType,
       fieldCustomParams
     } = params
-    let wmlField
-    wmlField =  new WMLField({
-      type: "custom",
-      custom: {
-
-        selfType: selfType ?? "standalone",
-        fieldParentForm,
-        fieldFormControlName,
-        labelValue,
-        fieldCustomCpnt:WmlInputComponent,
-        errorMsgs:errorMsgs??{
-          required:"global.errorRequired"
-        },
-        fieldCustomMeta:new WmlInputParams({
-          ...fieldCustomParams,
-          wmlField,
-          type:"textarea"
-        })
-      }
+    let wmlField = createWMLFormField(params)
+    wmlField.field.custom.cpnt = WMLSelectZeroComponent
+    wmlField.field.custom.params  =fieldCustomParams ?? new WMLSelectZeroParams({
+      select:"global.wmlSelect.select",
+      wmlField
     })
-    return generateFormField(wmlField)
+    return wmlField
   }
 
-  generateRangeFormField=(params:GenerateFieldParams )=>{
+  createOptionsFormField=(params:GenerateFieldParams<WMLOptionsParams>)=>{
+
     let {
-      labelValue,
-      fieldFormControlName,
-      fieldParentForm,
-      errorMsgs,
-      selfType,
-    } = params
-    let wmlField
-    wmlField = new WMLField({
-      type: "custom",
-      custom: {
-
-        selfType: selfType ?? "standalone",
-        fieldParentForm,
-        fieldFormControlName,
-        labelValue,
-        errorMsgs:errorMsgs??{
-          required:"global.errorRequired"
-        },
-        fieldCustomCpnt:WmlInputComponent,
-        fieldCustomMeta:new WmlInputParams({
-          wmlField,
-          type:"range"
-        })
-      }
-    })
-    return generateFormField(wmlField)
-  }
-
-  generateCheckboxFormField=(params:GenerateFieldParams & {checkboxDesc?:string})=>{
-    let {
-      labelValue,
-      fieldFormControlName,
-      fieldParentForm,
-      errorMsgs,
-      selfType,
-      checkboxDesc
-    } = params
-    let wmlField
-    wmlField = new WMLField({
-      type: "custom",
-      custom: {
-
-        selfType: selfType ?? "standalone",
-        fieldParentForm,
-        fieldFormControlName,
-        labelValue,
-        errorMsgs:errorMsgs??{
-          required:"global.errorRequired"
-        },
-        fieldCustomMeta:new WmlInputParams({
-          wmlField,
-          type:"checkbox",
-          checkboxDesc
-        })
-      }
-    })
-    return generateFormField(wmlField)
-  }
-
-  generateOptionsFormField=(params:GenerateFieldParams<WMLOptionsParams>)=>{
-    let {
-      labelValue,
-      fieldFormControlName,
-      fieldParentForm,
-      errorMsgs,
-      selfType,
       fieldCustomParams
     } = params
-    let wmlField
-    wmlField = new WMLField({
-      type: "custom",
-      custom: {
-
-        selfType: selfType ?? "standalone",
-        fieldParentForm,
-        fieldFormControlName,
-        labelValue,
-        errorMsgs:errorMsgs??{
-          required:"global.errorRequired"
-        },
-        fieldCustomCpnt:WmlOptionsComponent,
-        fieldCustomMeta:fieldCustomParams ?? new WMLOptionsParams({
-          options:[new WMLOptionItemParams({
-            text:"use WMLOptionsParams from the wmloptions component and fill me w/ options",
-          })]
-        })
-      }
+    let wmlField = createWMLFormField(params)
+    wmlField.field.custom.cpnt = WmlOptionsComponent
+    wmlField.field.custom.params  =fieldCustomParams ?? new WMLOptionsParams({
+      options:[new WMLOptionItemParams({
+        text:"use WMLOptionsParams from the wmloptions component and fill me w/ options",
+      })]
     })
-    return generateFormField(wmlField)
+    return wmlField
   }
 
-
-  generateChipsFormField=(params =new GenerateFieldParams<WMLChipsParams>({
-    fieldCustomParams:new WMLChipsParams()
-  }))=>{
-      let {
-        labelValue,
-        fieldFormControlName,
-        fieldParentForm,
-        errorMsgs,
-        selfType,
-        fieldCustomParams
-      } = params
-    let wmlField
-    fieldCustomParams.placeholder = "global.wmlChipsplaceholder"
-    fieldCustomParams.userInputsAriaLabel = "global.wmlChipsuserInputsAriaLabel"
-    fieldCustomParams.removeChipAriaLabel = "wmlChipsremoveChipAriaLabel"
-    wmlField = new WMLField({
-      type: "custom",
-      custom: {
-
-        selfType: selfType ?? "standalone",
-        fieldParentForm,
-        fieldFormControlName,
-        labelValue,
-        errorMsgs:errorMsgs??{
-          required:"global.errorRequired"
-        },
-        fieldCustomCpnt:WmlChipsComponent,
-        fieldCustomMeta:fieldCustomParams
-      }
+  createChipsFormField=(params =new GenerateFieldParams<WMLChipsParams>())=>{
+    let {
+      fieldCustomParams
+    } = params
+    fieldCustomParams = fieldCustomParams ?? new WMLChipsParams({
+      placeholder:"global.wmlChipsplaceholder",
+      userInputsAriaLabel:"global.wmlChipsuserInputsAriaLabel",
+      removeChipAriaLabel:"global.wmlChipsremoveChipAriaLabel",
     })
-    return generateFormField(wmlField)
+    let wmlField = createWMLFormField(params)
+    wmlField.field.custom.cpnt = WmlChipsComponent
+    wmlField.field.custom.params  =fieldCustomParams ?? new WMLChipsParams()
+    return wmlField
   }
 
   submitForm = (params=new BaseServiceSubmitFormParams())=>{
     let {rootFormGroup,cdref,validFormPredicateTypeCustom,invalidFormPredicate,openOverlayLoading,closeOverlayLoading} = params
+ 
+
     if(!rootFormGroup.valid){
       invalidFormPredicate ?invalidFormPredicate(): this.tellUserToFillOutRequiredFields(
         rootFormGroup,cdref

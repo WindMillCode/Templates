@@ -1,6 +1,6 @@
 import { FormArray, FormControl, FormGroup } from "@angular/forms"
 import { WMLField, WmlLabelParams } from "@windmillcode/angular-wml-field"
-import { WmlInputParams } from "@windmillcode/angular-wml-input"
+import { WmlInputComponent, WmlInputParams } from "@windmillcode/angular-wml-input"
 
 export let useFormControlNamesAsFieldVariableNames =(param:{[k:string]:string})=>{
   return Object.values(param)
@@ -8,9 +8,37 @@ export let useFormControlNamesAsFieldVariableNames =(param:{[k:string]:string})=
     return val+"Field"
   })
 }
-export let   generateFormField= (wmlField:WMLField)=>{
-  // wmlField.label.custom.cpnt = CustomLabelComponent
-  // wmlField.error.custom.cpnt = CustomLabelComponent
+
+export   let createWMLFormField = (params:GenerateFieldParams<any>)=>{
+  let {
+    labelValue,
+    fieldFormControlName,
+    fieldParentForm,
+    errorMsgs,
+    selfType,
+    fieldCustomParams,
+    id
+  } = params
+  let wmlField:WMLField
+  wmlField =  new WMLField({
+    type: "custom",
+    custom: {
+
+      selfType: selfType ?? "standalone",
+      fieldParentForm,
+      fieldFormControlName,
+      labelValue,
+      fieldCustomCpnt:WmlInputComponent,
+      errorMsgs:errorMsgs??{
+        required:"global.errorRequired"
+      },
+      fieldCustomMeta:new WmlInputParams({
+        ...fieldCustomParams,
+        wmlField
+      })
+    }
+  })
+  wmlField.view.id = id
   return wmlField
 }
 
@@ -24,12 +52,13 @@ export class GenerateFieldParams<F=WmlInputParams> {
     )
   }
 
-    labelValue?:string
-    fieldFormControlName:string
-    fieldParentForm:FormGroup
-    errorMsgs:WmlLabelParams["errorMsgs"] ={}
-    selfType:WMLField["self"]["type"] ="standalone"
-    fieldCustomParams?:F
+  labelValue?:string
+  fieldFormControlName:string
+  fieldParentForm:FormGroup
+  errorMsgs:WmlLabelParams["errorMsgs"] ={}
+  selfType:WMLField["self"]["type"] ="standalone"
+  fieldCustomParams?:F
+  id?:string
 
 }
 

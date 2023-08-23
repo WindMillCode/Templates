@@ -1,0 +1,11 @@
+<div #mainPod [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <img   [src]=params.imgUrl.src [alt]="params.imgUrl.alt | translate" />
+    <h3 (click)="openLink(params.resourceUrl)" [class]="classPrefix('Pod0Title0')">
+      <a >{{params.title | translate}}</a>
+    </h3>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <p>{{params.summary}}</p>
+  </section>
+</div>

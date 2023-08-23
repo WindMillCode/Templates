@@ -125,4 +125,3 @@ class PostgresManager():
       "totalItems": total_items,
     }
 
-

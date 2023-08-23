@@ -73,6 +73,8 @@ apps/frontend/AngularApp/package-lock.json
 misc/docs/tutorials/testing_flask_applications/MICHAEL/FlaskTutorials/covhtml/
 misc/docs/tutorials/testing_flask_applications/MICHAEL/FlaskTutorials/htmlcov/
 examples/
+ignore/Windmillcode/go_scripts/*/main.exe
+ignore/Windmillcode/go_scripts/*/main
 
 
 #amplify-do-not-edit-begin

@@ -1,0 +1,7 @@
+<div [class]="classPrefix('MainPod')">
+  <div [class]="classPrefix('MainItem0')">
+    <div *ngFor="let star of [].constructor(5);let i = index;"
+    [class]="params.rating >= i+1 ? 'rating-star-selected' : 'rating-star-unselected' ">
+  </div>
+  </div>
+</div>

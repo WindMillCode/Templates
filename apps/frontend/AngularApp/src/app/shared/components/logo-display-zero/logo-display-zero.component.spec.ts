@@ -1,6 +1,6 @@
 // testing
 import { ComponentFixture } from '@angular/core/testing';
-import {  configureTestingModuleForComponents, grabComponentInstance, mockTranslateService } from '@app/core/utility/test-utils';
+import {  configureTestingModuleForComponents, grabComponentInstance } from '@app/core/utility/test-utils';
 
 // rxjs
 import { Subject } from 'rxjs';
@@ -13,11 +13,11 @@ describe('LogoDisplayZeroComponent', () => {
   let fixture: ComponentFixture<LogoDisplayZeroComponent>;
 
   beforeEach(async () => {
-    
 
-    
+
+
     await configureTestingModuleForComponents(LogoDisplayZeroComponent);
-    
+
 
     ({fixture, cpnt} =  grabComponentInstance(LogoDisplayZeroComponent));
     fixture.detectChanges()

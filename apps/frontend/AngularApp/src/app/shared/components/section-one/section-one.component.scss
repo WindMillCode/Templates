@@ -1,0 +1,110 @@
+
+@import "src/assets/styles/_global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.SectionOneView{
+    display: block;
+    .SectionOne{
+      &Main{
+        &Pod{
+          display:flex;
+          min-height: calc(450/16 * 1rem);
+          > * {
+            flex: 0 0 50%
+          }
+
+        }
+      }
+      &Pod{
+        @for $i from 0 through 1 {
+          &#{$i} {
+            @include WMLFlexColumnCenter;
+            padding:$spacing3 0 0 0;
+            position: relative;
+
+            h2{
+              font-size: $display-large;
+              color:$wml-white
+            }
+
+            &Item {
+              &0{
+                position: absolute;
+                inset:0;
+                height: 100%;
+                width: 100%;
+              }
+              &1 {
+                background-color: $wml-black-opacity-0;
+                padding:0 $spacing7;
+                border-radius: $wml-border-radius0;
+              }
+            }
+          }
+        }
+        &0{
+          &Item {
+            &0{
+              background:var(--wml-gradient-1);
+              opacity:.5;
+
+            }
+          }
+        }
+        &1{
+          &Item {
+            &0{
+              background:var(--wml-gradient-0);
+              opacity:.5;
+
+            }
+          }
+        }
+        &2{
+          padding:$spacing3;
+          display: flex;
+          align-items: center;
+          position: relative;
+          overflow: hidden;
+          &Item {
+            &0 {
+              &::-webkit-scrollbar{
+                display:none;
+              }
+              max-height: 100%;
+              overflow: hidden auto;
+              background-color:$wml-black;
+              opacity: 0.8;
+              width: 80%;
+              padding:$spacing7;
+              border-radius: $wml-border-radius1;
+              * {
+                color:$wml-white;
+              }
+            }
+          }
+          &Img {
+            &0 {
+              z-index:4;
+              position: absolute;
+              top:0;
+              left:0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

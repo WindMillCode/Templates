@@ -62,7 +62,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
+                  "maximumWarning": "10kb",
                   "maximumError": "20kb"
                 }
               ],
@@ -91,7 +91,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
+                  "maximumWarning": "10kb",
                   "maximumError": "20kb"
                 }
               ],
@@ -125,7 +125,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "host": "example.com",
-            "port": 4216
+            "port": 4201
           },
           "configurations": {
             "production": {

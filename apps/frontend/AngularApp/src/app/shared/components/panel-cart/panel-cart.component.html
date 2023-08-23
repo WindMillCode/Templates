@@ -1,0 +1,43 @@
+<div [class]="classPrefix('MainPod')">
+  <section *ngFor="let item of params.cart;let i =index" [class]="classPrefix('Pod0')">
+    <div [class]="classPrefix('Pod0Item1')">
+
+
+      <img [class]="classPrefix('Pod0Img0')" [src]=item.img.src [alt]="item.img.alt | translate" />
+      <div [class]="classPrefix('Pod0Item0')">
+        <h4>{{item.title | translate}}</h4>
+        <p *ngIf=item.color   [class]="classPrefix('Pod0Text0')">
+          <span >{{"PanelCart.color" | translate}}</span>
+          <color-option [params]="item.color"></color-option>
+        </p>
+        <p *ngIf=item.size  [class]="classPrefix('Pod0Text0')">
+          <span >{{"PanelCart.size" | translate}}</span>
+          <span>{{item.size.text | translate}}</span>
+        </p>
+        <p [class]="classPrefix('Pod0Text0')">
+          <span >{{"PanelCart.quantity" | translate}}</span>
+          <span>{{item.quantity | translate}}</span>
+        </p>
+        <p [class]="classPrefix('Pod0Text0')">
+          <span >{{"PanelCart.price" | translate}}</span>
+          <span>{{item.price.value.display | translate}}</span>
+        </p>
+        <p [class]="classPrefix('Pod0Text0')">
+          <span >{{"PanelCart.totalPrice" | translate}}</span>
+          <span>{{item.totalPrice.value.display | translate}}</span>
+        </p>
+
+      </div>
+    </div>
+    <wml-button-zero [class]="classPrefix('Pod0Btn0')" [params]="createRemoveItemBtn(i)"></wml-button-zero>
+  </section>
+  <div [class]="classPrefix('MainStrikeThru0')"></div>
+  <section [class]="classPrefix('Pod1')">
+    <div [class]="classPrefix('Pod1Item0')">
+      <h3>{{"PanelCart.totalPrice"| translate}}</h3>
+      <h3>{{shoppingCartTotal.value.display | translate}}</h3>
+    </div>
+    <wml-button-zero *ngIf="params.checkoutBtn.button.isPresent" [class]="classPrefix('Pod1Btn0')" [params]="params.checkoutBtn"></wml-button-zero>
+
+  </section>
+</div>

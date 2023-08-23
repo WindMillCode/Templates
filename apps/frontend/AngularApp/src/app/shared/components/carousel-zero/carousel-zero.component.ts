@@ -6,6 +6,7 @@ import {
   HostBinding,
   OnInit,
   Input,
+  Renderer2,
 } from '@angular/core';
 
 // services
@@ -13,20 +14,22 @@ import { UtilityService } from '@app/core/utility/utility.service';
 import { BaseService } from '@core/base/base.service';
 
 // rxjs
-import { Subject, interval, timer } from 'rxjs';
-import { delay, takeUntil, tap } from 'rxjs/operators';
+import { BehaviorSubject, Subject, fromEvent, interval, of, timer } from 'rxjs';
+import { delay, startWith, switchMap, take, takeUntil, takeWhile, tap } from 'rxjs/operators';
 
 // wml-components
 import {
-  WMLImage,
   WMLUIProperty,
   generateClassPrefix,
-  selectRandomOptionFromArray,
+  generateRandomColor,
+  generateRandomNumber,
 } from '@windmillcode/angular-wml-components-base';
 
 // misc
 
 import { ENV } from '@env/environment';
+import { LinkedList, retriveValueFromPXUnit } from '@core/utility/common-utils';
+import { CardTwoParams } from '../card-two/card-two.component';
 
 @Component({
   selector: 'carousel-zero',
@@ -39,103 +42,99 @@ export class CarouselZeroComponent {
     public cdref: ChangeDetectorRef,
 
     public utilService: UtilityService,
-    public baseService: BaseService
+    public baseService: BaseService,
+    public renderer2: Renderer2
   ) {}
 
   classPrefix = generateClassPrefix('CarouselZero');
+
   @Input('params') params: CarouselZeroParams = new CarouselZeroParams();
+
   @HostBinding('class') myClass: string = this.classPrefix(`View`);
   ngUnsub = new Subject<void>();
-  get currentItem(){
-    return this.params.items[0]
-  }
 
   ngOnInit(): void {
-    this.params.items.forEach((item,index0)=>{
-      item.index = item.index ?? (index0+1).toString()
-      item.img.updateClassString(this.classPrefix('Pod0Img0'))
-      item.img.updateClassString(this.classPrefix('Pod0Img1'))
-    })
-    if(this.params.autoPlay){
-      this.autoPlay().subscribe()
-    }
+    this.params.initCarousel();
+    this.params.cdref = this.cdref;
   }
 
-  autoPlay = ()=>{
-    return interval(17000)
-    .pipe(
-
-      
-      takeUntil(this.ngUnsub),
-      tap(()=>{
-        this.moveRight()
-      })
-    )
-
+  ngAfterViewInit() {
+    this.updateZAxisBasedOnCardWidth().subscribe();
+    this.animateCarousel().subscribe()
   }
 
-  moveLeft() {
-    if (this.params.direction !== 'still') {
-      return;
-    }
-    let item = this.params.items.splice(
-      this.params.items.length - 1,
-      this.params.items.length
-    )[0];
-    item.img.updateClassString(this.classPrefix('Pod0Img1'),"remove")
-    this.params.items.unshift(item);
-    item.img.updateClassString(this.classPrefix('Pod0Img1'))
-    this.cdref.detectChanges()
-    this.params.items.forEach((item) => {
-    });
-    this.params.direction = 'left';
-
-    // since there is no animation yet
-    this.cleanupAnimation()
-    this.cdref.detectChanges();
-  }
-
-  moveRight() {
-    if (this.params.direction !== 'still') {
-      return;
-    }
-    this.params.items.forEach((item) => {
-    });
-    this.params.direction = 'right';
-
-    // since there is no animation yet
-    this.cleanupAnimation()
-    this.cdref.detectChanges();
-  }
-
-  cleanupAnimation() {
-    this.params.items.forEach((item) => {
-    });
-
-    if (this.params.direction === 'right') {
-      let item = this.params.items.shift();
-      this.params.items.push(item);
-      this.cdref.detectChanges()
-
-      timer(100)
+  animateCarousel = ()=>{
+    if(this.params.allowAnimationIfCaourselIsEmpty){
+      let cardsLinkedList = new LinkedList(null,this.params.cards)
+      cardsLinkedList.closeList()
+      cardsLinkedList.moveToNextItemInList()
+      return interval(3000)
       .pipe(
+        takeWhile(()=>this.params.allowAnimationIfCaourselIsEmpty),
         takeUntil(this.ngUnsub),
         tap(()=>{
-          this.params.items[0].img.updateClassString(this.classPrefix('Pod0Img1'),"remove")
-          this.cdref.detectChanges()
-        }),
-        delay(100),
-        tap(()=>{
-          this.params.items[0].img.updateClassString(this.classPrefix('Pod0Img1'))
+          cardsLinkedList.moveToNextItemInList()
+          cardsLinkedList.list.val.option.click()
           this.cdref.detectChanges()
         })
       )
-      .subscribe()
 
     }
-    this.params.direction = 'still';
-    this.cdref.detectChanges();
+    else{
+      return of()
+    }
   }
+
+  updateCardWidth = (currentWidth) => (card: CarouselZeroCardParams) => {
+    card.card.style.height = 0.44375 * currentWidth + 'px';
+  };
+
+  updateZAxisBasedOnCardWidth = () => {
+
+    return this.params.readyToInitCarouselSubj
+    .pipe(
+      takeUntil(this.ngUnsub),
+      // take(1),
+      delay(1000),
+
+      switchMap(() => {
+        return fromEvent(window, 'resize').pipe(
+          startWith({}),
+
+          takeUntil(this.ngUnsub),
+          tap(() => {
+            let cardWidth;
+            try {
+              cardWidth = parseInt(
+                retriveValueFromPXUnit(
+                  getComputedStyle(
+                    document.querySelector('.CarouselZeroPod1Item1')
+                  ).width
+                )
+              );
+            } catch (error) {
+              cardWidth = this.params.initalCardWidth;
+            }
+
+            if (cardWidth >= this.params.initalCardWidth) {
+              this.params._zAxisValue = this.params.initalZAxisValue;
+            } else {
+              this.params._zAxisValue =
+                (cardWidth / this.params.initalCardWidth) *
+                this.params.initalZAxisValue;
+              this.params._zAxisValue *= 1.01;
+            }
+
+            let currentCard = this.params.cards.find((x) => x.option.isPresent);
+            this.params.updateCarousel(currentCard)(
+              this.updateCardWidth(cardWidth)
+            );
+            this.cdref.detectChanges();
+          })
+        );
+      })
+    );
+  };
 
   ngOnDestroy() {
     this.ngUnsub.next();
@@ -143,78 +142,129 @@ export class CarouselZeroComponent {
   }
 }
 
-export class CarouselZeroItemParams {
-  constructor(params: Partial<CarouselZeroItemParams> = {}) {
+export class CarouselZeroParams {
+  constructor(
+    params: Partial<CarouselZeroParams> = {},
+    addtl: Partial<{
+      showOptionsContainer: 'true' | 'false';
+    }> = {}
+  ) {
     Object.assign(this, {
       ...params,
     });
+    if (addtl.showOptionsContainer) {
+      this.optionsContainer.isPresent = addtl.showOptionsContainer === 'true';
+    }
+
+    this.initCards();
   }
-  title = new WMLUIProperty({
-    text: selectRandomOptionFromArray([
-      "The Secret Garden",
-      "Midnight Shadows",
-      "Whispering Winds",
-      "Enigma of the Lost City",
-      "Echoes of Eternity",
-      "Serenade of Stars",
-      "Mystic Moonlight",
-      "Forgotten Dreams",
-      "The Emerald Quest",
-      "Crimson Horizon"
-    ]),
-  });
-  desc = new WMLUIProperty({
-    text: `Lorem ipsum dolor sit amet,
-     consectetur adipiscing elit. Maecenas eleifend lacinia lacus,
-      a fermentum ante finibus vitae. Phasellus euismod sapien non ultricies aliquet.
-       Nulla facilisi. Proin malesuada neque eu ante finibus vestibulum.
-       Ut auctor sapien sit amet urna tincidunt, ut aliquam elit pellentesque.
-        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-         Praesent feugiat magna a ultricies luctus.
-         Integer pharetra semper felis, a tristique tortor semper ut.
-          Duis sed erat id nisi blandit rutrum nec non erat. Cras vitae enim risus.
-          Curabitur gravida tortor sit amet consectetur cursus.
-     Aliquam ac ultrices ipsum. Sed et viverra tortor, sit amet eleifend tortor.
-     Lorem ipsum dolor sit amet,
-     consectetur adipiscing elit. Maecenas eleifend lacinia lacus,
-      a fermentum ante finibus vitae. Phasellus euismod sapien non ultricies aliquet.
-       Nulla facilisi. Proin malesuada neque eu ante finibus vestibulum.
-       Ut auctor sapien sit amet urna tincidunt, ut aliquam elit pellentesque.
-        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-         Praesent feugiat magna a ultricies luctus.
-         Integer pharetra semper felis, a tristique tortor semper ut.
-          Duis sed erat id nisi blandit rutrum nec non erat. Cras vitae enim risus.
-          Curabitur gravida tortor sit amet consectetur cursus.
-     Aliquam ac ultrices ipsum. Sed et viverra tortor, sit amet eleifend tortor.
-     `,
-  });
-  img = new WMLImage({
-    src: selectRandomOptionFromArray([
-      "https://loremflickr.com/640/480/nature",
-      "https://loremflickr.com/640/480/food",
-      "https://loremflickr.com/640/480/business",
-      "https://loremflickr.com/640/480/cats",
-     ]),
-    alt: 'global.logoImgAlt',
-  });
-  index
+  allowAnimationIfCaourselIsEmpty = true
+  nonChosenScaleFactor = 0.8;
+  degree = 0;
+  _zAxisValue = 540;
+  initalZAxisValue = 540;
+  initalCardWidth = 483.875;
+  minCardWidth = 210;
+  carousel = new WMLUIProperty({});
+  readonly readyToInitCarouselSubj = new BehaviorSubject(null);
+  cdref: ChangeDetectorRef;
+  cards:CarouselZeroCardParams[] = []
+  optionsContainer = new WMLUIProperty();
+  get chosenCard(){
+    return this.cards.find((card)=> card.option.isPresent)
+  }
+  reInit = () => {
+    this.initCards();
+    this.initCarousel();
+    this.readyToInitCarouselSubj.next(null)
+  };
+  initCarousel = () => {
+    this.degree = 360 / this.cards.length;
+    this.carousel.style.transform = `translateZ(-${this._zAxisValue}px)`;
+    this.updateCarouselItems();
+  };
+
+  initCards() {
+    if(this.allowAnimationIfCaourselIsEmpty && this.cards.length === 0){
+      this.cards= Array(8)
+      .fill(null)
+      .map(() => {
+        return new CarouselZeroCardParams({});
+      });
+    }
+    else{
+      this.allowAnimationIfCaourselIsEmpty=false
+    }
+    this.cards.map((targetCard: CarouselZeroCardParams, index0: number) => {
+      // @ts-ignore
+      targetCard.card.click = targetCard.option.click =
+        this.updateCarousel(targetCard);
+      targetCard.option.isPresent = index0 === 0;
+      // @ts-ignore
+      targetCard.id =index0
+    });
+  }
+
+  private updateCarouselItems() {
+    this.cards.forEach((carouselItem, index0) => {
+      carouselItem.card.style.transform = `
+      rotateY(${index0 * this.degree}deg) translateZ(${
+        this._zAxisValue
+      }px) scale(${this.nonChosenScaleFactor})
+      `;
+      if (carouselItem.option.isPresent) {
+        carouselItem.card.style.opacity = '1';
+        carouselItem.card.style.transform = `rotateY(${
+          index0 * this.degree
+        }deg) translateZ(${this._zAxisValue}px)`;
+      }
+    });
+  }
+
+  updateCarousel(targetCard: CarouselZeroCardParams) {
+    return (extrasPredicate = (card: CarouselZeroCardParams) => {}) => {
+
+      this.cards.forEach((card, index0) => {
+        card.card.style.transform = card.card.style.transform
+          .split(`scale(${this.nonChosenScaleFactor})`)
+          .join('');
+          // @ts-ignore
+        if (targetCard.id === card.id) {
+          card.option.isPresent = true;
+          card.card.style.opacity = '1';
+          this.carousel.style.transform = `translateZ(-${
+            this._zAxisValue
+          }px) rotateY(-${index0 * this.degree}deg)`;
+        } else {
+          card.option.isPresent = false;
+          card.card.style.opacity = '.5';
+          card.card.style.transform += ` scale(${this.nonChosenScaleFactor})`;
+        }
+        extrasPredicate(card);
+
+        this.updateCarouselItems();
+      });
+    };
+  }
+
+
 }
 
-export class CarouselZeroParams {
-  constructor(params: Partial<CarouselZeroParams> = {}) {
+export class CarouselZeroCardParams {
+  constructor(params: Partial<CarouselZeroCardParams> = {}) {
     Object.assign(this, {
       ...params,
     });
   }
-
-  autoPlay = true
-
-  items: CarouselZeroItemParams[] = Array(10)
-    .fill(null)
-    .map((nullVal, index0) => {
-      return new CarouselZeroItemParams({
-        index:(index0 +1).toString()
-      });
-    });
-  direction: 'left' | 'right' | 'still' = 'still';
+  // this is the identifier for interalns
+  private id:number
+  option = new WMLUIProperty({
+    style: {
+      background: `linear-gradient(${generateRandomNumber(
+        360
+      )}deg,${generateRandomColor()},${generateRandomColor()},${generateRandomColor()})`,
+    },
+  });
+  card = new WMLUIProperty();
+  paymentCard = new CardTwoParams();
 }

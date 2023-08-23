@@ -1,0 +1,82 @@
+
+@import "src/assets/styles/_global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.HomeMainView{
+    display: block;
+    .HomeMain{
+      &Main{
+        &Pod{
+          @include MainPodCssRule0;
+          padding:0
+        }
+      }
+      &Pod{
+
+        &0{
+          height: calc(330/16 * 1rem);
+          position: relative;
+          @include WMLFlexColumnCenter;
+          justify-content: center;
+          &Item {
+            &0 {
+              overflow: hidden auto;
+              background-color: $wml-black;
+              opacity: .8;
+              height: 100%;
+              padding:$spacing7;
+              @include WMLFlexColumnCenter;
+              &::-webkit-scrollbar {
+               display: none;
+              }
+              * {
+                color:$wml-white;
+                text-align: center;
+              }
+
+            }
+
+            &1{
+              z-index:4;
+              position: absolute;
+              width: 80%;
+              height: 80%;
+
+            }
+          }
+          &Title {
+            &0 {
+              font-size: calc(52/16 * 1rem);
+            }
+          }
+          &Text {
+            &0 {
+              font-size: $display-xx-small;
+            }
+          }
+        }
+        &1{
+          @include WMLFlexColumnCenter;
+          padding:$spacing7 0 ;
+
+          &Item {
+            &0 {
+              width: 60%;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

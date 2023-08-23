@@ -1,7 +1,6 @@
 {
 
   "hosting": {
-    "site":"default-preview",
     "public": "dist/angular-app-preview",
     "headers":[
       {
@@ -17,8 +16,7 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "**/assets/media/scratchpad/**"
+      "**/node_modules/**"
     ],
     "rewrites": [
       {

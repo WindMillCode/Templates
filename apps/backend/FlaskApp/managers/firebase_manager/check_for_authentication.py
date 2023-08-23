@@ -1,8 +1,10 @@
 from functools import wraps
 from configs import CONFIGS
+
 from firebase_admin import auth
 from utils.api_exceptions import APIAuthenticationError, APIServerError
 from flask import request, jsonify
+from utils.print_if_dev import print_if_dev
 
 
 def check_for_authentication(optional=False,square_id_required=True):
@@ -18,6 +20,7 @@ def check_for_authentication(optional=False,square_id_required=True):
               square_customer = CONFIGS.square_manager.get_customer_via_firebase_id(decoded_token['uid'])
               if  square_customer.get("id",None) == None:
                 return APIServerError("Firebase user does not have a corresponding square customer account").return_flask_response()
+              
               return func(decoded_token["uid"],square_customer["id"], *args, **kwargs)
             else:
               return func(decoded_token["uid"], *args, **kwargs)

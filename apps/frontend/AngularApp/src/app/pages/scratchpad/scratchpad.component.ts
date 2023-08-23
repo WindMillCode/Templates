@@ -17,11 +17,14 @@ import { Subject } from 'rxjs';
 
 import { SharedModule } from '@shared/shared.module';
 
-import {  WMLImage, generateClassPrefix } from '@windmillcode/angular-wml-components-base';
+import { WMLUIProperty, generateClassPrefix } from '@windmillcode/angular-wml-components-base';
 import { HttpClient } from '@angular/common/http';
-
+import { WmlInfiniteDropdownParams } from '@windmillcode/angular-wml-infinite-dropdown';
+import { CSSVARS } from '@core/utility/common-utils';
+import { NavService } from '@shared/services/nav/nav.service';
+import { RatingCardParams } from '@shared/components/rating-card/rating-card.component';
+import { RatingStarsParams } from '@shared/components/rating-stars/rating-stars.component';
 import { WmlButtonZeroParams,WMLButtonParamsTypeEnum} from '@windmillcode/angular-wml-button-zero';
-import { AdsZeroParams } from '@shared/components/ads-zero/ads-zero.component';
 
 
 
@@ -41,7 +44,9 @@ export class ScratchpadComponent  {
     public cdref:ChangeDetectorRef,
     public http:HttpClient,
     public utilService:UtilityService,
-    public baseService:BaseService
+
+    public baseService:BaseService,
+    public navService:NavService
   ) { }
 
   classPrefix = generateClassPrefix('Scratchpad')
@@ -56,24 +61,11 @@ export class ScratchpadComponent  {
   btn2 = new WmlButtonZeroParams({
     type:WMLButtonParamsTypeEnum.TERTIARY
   })
-  ads0  = new WMLImage({
-    src:"assets/media/scratchpad/skin1.png",
-    click:()=>{
-      window.open("https://www.medscape.com/public/medscapeapp")
-    }
-  })
-  mechImgs = Array(5)
-  .fill(null)
-  .map((nullVal,index0)=>{
-    let src= `assets/media/scratchpad/skin${index0+1}.jpg`
-    if(index0 === 4){
-      src = `assets/media/scratchpad/skin${index0+1}.png`
-    }
-    return new WMLImage({
-      src
+  ratingCard = new RatingCardParams({
+    rating:new RatingStarsParams({
+      rating:2
     })
   })
-
 
   @HostBinding('class') myClass: string = this.classPrefix(`View`);
   ngUnsub= new Subject<void>()

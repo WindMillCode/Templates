@@ -1,0 +1,10 @@
+#root home-main{
+  @media #{$mobile}{
+    .HomeMainPod0{
+      height: auto;
+    }
+    .HomeMainPod1Item0{
+      width: 90%;
+    }
+  }
+}

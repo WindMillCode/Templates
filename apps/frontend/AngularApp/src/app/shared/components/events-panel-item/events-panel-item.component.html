@@ -1,0 +1,10 @@
+<div [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <p [class]="classPrefix('Pod0Text0')" (click)="params.close()">X</p>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <img [class]="classPrefix('Pod1Img0')" [src]=params.cardInfo.imgUrl.src [alt]="params.cardInfo.imgUrl.alt | translate"/>
+    <p [class]="classPrefix('Pod1Text0')">{{params.cardInfo.summary}}</p>
+    <wml-button-zero [params]="navigateBtn"></wml-button-zero>
+  </section>
+</div>

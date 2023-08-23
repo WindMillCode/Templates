@@ -1,0 +1,18 @@
+#root contact-us-form{
+  wml-form{
+    .WmlFormMainPod{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+    .WmlFormPod0{
+      &:nth-child(1),&:nth-child(2){
+        flex: 0 0 50%;
+        padding:0 $spacing7 0 0;
+      }
+      &:nth-child(3){
+        flex:1 0 100%;
+      }
+    }
+  }
+}

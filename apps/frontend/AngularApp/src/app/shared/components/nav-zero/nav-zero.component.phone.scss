@@ -1,9 +1,6 @@
 #root nav-zero{
   @media #{$mobile}{
-    .NavZeroPod0Icon0{
-      display: block;
-    }
-    .NavZeroPod0Link0{
+    mat-slide-toggle label.mdc-label{
       display: none;
     }
   }

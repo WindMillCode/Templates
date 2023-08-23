@@ -7,7 +7,10 @@
   <test name="ChromeBrowser">
     <parameter name="paramBrowser" value="CHROME"></parameter>
     <classes>
-      <class name="e2e.ProductdetailTest">
+      <class name="e2e.AccountbillingzeroTest">
+        <methods>
+          <include name="updateUserAddress" />
+        </methods>
       </class>
     </classes>
   </test>

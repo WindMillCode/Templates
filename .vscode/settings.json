@@ -1,4 +1,9 @@
 {
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "off"
+  },
   "files.exclude": {
     "amplify/.config": true,
     "amplify/**/*-parameters.json": true,
@@ -20,7 +25,6 @@
   },
   "workbench.colorTheme": "Base16 Dark Ashes",
   "task.allowAutomaticTasks": "on",
-  "python.formatting.provider": "black",
   "python.analysis.extraPaths": [
     "./apps/backend/FlaskApp/site-packages/windows",
     "./apps/backend/FlaskApp/site-packages/linux",
@@ -36,20 +40,7 @@
     "vmArgs": ["-DparamBrowser=CHROME","-DparamEnv=DEV"]
   },
   "sqltools.connections": [
-    {
-      "mysqlOptions": {
-        "authProtocol": "default"
-      },
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 3306,
-      "driver": "MySQL",
-      "password": "my-secret-pw",
-      "username": "myadmin",
-      "database": "windmillcodesite_mysql_database_0",
-      "name": "windmillcode-dev-0",
-      "group": "dev"
-    }
+
   ],
   "windmillcode-extension-pack-0":{
     "flaskBackendHelperScript":"ignore\\Local\\flask_backend_shared.go",
@@ -57,8 +48,8 @@
     "pythonVersion":"3.11.4",
     "openAIAPIKey0":"",
     "langCodes0":"zh, es, hi, uk, ar, bn, ms, fr, de, sw, am",
-    "sqlDockerContainerName":"default-postgres-local-0",
-    "databaseName":"default_postgres_database_0",
+    "sqlDockerContainerName":"windmillcodesite-mysql-local-0",
+    "databaseName":"windmillcodesite_mysql_database_0",
     "databaseOptions":[
       "mysql",
       "postgres",
@@ -67,5 +58,7 @@
     ]
   },
   "json.copyJsonPath.useBracketNotation": false
+
+
 
 }

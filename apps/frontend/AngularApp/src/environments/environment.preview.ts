@@ -16,7 +16,10 @@ class PreviewEnv extends DevEnv  {
     silenceAllConsoleLogs()
     traverseClassAndRemoveAutomationForProduction(this)
     this.app.firebaseStorageImageUrl ="https://firebasestorage.googleapis.com/v0/b/windmillcodesite.appspot.com/o/"
-
+    this.firebase.config ={
+      ...this.firebase.config,
+      authDomain: "windmillcode.com",
+    }
   }
 }
 

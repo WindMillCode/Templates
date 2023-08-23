@@ -1,22 +1,35 @@
 <div [class]="classPrefix('MainPod')">
   <section [class]="classPrefix('Pod0')">
+    <h2 (click)="baseService.navToHome()" (click)="baseService.navToHome" [class]="classPrefix('Pod0Title0')">{{"NavZero.title" | translate }}</h2>
     <div [class]="classPrefix('Pod0Item0')">
-      <img [class]="classPrefix('Pod0Img0')" [src]=specificService.paintSploshBg().src [alt]=specificService.paintSploshBg().alt />
-      <h2 [class]="classPrefix('Pod0Title0')">{{"NavZero.title" | translate}}</h2>
-    </div>
-    <div [class]="classPrefix('Pod0Item1')">
+
+      <div [class]="classPrefix('Pod0Item1')" *ngIf="ENV.type !== 'prod'">
+        <wml-button-one   *ngIf="signUpBtn.isPresent"  [params]="signUpBtn"></wml-button-one>
+        <wml-button-one  *ngIf="loginBtn.isPresent"  [params]="loginBtn"></wml-button-one>
+        <wml-button-one  *ngIf="profileBtn.isPresent"  [params]="profileBtn"></wml-button-one>
+        <wml-button-one  *ngIf="logoutBtn.isPresent"  [params]="logoutBtn"></wml-button-one>
+      </div>
+
       <mat-slide-toggle
         [class]="classPrefix('Pod0Item2')"
         [checked]="darkMode === 'NavZero.darkMode'"
         (toggleChange)="toggleDarkMode()">{{darkMode | translate}}
       </mat-slide-toggle>
-      <ng-container *ngFor="let route of navService.desktopNav">
-        <a [id]="route.id" *ngIf="route.isPresent" [class]="classPrefix('Pod0Link0')" (click)="route.click()" >{{ route.text | translate }}</a>
-      </ng-container>
+
       <i
         (click)="navService.openMobileNav()"
         [class]="classPrefix('Pod0Icon0') + ' fa-solid fa-bars'">
       </i>
+    </div>
+
+  </section>
+  <section [class]="classPrefix('Pod1')">
+
+    <div [class]="classPrefix('Pod1Item0')">
+      <wml-infinite-dropdown
+      *ngFor="let dropdown of navService.desktopDropdowns"
+      [params]="dropdown"
+      ></wml-infinite-dropdown>
     </div>
   </section>
 </div>

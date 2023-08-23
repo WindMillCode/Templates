@@ -1,5 +1,5 @@
 
-@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_global.scss";
 @import "src/assets/styles/_fonts.scss";
 @import "src/assets/styles/_spacing.scss";
 @import "src/assets/styles/media-queries.scss";
@@ -23,12 +23,12 @@
           flex-direction: column;
           // justify-content: center;
           align-items: center;
-          background-color: var(--wml-black);
+          background-color: var(--wml-white);
           width: 100%;
           height: 100%;
           padding: $spacing7;
           * {
-            color: var(--wml-white);
+            color: var(--wml-black);
           }
           h1{
             margin:calc(100/16 * 1rem) 0 0 0;

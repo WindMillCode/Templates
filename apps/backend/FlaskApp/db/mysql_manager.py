@@ -8,6 +8,7 @@ from utils.local_deps import  local_deps
 local_deps()
 from sqlalchemy.engine.create import create_engine
 from sqlalchemy import text
+from enum import Enum
 from datetime import date
 import sqlalchemy
 import pymysql
@@ -44,22 +45,32 @@ class MySQLManager():
 
   @staticmethod
   def guard_against_conn_issues():
+    error_counter = 7
     def decorator(func):
       def wrapper(self,*args, **kwargs):
+        nonlocal error_counter
+        error_counter -=1
+
+        def handle_error(e):
+          print(e)
+          nonlocal error_counter
+          if(error_counter != 0):
+            return wrapper(self,*args, **kwargs)
+          else:
+            error_counter = 7
+            raise e
         try:
             return func(self,*args, **kwargs)
         except sqlalchemy.exc.PendingRollbackError as e:
-            print(e)
             self.sqlalchemy_0_conn.rollback()
-            return wrapper(self,*args, **kwargs)
+            return handle_error(e)
         except (
           AttributeError,
           sqlalchemy.exc.OperationalError,
           sqlalchemy.exc.InternalError,
           pymysql.err.InterfaceError
         ) as e:
-            print(e)
-            return wrapper(self,*args, **kwargs)
+            return handle_error(e)
 
       return wrapper
     return decorator
@@ -124,5 +135,6 @@ class MySQLManager():
       "totalPages": total_pages,
       "totalItems": total_items,
     }
+
 
 

@@ -27,22 +27,8 @@ import { GlobalErrorHandler } from '@shared/errorhandlers/global-error-handler';
 import { TraceService } from '@sentry/angular-ivy';
 
 declare global {
-  // interface Window {
-  //   MozBlobBuilder:any,
-  //   WebKitBlobBuilder:any
-  //   // ethers.js
-
-  //   // sharethis.js
-  //   st:any,
-  //   __sharethis__:any
-  // }
-  // let Moralis:any
-  // let xProductBrowser:Function
-  // let MSAL:any
-  // let pdfjsLib:any
-  // let loadLinksPreset
-  // let tsParticles
-  // let loadSlim
+  let tsParticles
+  let Square
 }
 
 

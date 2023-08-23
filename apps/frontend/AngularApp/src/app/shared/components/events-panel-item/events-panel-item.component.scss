@@ -1,0 +1,77 @@
+
+@import "src/assets/styles/_global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+
+  &.EventsPanelItemView{
+    display: block;
+    width:100%;
+    height:100%;
+
+    .EventsPanelItem{
+      &Main{
+        &Pod{
+          @include MainPodCssRule0;
+          width:100%;
+          height:100%;
+          border-radius: $wml-border-radius0;
+          background: var(--wml-gradient-0);
+          padding: $spacing7;
+          *{
+            color:var(--wml-white);
+          }
+        }
+      }
+      &Pod{
+
+        &0{
+          display: flex;
+          justify-content: flex-end;
+          &Text {
+            &0 {
+              font-weight: bold;
+            }
+          }
+
+        }
+        &1{
+          height: 80%;
+          @include WMLFlexColumnCenter;
+          *{
+            text-align: center;
+
+          }
+          > *{
+            margin-top:$spacing7;
+          }
+          &Img {
+            &0 {
+              max-width: calc(200/16 * 1rem);
+              height: auto;
+            }
+          }
+          &Text {
+            &0 {
+              max-height: 80%;
+              overflow: hidden auto;
+              font-size: $body;
+
+              // &::-webkit-scrollbar{
+              //   display: none;
+              // }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

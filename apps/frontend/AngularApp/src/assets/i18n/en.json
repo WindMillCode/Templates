@@ -2,7 +2,6 @@
   "global": {
     "website": "",
     "logoImgAlt": "Logo Img",
-    "paintStrokeBgAlt":"Paint Stroke Background",
     "errorRequired": "This field is required",
     "errrorMin0": "At least one value must be provided",
     "avatarImgAlt": "Avatar Img",
@@ -17,28 +16,43 @@
     "formSubmitSuccess": "Form Submitted Sucessfully",
     "systemError": "An error has occured please try again later or contact support if the issue persists",
     "submiBtn": "Submit",
-    "comingSoon": "This feature is not availble yet, please try again later"
+    "comingSoon": "This feature is not availble yet, please try again later",
+    "na":"N\\A",
 
-  },
-  "AdsZero":{
-    "adImgAlt":"ad"
+    "wmlSelect":{
+      "select":"Please Select"
+    }
   },
 
-  "AccountService":{
+
+  "ConfirmDialogZero":{
+    "title":"WARNING! This action cannot be undone. Are you sure you wish to proceed",
+    "options":["Yes","No"]
+  },
+
+
+
+
+
+  "AccountsService":{
     "signUp0":"Sign Up",
     "login0":"Log In",
     "logout0":"Log Out",
+    "profileBtn0":"Profile",
+    "profileURLAlt":"Profile Image",
     "wmlNotify":{
+      "corruptedAccount":"It seems an account was created for you but it is corrupted, Please try again later or contact customer support for asistance, if the error continues, please refer to our legal section to export and delete your data and create a new account",
       "loggedOutSuccess":"Logged out sucessfully",
       "loggedOutError":"There was an error while trying to log out please try again later or contact support if the issue persists"
     }
   },
   "nav":{
     "pageTitle":{
-      "default":"Default",
-      "contact":"Default Contact",
-      "about":"Default About",
-      "store/products":"Tooboards Store"
+      "default":"Your-App",
+      "contact":"Your-App Contact",
+      "about":"Your-App About",
+      "store":"Your-App Store",
+      "account":"Your-App Account"
     }
   },
   "siteOffine": {
@@ -54,68 +68,76 @@
     ],
     "someImgAlt": "Resume"
   },
-  "app": {},
   "NavZero": {
-    "title": "Tooboards",
+    "title": "Your-App",
     "lightMode": "Light Mode",
     "darkMode": "Dark Mode",
     "mainOptions": [
-      ["Home"],
-      ["About"],
-      ["Store"],
-      ["Sign Up"],
-      ["Sign In"],
-      ["Profile"],
-      ["Sign Out"],
-      ["Language"]
+      ["Discover"],
+      ["Our Story"],
+      ["Explore", ["Insights", "Happenings", ["Online", "On-Site"], "Projects"]],
+      ["Courses"],
+      ["Get Started", ["Options", "Shop",["Items","Cart","Finalize"], "Support"]],
+      ["Reach Out"]
     ]
   },
-  "FooterZero": {
-    "logoImgAlt": "Logo Img",
-    "logoSection": {
-      "text": "Building out all the features that your business needs to thrive"
-    },
-    "quickLinks": {
-      "title": "Quick Links",
-      "items": ["Donate", "About", "Pricing Plans", "Store", "Contact Us"]
-    },
-    "languages": {
-      "title": "Languages",
-      "items": [
-        "English",
-        "Chinese",
-        "Spanish",
-        "Hindi",
-        "Ukrainian",
-        "Arabic",
-        "Bengali",
-        "Malay",
-        "French",
-        "German",
-        "Swahili",
-        "Amharic"
-      ]
-    },
-    "socialMedia": {
-      "title": "Follow Us",
-      "socialIconsAlt": [
-        "The Black Tube",
-        "Facebook",
-        "Twitter",
-        "Instagram",
-        "Patreon",
-        "Tik tok",
-        "Discord",
-        "Slack",
-        "Pinterest",
-        "Tumblr",
-        "Reddit",
-        "Twitch"
-      ]
+
+
+  "ContactUsForm": {
+    "mainForm": {
+      "title": "Upload resume or job role description for new results",
+      "notify": "Not required unless you want to upload new resume",
+      "nameField": {
+        "label": "Name",
+        "placeholder": "Your Name Here",
+        "error": {
+          "required": "A job description is required"
+        }
+      },
+      "companyField": {
+        "label": "Company",
+        "placeholder": "company name",
+        "error": {
+          "required": "A job description is required"
+        }
+      },
+      "emailField": {
+        "label": "Email",
+        "placeholder": "company email",
+        "error": {
+          "required": "An email is required",
+          "email":"Please provide the email in the correct format"
+        }
+      },
+      "phoneField": {
+        "label": "Phone",
+        "placeholder": "phone",
+        "error": {}
+      },
+      "descField": {
+        "label": "Description",
+        "placeholder": "How can we best help?",
+        "error": {
+          "required": "A description is required"
+        }
+      }
     }
   },
-  "HomeZero":{
-    "title":"Home"
+  "ContactMain": {
+    "title": "Contact Us"
+  },
+
+
+
+
+
+  "PrivacyPolicy":{
+    "title":"Privacy Policy",
+    "sections":[]
+  },
+  "TermsAndContions":{
+    "title":"Terms and Conditions",
+    "sections":[]
   },
   "ProductsMain":{
     "toggleAIPricing":"Toggle AI Pricing",
@@ -134,6 +156,10 @@
       },
       "selectPage": {
         "title": "Select Page"
+      },
+      "rowType":{
+        "title":"Select Row Type",
+        "options":["Card"]
       },
       "pageSize": {
         "title": "Enter Page Size"
@@ -157,7 +183,7 @@
         "To specify global filter leave the Sort Key input empty"
         ],
         "columnText": "Available Columns",
-        "add0BtnText": "Add Filter",
+        "add0BtnText": "Add Sort",
         "remove0BtnText": "Remove",
         "submit0Btn": "Submit",
         "availableColumnsText": "",
@@ -181,13 +207,15 @@
     "microsoft":"Sign up with microsoft",
     "facebook":"Sign up with facebook",
     "yahoo":"Sign up with with yahoo",
-    "github":"Sign up with github"
+    "github":"Sign up with github",
+    "twitter":"Sign up with twitter"
   },
   "SignIn":{
     "google":"Sign in with google",
     "microsoft":"Sign in with microsoft",
     "facebook":"Sign in with facebook",
     "yahoo":"Sign in with with yahoo",
-    "github":"Sign in with github"
+    "github":"Sign in with github",
+    "twitter":"Sign in with twitter"
   }
 }

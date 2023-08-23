@@ -1,22 +1,21 @@
 version: 2.1
 # orbs:
-#   browser-t
-ools: circleci/browser-tools@1.4.0
+#   browser-tools: circleci/browser-tools@1.4.0
 commands:
   install-deps:
     steps:
       - restore_cache:
           keys:
-            - frontend-npm-deps-v3-{{ checksum "/root/project/apps/frontend/AngularApp/package.json" }}
+            - frontend-npm-deps-v0-{{ checksum "/root/project/apps/frontend/AngularApp/package.json" }}
       - restore_cache:
           keys:
-            - e2e-mvn-deps-v3-{{ checksum "/root/project/apps/testing/testng/pom.xml" }}
+            - e2e-mvn-deps-v0-{{ checksum "/root/project/apps/testing/testng/pom.xml" }}
       - restore_cache:
           keys:
-            - cloud-npm-deps-v3-{{ checksum "/root/project/apps/cloud/FirebaseApp/package.json" }}
+            - cloud-npm-deps-v0-{{ checksum "/root/project/apps/cloud/FirebaseApp/package.json" }}
       - restore_cache:
           keys:
-            - backend-pip-deps-v3-{{ checksum "/root/project/apps/backend/FlaskApp/linux-requirements.txt" }}
+            - backend-pip-deps-v0-{{ checksum "/root/project/apps/backend/FlaskApp/linux-requirements.txt" }}
 
       - run:
           . /etc/profile.d/01-custom-docker-setup.sh;
@@ -30,19 +29,19 @@ commands:
           # mvn install -DskipTests;
 
       - save_cache:
-          key: frontend-npm-deps-v3-{{ checksum "/root/project/apps/frontend/AngularApp/package.json" }}
+          key: frontend-npm-deps-v0-{{ checksum "/root/project/apps/frontend/AngularApp/package.json" }}
           paths:
             - /root/project/apps/frontend/AngularApp/node_modules
       - save_cache:
-          key: cloud-npm-deps-v3-{{ checksum "/root/project/apps/cloud/FirebaseApp/package.json" }}
+          key: cloud-npm-deps-v0-{{ checksum "/root/project/apps/cloud/FirebaseApp/package.json" }}
           paths:
             - /root/project/apps/cloud/FirebaseApp/node_modules
       - save_cache:
-          key: e2e-mvn-deps-v3-{{ checksum "/root/project/apps/testing/testng/pom.xml" }}
+          key: e2e-mvn-deps-v0-{{ checksum "/root/project/apps/testing/testng/pom.xml" }}
           paths:
             - /root/project/apps/testing/testng/target
       - save_cache:
-          key: backend-pip-deps-v3-{{ checksum "/root/project/apps/backend/FlaskApp/linux-requirements.txt" }}
+          key: backend-pip-deps-v0-{{ checksum "/root/project/apps/backend/FlaskApp/linux-requirements.txt" }}
           paths:
             - /root/.pyenv/versions/3.11.3/lib/python3.11/site-packages
 
@@ -61,7 +60,7 @@ commands:
           cd ~/project/apps/cloud/FirebaseApp/;
           mv angular.firebase.<< parameters.app-env >>.json ~/project/apps/frontend/AngularApp/firebase.json;
           mv ~/project/apps/devops/AngularFirebase/credentials /root/.config/configstore;
-          npx firebase use windmillcodesite;
+          npx firebase use [YOUR PROJECT HERE];
           npx firebase deploy --non-interactive --only hosting   --config "../../frontend/AngularApp/firebase.json"   ;
 
 
@@ -77,7 +76,7 @@ commands:
           cd ~/project/apps/database/mysql/<< parameters.app-env >>/4-26-23;
           APPENV=<< parameters.app-env >>;
           AWS_MYSQLPASS=$([ << parameters.app-env >>  == "preview" ] && echo $AWS_MYSQLPASS_PREVIEW || echo $AWS_MYSQLPASS_PROD);
-          AWS_MYSQLHOST=$([ << parameters.app-env >>  == "preview" ] && echo "windmillcodesite-db-mysql-preview-0.c2yr2opzfzj9.us-east-1.rds.amazonaws.com" || echo "windmillcodesite-db-mysql-prod-0.c2yr2opzfzj9.us-east-1.rds.amazonaws.com");
+          AWS_MYSQLHOST=$([ << parameters.app-env >>  == "preview" ] && echo "[YOUR PREVIEW DB URL HERE]" || echo "[YOUR PROD DB URL HERE]");
           mysql -u myadmin --password=$AWS_MYSQLPASS -h $AWS_MYSQLHOST  windmillcodesite_mysql_database_0 < update.sql
           # mysql -u myadmin -p $AWS_MYSQLPASS -h $AWS_MYSQLHOST  -e "source 4-26-23/update.sql" windmillcode_site_mysql_database_0
           # will check to see if I can create a database directly from update.sql in prod
@@ -147,10 +146,9 @@ commands:
           gcloud app deploy --quiet;
 
 jobs:
-
   fullstack-prod:
     docker:
-      - image: windmillcode/docker-img-0:0.0.8
+      - image: windmillcode/docker-img-0:0.0.10
 
     parallelism: 1
 
@@ -158,10 +156,11 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - install-deps
+      # - install-deps
       # - deploy-frontend-app
 
       # - deploy-database:
+
       #     app-env: prod
       - deploy-backend:
           app-env: prod
@@ -169,7 +168,7 @@ jobs:
 
   fullstack-preview:
     docker:
-      - image: windmillcode/docker-img-0:0.0.8
+      - image: windmillcode/docker-img-0:0.0.10
 
     parallelism: 1
 
@@ -177,7 +176,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - install-deps
+      # - install-deps
       # - deploy-frontend-app
 
       # - deploy-database
@@ -185,7 +184,7 @@ jobs:
 
   fullstack-configure:
     docker:
-      - image: windmillcode/docker-img-0:0.0.8
+      - image: windmillcode/docker-img-0:0.0.10
     parallelism: 1
 
     steps:
@@ -216,10 +215,11 @@ workflows:
           context:
               - org-global
               - Context_0
+
           filters:  # using regex filters requires the entire branch to match
             branches:
               only:  # only branches matching the below regex filters will run
-                - dont-run
+                - dev
       - fullstack-configure:
           context:
               - org-global
@@ -228,6 +228,8 @@ workflows:
             branches:
               only:  # only branches matching the below regex filters will run
                 - dont-run
+
+
 
 
 

@@ -18,6 +18,9 @@ firebase_admin
 Flask-Caching
 openai
 hvac
+reportlab
+ndjson
+
 
 pytest
 coverage

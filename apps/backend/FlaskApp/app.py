@@ -5,7 +5,7 @@ import traceback
 
 from configs import CONFIGS,ENV_VARS
 
-
+import utils.my_util
 from utils.my_util import APIMsgFormat
 from utils.api_exceptions import APIError
 from utils.local_deps import  local_deps
@@ -22,6 +22,8 @@ from flask_caching import Cache
 from endpoints.healthcheck_endpoint import healthcheck_endpoint
 
 from endpoints.scratchpad_endpoint import scratchpad_endpoint
+from endpoints.store_endpoint import store_endpoint
+from endpoints.accounts_endpoint import accounts_endpoint
 
 CONFIGS.sentry_manager.init_sentry()
 app = Flask(__name__)
@@ -37,6 +39,8 @@ if ENV_VARS.get("FLASK_BACKEND_ENV") == "DEV":
 my_cache.init_app(app)
 
 app.register_blueprint(healthcheck_endpoint)
+app.register_blueprint(store_endpoint)
+app.register_blueprint(accounts_endpoint)
 
 if ENV_VARS.get("FLASK_BACKEND_ENV") == "DEV":
   app.register_blueprint(scratchpad_endpoint)
@@ -71,7 +75,7 @@ def restart_because_of_socket_error(my_event):
   print_if_dev(my_event.__class__)
   # CONFIGS.sentry_manager.
   response = APIMsgFormat({},"There was an issue with the DB connection")
-  my_resp = make_response(jsonify(response.__dict__))
+  my_resp = make_response(jsonify(APIError().__dict__))
   my_resp.status_code = 500
   return my_resp
 
@@ -92,13 +96,13 @@ def handle_api_exception(err):
 @app.errorhandler(500)
 def handle_unknown_exception(err):
     """Return JSON instead of HTML for any other server error"""
-    print(err)
+
     app.logger.error(f"Unknown Exception: {str(err)}")
     # app.logger.debug(''.join(traceback.format_exception(etype=type(err), value=err, tb=err.__traceback__)))
     response = APIMsgFormat({},"This is a server error please contact support if the issue persits")
 
 
-    return response.return_flask_response(), 500
+    return jsonify(response.__dict__), 500
 
 @app.teardown_appcontext
 def app_shutdown(event):
@@ -108,6 +112,8 @@ def app_shutdown(event):
 
 app.add_url_rule('/', 'index', (lambda: "test 1"))
 
+
+CONFIGS.cron_task_runner.run_cron_tasks(CONFIGS)
 if __name__ == "__main__":
     if ENV_VARS.get("FLASK_BACKEND_ENV") == "DEV":
 

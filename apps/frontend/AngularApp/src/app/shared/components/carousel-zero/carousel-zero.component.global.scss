@@ -1,21 +1,3 @@
 #root carousel-zero{
-  .CarouselZeroPod1Item1 .ContainerZeroPod1{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
-  .CarouselZeroPod0 .ContainerZeroPod1{
-    position: relative;
-    z-index: 6;
-    overflow:hidden;
-  }
-
-  .CarouselZeroPod1Item0 .ContainerZeroPod1{
-    @include WMLFlexColumnCenter;
-    padding:$spacing5;
-    p{
-      overflow: hidden auto;
-    }
-  }
 }

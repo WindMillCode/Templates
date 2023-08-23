@@ -4,6 +4,7 @@ import os
 from time import sleep
 from urllib.parse import parse_qs, urlencode, urlparse
 from configs import CONFIGS
+from flask.helpers import make_response
 from utils.local_deps import  local_deps
 local_deps()
 from sqlalchemy import create_engine
@@ -27,15 +28,20 @@ class APIMsgFormat():
   data ={
     "please ":"provide data in the data property"
   }
-  access_token =""
+  access_token =None
   msg = "OK"
   code = ""
 
   def return_flask_response(self):
-    return jsonify(self.__dict__)
+    resp_dict = self.__dict__
+    try:
+      if resp_dict.get("access_token") == None:
+        del resp_dict["access_token"]
+    except BaseException as e:
+      pass
+    resp = make_response(jsonify(resp_dict))
 
-
-
+    return resp
 
 
 def generate_random_string(len =7):
@@ -55,8 +61,6 @@ def turn_cookie_to_object(cookie_list,cookie_name):
     return parse_cookie(cookie) if cookie is not None else cookie
 
 
-def flatten_list(nested_list):
-    return [item for sublist in nested_list for item in (flatten_list(sublist) if isinstance(sublist, list) else [sublist])]
 
 def pull_unique_items_from_list(target_list):
   return [x for i, x in enumerate(target_list) if x not in target_list[:i]]

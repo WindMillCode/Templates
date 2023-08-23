@@ -13,7 +13,7 @@ yarn build:preview
 
 cp -r $app_dist_source $angular_build_destination
 cd $fb_dest
-npx firebase deploy --only hosting:tooboards-preview --config angular.firebase.preview.json
+npx firebase deploy --only hosting --config angular.firebase.preview.json
 rm -r $angular_build_destination
 rm -r $app_dist_source
 Set-Location ..\..\..

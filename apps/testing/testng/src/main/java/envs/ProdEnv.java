@@ -3,6 +3,6 @@ package envs;
 public class ProdEnv extends DevEnv {
 
   public ProdEnv(){
-    url  = "https://default.com/";
+    url  = "https://windmillcode.com/";
   }
 }

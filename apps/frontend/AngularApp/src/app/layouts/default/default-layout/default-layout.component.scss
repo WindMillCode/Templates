@@ -16,61 +16,54 @@
       &Main{
         &Pod{
 
-          // max-width: 100%;
-          max-height: 100%;
           width: 100%;
           height: 100%;
-          margin: auto;
-          max-width: none !important;
+          max-width:$wmlPageMaxWidth0;
+          margin:auto;
           @include WMLFlexColumnCenter;
           @include MainPodCssRule0;
           padding:0;
           position: relative;
-          background-color: rgba(var(--wml-tertiary));
-
         }
 
-
+        &Item {
+          &0 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
       &Pod{
 
-        &0 {
-          height: 100%;
-          position: absolute;
-          max-width:none !important;
+        &0{
+          position: sticky;
+          flex:0 0 calc(48/16 * 1rem);
         }
+
         &1{
-          flex: 0 0 calc(42/10.6 * 1rem);
-
-
-        }
-        &2{
-          flex:1 0 calc(100% - 42/10.6 * 1rem );
-          max-height: calc(100% - 42/10.6 * 1rem );
-          width: 100%;
-          // @include WMLFlexColumnCenter;
-          display: flex;
-          margin:0 0 $spacing7 0;
-          &Item {
-            &0 {
-              height: 100%;
-            }
-            &1{
-              display: none;
-            }
-          }
-
-        }
-        &3{
-          max-height: 100%;
-          @include WMLFlexColumnCenter;
+          flex:1 0 83%;
           overflow: hidden auto;
-          align-items: stretch;
-          margin: 0 0 $spacing11 0;
+          background-color: var(--wml-gradient-1);
+
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+
 
         }
 
+        &2{
+          flex:0 0 7%;
+          @include WMLFlexColumnCenter;
+          justify-content: center;
 
+          p{
+            font-size:$caption;
+            color:var(--wml-white);
+          }
+        }
       }
     }
   }

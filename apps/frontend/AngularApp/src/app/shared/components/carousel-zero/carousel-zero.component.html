@@ -1,32 +1,34 @@
 <div [class]="classPrefix('MainPod')">
-  <section [class]="classPrefix('Pod0')">
-    <container-zero>
-      <img [class]="currentItem.img.class" [src]=currentItem.img.src [alt]="currentItem.img.alt | translate" />
-    </container-zero>
+
+  <section *ngIf="params.optionsContainer.isPresent" [class]="classPrefix('Pod0')">
+    <ng-container *ngFor="let card of params.cards; let i = index">
+      <label
+      [ngStyle]="card.option.style"
+      (click)="card.option.click()" [for]="i">{{ i + 1 }}</label>
+    </ng-container>
   </section>
+
+
   <section [class]="classPrefix('Pod1')">
-    <container-zero [class]="classPrefix('Pod1Item0')">
-      <h2 [class]="classPrefix('Pod1Title0')">{{currentItem.title.text | translate}}</h2>
-      <p [class]="classPrefix('Pod1Text0')">{{currentItem.desc.text | translate}}</p>
-    </container-zero>
-    <container-zero [class]="classPrefix('Pod1Item1')">
-      <i
-      (click)="moveLeft()"
-      [class]="'fa-solid fa-chevron-left ' +classPrefix('Pod1Icon0')">
-      </i>
-       <div [class]="classPrefix('Pod1Item2')">
-        <div
-        [class]="classPrefix('Pod1Item3')"
-        *ngFor="let item of params.items.slice(0,5)">
-        <p>{{item.index | translate}}</p>
-        </div>
-       </div>
-      <i
-        (click)="moveRight()"
-        [class]="'fa-solid fa-chevron-right ' +classPrefix('Pod1Icon0')"
-      >
-      </i>
-    </container-zero>
+    <div [ngStyle]="params.carousel.style" [class]="classPrefix('Pod1Item0')">
+
+      <card-two
+      [params]="card.paymentCard"
+      [class]="classPrefix('Pod1Item1')"
+        [ngStyle]="card.card.style"
+        (click)="card.card.click()"
+        *ngFor="let card of params.cards; let i = index"
+      ></card-two>
+    </div>
+
+  </section>
+
+  <section [class]="classPrefix('Pod2')">
+    <card-two
+      *ngIf="params.chosenCard"
+      [params]="params.chosenCard?.paymentCard"
+      [class]="classPrefix('Pod2Item0')"
+
+    ></card-two>
   </section>
 </div>
-

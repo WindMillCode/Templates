@@ -111,7 +111,7 @@ describe('BaseService', () => {
       };
 
       // act
-      let formField = service.generateInputFormField(
+      let formField = service.createInputFormField(
         labelValue,
         fieldFormControlName,
         fieldParentForm,
@@ -145,7 +145,7 @@ describe('BaseService', () => {
       };
 
       // act
-      let formField = service.generateRangeFormField(
+      let formField = service.createRangeFormField(
         labelValue,
         fieldFormControlName,
         fieldParentForm,
@@ -180,7 +180,7 @@ describe('BaseService', () => {
       };
 
       // act
-      let formField = service.generateTextAreaFormField(
+      let formField = service.createTextAreaFormField(
         labelValue,
         fieldFormControlName,
         fieldParentForm,
@@ -215,7 +215,7 @@ describe('BaseService', () => {
       };
 
       // act
-      let formField = service.generateCheckboxFormField(
+      let formField = service.createCheckboxFormField(
         labelValue,
         fieldFormControlName,
         fieldParentForm,

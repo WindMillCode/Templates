@@ -12,7 +12,6 @@ healthcheck_endpoint =Blueprint("healthcheck", __name__, url_prefix="/healthz")
 
 @healthcheck_endpoint.route('/',methods=['GET'])
 def healthcheck():
-  time.sleep(1)
   res = APIMsgFormat(msg="A-OK",code=CONFIGS.endpointMsgCodes["success"])
   return res.return_flask_response(),200
 

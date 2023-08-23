@@ -1,0 +1,33 @@
+#root footer-zero{
+  @media #{$mobile}{
+    .FooterZeroPod0{
+      padding:$spacing7;
+    }
+    .FooterZeroPod0Item2{
+      width:100%;
+      > *{
+        flex:1 0 100%;
+        @include WMLFlexColumnCenter;
+        padding:0;
+        margin-top: $spacing7;
+        .SectionZeroMainPod{
+          max-width: auto;
+          width: 100%;
+        }
+        .SectionZeroMainItem0{
+          flex-flow:row wrap;
+          justify-content: center;
+        }
+        .SectionZeroMainTitle0{
+          text-align: center;
+        }
+        &.FooterZeroPod0Item {
+          &0,&3{
+
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}

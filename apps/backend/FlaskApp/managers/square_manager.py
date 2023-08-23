@@ -5,10 +5,13 @@ import os
 import random
 import time
 import uuid
+from utils.iterable_utils import list_get
 from utils.print_if_dev import print_if_dev
 from utils.api_exceptions import APIClientError, APIServerError
 from utils.singleton_exception import SingletonException
 from utils.local_deps import  local_deps
+from utils.wml_libs.pagination import WMLAPIPaginationResponseModel
+from utils.env_vars import flask_backend_env
 local_deps()
 from square.client import Client
 
@@ -16,7 +19,8 @@ class SquareManager():
   init= False
   client = None
   online_location_id =None
-  def __init__(self,access_token):
+  CONFIGS = None
+  def __init__(self,access_token,CONFIGS):
     if(self.init):
       raise SingletonException
     else:
@@ -28,23 +32,7 @@ class SquareManager():
         timeout=10
       )
       self.online_location_id = self._get_location_id()
-
-
-
-  def list_products(self):
-    items = self.client.catalog.list_catalog(
-      types = "ITEM"
-    )
-    options = self.client.catalog.list_catalog(
-      types = "ITEM_OPTION"
-    )
-    if items.is_success() and options.is_success() :
-      return self._combine_items_and_options(items.body,options.body)
-    else:
-      raise APIServerError({
-        items:items.errors,
-        options:items.errors
-      })
+      self.CONFIGS = CONFIGS
 
   def _combine_items_and_options(self,items,options):
     extracted_options = []
@@ -82,6 +70,79 @@ class SquareManager():
           del option["item_option_id"]
           del option["item_option_value_id"]
 
+  def _get_location_id(self):
+    result = self.client.locations.list_locations()
+    if result.is_success():
+      my_id = result.body["locations"][0]["id"]
+      return my_id
+    elif result.is_error():
+      raise APIServerError(result.errors)
+
+  def get_product_by_id(self,object_id):
+    result = self.client.catalog.retrieve_catalog_object(
+      object_id
+    )
+    if result.is_success():
+      return result.body
+    elif result.is_error():
+      return result.errors
+
+  def _check_if_all_api_calls_completed_sucessfully(self, results):
+      all_success = all(result["success"] == True for result in results)
+      if not all_success:
+        raise APIServerError(
+        list(
+          map(lambda x:x["result"].errors,
+            filter(lambda x: x["fail"] == True,  results))
+        )
+      )
+
+  def _update_results_list(self,results,result):
+      results.append({
+        "result":result,
+        "success":result.is_success(),
+        "fail":result.is_error()
+      })
+
+  def _check_if_user_exists(self,reference_id,retry=5):
+    try:
+      duplicates = self.client.customers.search_customers(
+        body = {
+          "query": {
+            "filter": {
+              "reference_id": {
+                "exact": reference_id
+              }
+            }
+          }
+        }
+      )
+      if duplicates.is_success():
+        return  duplicates
+      if duplicates.is_error():
+        raise APIServerError("Error while trying to check for duplicates")
+    except BaseException as e:
+      if retry != 0:
+        self._check_if_user_exists(reference_id,retry-1)
+
+  def create_reference_id(self,firebase_uid):
+    return "{}_{}".format(firebase_uid,flask_backend_env.lower())
+
+  def list_products(self):
+    items = self.client.catalog.list_catalog(
+      types = "ITEM"
+    )
+    options = self.client.catalog.list_catalog(
+      types = "ITEM_OPTION"
+    )
+    if items.is_success() and options.is_success() :
+      return self._combine_items_and_options(items.body,options.body)
+    else:
+      raise APIServerError({
+        items:items.errors,
+        options:items.errors
+      })
+
   def get_values_based_on_currency(self,value,currency="USD"):
 
     currency_info= {
@@ -99,15 +160,17 @@ class SquareManager():
     }[currency]
     return currency_info(value)
 
-
-  def create_payment_link(self,cart_items,CONFIGS):
-    my_checkout = self.client.checkout.create_payment_link(
-      body = {
+  def create_payment_link(self,cart_items,customer_id=None):
+    my_checkout_body = {
         "order": {
           "location_id": self.online_location_id,
           "line_items": cart_items
         }
       }
+    if customer_id != None:
+      my_checkout_body["order"]["customer_id"] = customer_id
+    my_checkout = self.client.checkout.create_payment_link(
+      body = my_checkout_body
     )
     if my_checkout.is_success():
       my_updated_checkout = self.client.checkout.update_payment_link(
@@ -116,8 +179,9 @@ class SquareManager():
           "payment_link": {
             "version":1,
             "checkout_options": {
+              "allow_tipping": True,
               "redirect_url": "{}{}{}".format(
-                CONFIGS.app["frontend_angular_app_url"],
+                self.CONFIGS.app["frontend_angular_app_url"],
                 "/store/order-confirmed?orderId=",
                 my_checkout.body["payment_link"]["order_id"]
               )
@@ -128,13 +192,11 @@ class SquareManager():
       if my_updated_checkout.is_success():
         return my_checkout.body["payment_link"]["long_url"]
       elif my_updated_checkout.is_error():
-        raise APIServerError(my_updated_checkout.errors)
+        return  APIServerError(my_updated_checkout.errors)
     elif my_checkout.is_error():
-      raise APIServerError(my_checkout.errors)
-
+      return APIServerError(my_checkout.errors)
 
   def update_catalog_variation_item(self,object_id,price=0.00,reset=False):
-
     variations = self.get_product_by_id(object_id)["object"]["item_data"]["variations"]
     square_variation_data = []
 
@@ -181,26 +243,158 @@ class SquareManager():
     if result.is_error():
       APIServerError(result.errors)
 
+  def get_customer_via_firebase_id(self,firebase_id):
+    result = self.client.customers.search_customers(
+      body = {
+        "query": {
+          "filter": {
+            "reference_id": {
+              "exact": self.create_reference_id(firebase_id)
+            }
+          }
+        }
+      }
+    )
 
-
-  def _get_location_id(self):
-    result = self.client.locations.list_locations()
     if result.is_success():
-      my_id = result.body["locations"][0]["id"]
-      return my_id
+      customers = result.body["customers"]
+      if len(customers) > 1:
+        self.CONFIGS.sentry_manager.debug_with_sentry(
+          "Customer with firebase_id {} has {} customer ids".format(
+            firebase_id,
+            [item["id"] for item in result.body["customers"]]
+          )
+        )
+      return customers[0]
     elif result.is_error():
       raise APIServerError(result.errors)
 
+  def create_customer(self,firebase_uid,email):
+    reference_id = self.create_reference_id(firebase_uid)
+    duplicates = self._check_if_user_exists(reference_id)
+    if   duplicates.body.get("customers",None) != None:
+      return {"customer":duplicates.body["customers"][0]}
 
-  def get_product_by_id(self,object_id):
-    result = self.client.catalog.retrieve_catalog_object(
-      object_id
-    )
+    body = {
+      "given_name":reference_id,
+      "email_address":email,
+      "idempotency_key": str(uuid.uuid4()),
+      "reference_id": reference_id,
+    }
+    result = self.client.customers.create_customer(body)
     if result.is_success():
       return result.body
+    if result.is_error():
+      raise APIServerError(result.errors)
+
+  def update_customers(self,req_body):
+    results = []
+    for customer in req_body:
+      result = self.client.customers.update_customer(
+        customer_id = customer["id"],
+        body = {
+          "address":customer["address"]
+        }
+      )
+      self._update_results_list(results,result)
+    self._check_if_all_api_calls_completed_sucessfully(results)
+
+  def list_customers(self,pagination_dict):
+    body = {
+      "query": {
+        "filter": {}
+      }
+    }
+    reference_id =list_get(
+      list(filter(lambda x:x["key"] == "reference_id",  pagination_dict["filter"])),
+      0,None
+    )
+    if reference_id != None:
+      body["query"]["filter"]["reference_id"] = {
+        "exact": reference_id['value']
+      }
+    result = self.client.customers.search_customers(
+      body
+    )
+
+    if result.is_success():
+      data = result.body.get("customers",[])
+      page_data =  WMLAPIPaginationResponseModel(
+        data=data,
+        page_num=pagination_dict["page_num"],
+        page_size=pagination_dict["page_size"])
+      page_data.calculate_current_state()
+      return page_data
     elif result.is_error():
-      return result.errors
+      raise APIServerError(result.errors)
+
+  def delete_customers(self,square_customer_ids):
+    results = []
+    for my_id in square_customer_ids:
+      result = self.client.customers.delete_customer(
+        customer_id = my_id
+      )
+      self._update_results_list(results,result)
+
+    self._check_if_all_api_calls_completed_sucessfully(results)
+
+  def store_customer_card_on_file(self,customer_id,payment_method_token):
+
+    too_big = self.list_cards_via_customer_id([customer_id])
+    if len(list_get(too_big.data,0,[])) >= 8:
+      return APIServerError("TOO_MANY_CARDS")
+    result = self.client.cards.create_card(
+      body = {
+        "idempotency_key": str(uuid.uuid4()),
+        "source_id": payment_method_token,
+        "card": {
+          "customer_id": customer_id
+        }
+      }
+    )
+
+    if result.is_success():
+      None
+    elif result.is_error():
+       raise APIServerError(result.errors)
+
+  def list_cards_via_customer_id(self,ids):
+    results = []
+    for my_id in ids:
+      result = self.client.cards.list_cards(
+        customer_id =my_id
+      )
+      self._update_results_list(results,result)
+
+    self._check_if_all_api_calls_completed_sucessfully(results)
+
+    res_page_data = []
+    for result in results:
+      data = result["result"].body.get("cards",[])
+      res_page_data.append([{
+        "enabled":x["enabled"],
+        "exp_month":x["exp_month"],
+        "exp_year":x["exp_year"],
+        "last_4":x["last_4"],
+        "card_brand":x["card_brand"],
+        "id":x["id"]
+      } for x in data])
+    page_data =  WMLAPIPaginationResponseModel(data=res_page_data)
+    page_data.calculate_current_state()
+    return page_data
+
+  def delete_cards(self,card_ids,customer_id):
+    customer_cards_page_res_model = self.list_cards_via_customer_id([customer_id])
+    results =[]
+    for customer_card in customer_cards_page_res_model.data:
+      for card_id in card_ids:
+        result = list(filter(lambda x:x["id"] == card_id,customer_card))
+        if len(result) > 0:
+          result = self.client.cards.disable_card(
+            card_id = card_id
+          )
+        self._update_results_list(results,result)
 
 
-
+      self._check_if_all_api_calls_completed_sucessfully(results)
 

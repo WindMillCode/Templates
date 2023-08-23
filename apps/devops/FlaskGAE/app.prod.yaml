@@ -1,0 +1,29 @@
+runtime: python311 # or another supported version
+
+instance_class: F1
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 1
+
+env_variables:
+  FLASK_BACKEND_ENV: "PROD"
+  NEWS_API_KEY: "1773e038d2e142849f4d95bd3b97d98a"
+  EVENTBRITE_OAUTH_TOKEN: "OH7XQTK6AF74W5ONEK62"
+  SQLALCHEMY_MYSQL_0_CONN_STRING: "mysql+pymysql://u119130045_prod_0:QHELYy8TqRwXJ78@srv940.hstgr.io:3306/u119130045_prod_0"
+  RESTDBIO_SERVER_API_KEY_0: "b0784eec6793672a875fc5e98a64ac534438a"
+  SQUARE_SANDBOX_ACCESS_TOKEN_0: "EAAAEHHdANDN_vb7ijM_cbABWG_u5CTwij84ELQPVhZ6G5EhA7TjswgOcsyvubYQ"
+  GCLOUD_PROJECT: "windmillcodesite"
+  OPENAI_API_KEY_0: "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"
+handlers:
+
+
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
+
+
+
+service: api-0
+service_account: app-engine-deployer-0@windmillcodesite.iam.gserviceaccount.com

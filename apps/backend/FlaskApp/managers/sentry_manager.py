@@ -20,7 +20,7 @@ class SentryManager():
     if ENV_VARS.get("FLASK_BACKEND_ENV") == "DEV":
       return
     sentry_sdk.init(
-      dsn="[YOUR SENTRY DSN HERE]",
+      dsn="https://your_dsn_here",
       environment="Flask_{}".format(ENV_VARS.get("FLASK_BACKEND_ENV")),
         # Set traces_sample_rate to 1.0 to capture 100%
         # of transactions for performance monitoring.
@@ -28,6 +28,8 @@ class SentryManager():
         traces_sample_rate=1.0,
     )
 
+  def debug_with_sentry(self,msg):
+    sentry_sdk.capture_message(msg)
 
 
 

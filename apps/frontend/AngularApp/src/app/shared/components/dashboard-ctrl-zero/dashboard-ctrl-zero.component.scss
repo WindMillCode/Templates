@@ -1,0 +1,36 @@
+
+@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+
+:host {
+
+  &.DashboardCtrlZeroView{
+    display: block;
+    .DashboardCtrlZero{
+      &Main{
+        &Pod{
+          @include MainPodCssRule0;
+          border-bottom: calc(1/10.6 * 1rem) solid var(--wml-black);
+          padding: 0 $spacing5 $spacing5 ;
+        }
+      }
+      &Pod{
+
+        &0{
+          display: flex;
+          justify-content: space-between;
+        }
+        &1{
+          padding:$spacing5 0 0 0;
+        }
+      }
+    }
+  }
+
+}

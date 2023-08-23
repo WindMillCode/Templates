@@ -1,0 +1,9 @@
+<div [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <h2 [class]="classPrefix('MainTitle0')">{{params.title.text | translate}}</h2>
+    <wml-button-one [params]="params.actionBtn"></wml-button-one>
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <ng-content></ng-content>
+  </section>
+</div>

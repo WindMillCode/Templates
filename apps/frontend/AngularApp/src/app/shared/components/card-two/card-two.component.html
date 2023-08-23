@@ -1,0 +1,17 @@
+<div [ngStyle]="params.container.style" [class]="classPrefix('MainPod')">
+  <section [class]="classPrefix('Pod0')">
+    <img [class]="classPrefix('Pod0Img0')"
+    [src]=params.cardProviderImg.src [alt]="params.cardProviderImg.alt | translate" />
+  </section>
+  <section [class]="classPrefix('Pod1')">
+    <div [class]="classPrefix('Pod1Item0')">
+      <h4>{{"CardTwo.cardNumber" | translate}}</h4>
+      <h5>XXXX XXXX XXXX {{params.lastFour.value}}</h5>
+    </div>
+    <div [class]="classPrefix('Pod1Item1')">
+      <h4>{{"CardTwo.expiration" | translate}}</h4>
+      <h5> {{params.expiration.value}}</h5>
+    </div>
+
+  </section>
+</div>

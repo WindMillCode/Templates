@@ -9,22 +9,23 @@
 	::-webkit-scrollbar {
 		max-width: calc(20/10.6 * 1rem);
 		@media #{$mobile}{
-			min-width: calc(7.5/10.6 * 1rem)
+			max-width: auto;
+			min-width: calc(15/10.6 * 1rem)
 		}
 	}
 
 	::-webkit-scrollbar-track {
-		background: transparent;
+		background: var(--wml-gradient-1);
 	}
 
 	::-webkit-scrollbar-thumb {
-		background-color:rgba(var(--wml-black));
+		background-color: var(--wml-black);
 		border-radius: calc(20/16 * 1rem);
 		border: 6px solid transparent;
 		background-clip: content-box;
 	}
 
 	::-webkit-scrollbar-thumb:hover {
-		background-color:rgba(var(--wml-secondary));
+		background-color: var(--wml-black);
 	}
 }

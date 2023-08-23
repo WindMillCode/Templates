@@ -8,7 +8,7 @@ let children:Route["children"] = [
   { path: 'sign-in', loadChildren: () => import('../../pages/sign-up-sign-in/sign-up-sign-in.module').then(m => m.SignUpSignInModule) }
 ]
 children = addPageTitlesToRoute(children)
-const routes: Routes = [
+const layoutRoutes: Routes = [
   {
     path:"auth",
     component:AuthLayoutComponent,
@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(layoutRoutes)],
   exports: [RouterModule]
 })
 export class AuthRoutingModule { }

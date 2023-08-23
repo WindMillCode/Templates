@@ -22,11 +22,6 @@ export class SpecificService  {
     }
   })
 
-  paintSploshBg = ()=>new WMLImage({
-    src:"assets/media/app/paint_stroke_background.svg",
-    alt:"global.paintStrokeBgAlt"
-  })
-
   private _manageWebStorage(webStorage:Storage,thisWebStorage:any,predicate:Function) {
     let myWebStorage = webStorage.getItem(ENV.classPrefix.app);
     myWebStorage = JSON.parse(myWebStorage);

@@ -1,8 +1,19 @@
-
+@font-face {
+  font-family: 'PT-Mono';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url('../fonts/PT-Mono/PT-Mono.ttf') format('truetype'),
+  url('../fonts/PT-Mono/PT-Mono.eot') format('embedded-opentype'),
+  url('../fonts/PT-Mono/PT-Mono.svg') format('svg'),
+  url('../fonts/PT-Mono/PT-Mono.woff') format('woff'),
+  url('../fonts/PT-Mono/PT-Mono.woff2') format('woff2');
+}
 
 @font-face {
   font-family: 'Component-Italic';
   font-style: normal;
+
   font-weight: 400;
   font-display: block;
   src: url('../fonts/Component-Italic/Component.ttf') format('truetype'),
@@ -26,16 +37,15 @@
 }
 
 @font-face {
-  font-family: 'AvontuurGardeGoshikkutai';
+  font-family: 'Quicksand-Book';
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url('../fonts/AvontuurGardeGoshikkutai/AvontuurGardeGoshikkutai.ttf') format('truetype'),
-  url('../fonts/AvontuurGardeGoshikkutai/AvontuurGardeGoshikkutai.eot') format('embedded-opentype'),
-  url('../fonts/AvontuurGardeGoshikkutai/AvontuurGardeGoshikkutai.svg') format('svg'),
-  url('../fonts/AvontuurGardeGoshikkutai/AvontuurGardeGoshikkutai.woff') format('woff'),
-  url('../fonts/AvontuurGardeGoshikkutai/AvontuurGardeGoshikkutai.woff2') format('woff2');
-
+  src: url('../fonts/Quicksand-Book/Quicksand-Book.ttf') format('truetype'),
+  url('../fonts/Quicksand-Book/Quicksand-Book.eot') format('embedded-opentype'),
+  url('../fonts/Quicksand-Book/Quicksand-Book.svg') format('svg'),
+  url('../fonts/Quicksand-Book/Quicksand-Book.woff') format('woff'),
+  url('../fonts/Quicksand-Book/Quicksand-Book.woff2') format('woff2');
 }
 
 $display-xx-large:calc(72/16 * 1rem);

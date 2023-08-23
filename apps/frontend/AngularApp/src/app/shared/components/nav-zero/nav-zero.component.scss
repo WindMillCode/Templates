@@ -1,5 +1,5 @@
 
-@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_global.scss";
 @import "src/assets/styles/_fonts.scss";
 @import "src/assets/styles/_spacing.scss";
 @import "src/assets/styles/media-queries.scss";
@@ -10,79 +10,71 @@
 
 :host {
 
+
   &.NavZeroView{
     display: block;
+    z-index:6;
     .NavZero{
       &Main{
         &Pod{
-          @include MainPodCssRule0;
-          padding:0 $spacing7;
-          width: 100%;
-          height: 100%;
+          @include MainPodCssRule2;
+          background:var(--wml-orig-gradient-0);
+
         }
       }
       &Pod{
 
         &0{
-          width: 100%;
-          height: 100%;
+          padding:$spacing3   $spacing5;
           display: flex;
-          align-items: center;
           justify-content: space-between;
-          &Title {
-            &0 {
-              font-family: 'Freelancer';
-              color:rgb(var(--wml-original-secondary));
-              display:inline;
-              z-index:6;
-              margin:auto;
-              position: relative;
-              inset:0;
-            }
-          }
-
-          &Img {
-            &0 {
-              z-index:4;
-              width: 100%;
-              height: 100%;
-              display:inline;
-              position: absolute;
-              filter: var(--wml-original-quaternary-filter);
-
-            }
-          }
-
-          &Link {
-            &0 {
-              color:rgb(var(--wml-original-quaternary));
-              margin: 0 0 0 $spacing9;
-              font-size:$wml-h3;
-            }
-          }
+          align-items: center;
           &Item {
             &0 {
-              position:relative;
-              display:flex;
-              flex: 0 0 20%;
-              height:100%;
-              min-width:calc(178/10.6 * 1rem)
+              @include WMLFlexRowCenter;
             }
             &1{
               display: flex;
-              align-items: center;
+              > *{
+                margin:0 0 0 $spacing5;
+              }
             }
-
+            &2{
+              margin:0 0 0 $spacing5;
+            }
           }
           &Icon {
             &0 {
-              color:rgb(var(--wml-black));
-              background-color:rgba(var(--wml-white));
-              border-radius: $wml-border-radius1;
-              padding:$spacing3;
-              font-size:$wml-h3;
+              color:$wml-white;
+              font-size: $display-x-small;
+              margin: 0 0 0 $spacing5;
               display: none;
-              margin: 0 0 0 $spacing7;
+            }
+          }
+          &Title {
+            &0 {
+              font-family: "Component-Italic";
+              color:var(--wml-orig-primary);
+              font-size:$wml-h5
+            }
+          }
+
+
+        }
+        &1{
+          background: var(--wml-gradient-1);
+          display: flex;
+          justify-content: flex-end;
+          &Item {
+            &0 {
+              display: flex;
+
+              > *{
+
+                // &:first-child{
+                //   border-left: calc(2/16 * 1rem) solid var(--wml-secondary);
+                // }
+              }
             }
           }
         }

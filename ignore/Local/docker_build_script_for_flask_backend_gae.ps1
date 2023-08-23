@@ -1,7 +1,7 @@
-$app_source = ".\apps\backend\FlaskApp"
-$app_source_exclude =  ".\apps\backend\FlaskApp\site-packages"
-$gae_orig = ".\apps\devops\FlaskGAE"
-$destination = ".\apps\devops\FlaskGAENew"
+$app_source = ".\apps\zero\backend\FlaskApp"
+$app_source_exclude =  ".\apps\zero\backend\FlaskApp\site-packages"
+$gae_orig = ".\apps\zero\devops\FlaskGAE"
+$destination = ".\apps\zero\devops\FlaskGAENew"
 $exclude = "site-packages"
 
 rm -r $destination

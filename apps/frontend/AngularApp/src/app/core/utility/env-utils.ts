@@ -1,3 +1,5 @@
+import { ENV } from "@env/environment"
+
 export let silenceAllConsoleLogs = ()=>{
   Object.entries(console)
   .forEach((x, i) => {
@@ -5,6 +7,15 @@ export let silenceAllConsoleLogs = ()=>{
     if (typeof val === "function") {
       ((console as any)[key] ) = () => { }
     }
+  })
+}
+
+export let restoreOriginalConsoleObject = ( )=>{
+  ENV.app.originalConsoleObj
+  .forEach((x, i) => {
+    let [key, val] = x
+    ;((console as any)[key] ) = val
+
   })
 }
 

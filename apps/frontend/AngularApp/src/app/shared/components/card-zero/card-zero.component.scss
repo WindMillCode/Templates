@@ -1,0 +1,135 @@
+
+@import "src/assets/styles/_global.scss";
+@import "src/assets/styles/_fonts.scss";
+@import "src/assets/styles/_spacing.scss";
+@import "src/assets/styles/media-queries.scss";
+@import "src/assets/styles/_color_pallete.scss";
+@import "src/assets/styles/_common.scss";
+@import "src/assets/styles/_layouts.scss";
+
+@keyframes cardzerokeyframe0{
+  0%{width: 66%}
+  100%{width: 100%}
+}
+
+@keyframes cardzerokeyframe1{
+  0%{width:100%}
+  100%{width:66%}
+}
+
+
+@keyframes cardzerokeyframe2{
+  0%{width: 33%}
+  100%{width: 66%}
+}
+
+@keyframes cardzerokeyframe3{
+  0%{width:66%}
+  100%{width:33%}
+}
+
+@keyframes cardzerokeyframe4{
+  0%{margin-top:0}
+  100%{width:calc(-50/16 * 1rem)}
+}
+
+$size-one-or-two: if(random() < 0.5, 1, 2);
+$animation-open: if($size-one-or-two  == 2, cardzerokeyframe0,cardzerokeyframe2);
+$animation-close: if($size-one-or-two == 2, cardzerokeyframe1,cardzerokeyframe3);
+$view-width-close : if($size-one-or-two == 1,33%,66%);
+$view-width-open : if($size-one-or-two == 1,66%,100%);
+
+:host {
+
+
+  &.CardZeroView{
+    display: block;
+    transition: all $wml-animation-duration-0;
+
+    @for $i from 0 through 1 {
+      &#{$i} {
+        .CardZeroPod1{
+          display: none ;
+        }
+        &Clicked{
+          .CardZeroPod0 img{
+            border-radius:100% !important;
+            margin:calc(-50/16 * 1rem) 0 auto 0;
+            width: calc(200/16 * 1rem);
+            animation: cardzerokeyframe4 $wml-animation-duration-0;
+          }
+          .CardZeroPod1{
+            display: block ;
+          }
+        }
+
+      }
+    }
+    &0{
+      width:66%;
+      animation:cardzerokeyframe1 $wml-animation-duration-0 ;
+      &Clicked{
+        width: 100%;
+        animation:cardzerokeyframe0 $wml-animation-duration-0 ;
+
+      }
+    }
+
+    &1{
+      flex: 0 1 auto;
+      width:33%;
+      animation:cardzerokeyframe3 $wml-animation-duration-0 ;
+      &Clicked{
+        width: 66%;
+        animation:cardzerokeyframe2 $wml-animation-duration-0 ;
+      }
+    }
+
+    .CardZero{
+      &Main{
+        &Pod{
+          @include WMLFlexRowCenter;
+          justify-content: center;
+          height: 100%;
+          width: 100%;
+          border: calc(1/16 * 1rem) solid $wml-black;
+          border-radius: $wml-border-radius0;
+          background: var(--wml-black-opacity-0);
+          padding:$spacing3;
+          * {
+            color:$wml-white;
+          }
+          transition: background 3s;
+          &:hover{
+            background: $wml-gradient-0;
+          }
+        }
+      }
+      &Pod{
+
+        &0{
+          @include WMLFlexColumnCenter;
+          justify-content: center;
+          img{
+            width: calc(150/16 * 1rem);
+            height: auto;
+            border-radius: $wml-border-radius2;
+            transition: border-radius 3s;
+          }
+          &Title {
+            &0 {
+              text-align: center;
+              font-size: $body;
+              max-width: calc(480/16 * 1rem);
+              text-decoration: underline;
+            }
+          }
+        }
+        &1{
+          padding:$spacing7;
+        }
+      }
+    }
+  }
+
+}

@@ -5,13 +5,13 @@
       "label": "angular frontend: analyze",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_analyze ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_analyze ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_analyze ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_analyze ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_analyze ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_analyze ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -22,13 +22,13 @@
       "label": "angular frontend: check for angular updates",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_check_for_angular_updates ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_check_for_angular_updates ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_check_for_angular_updates ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_check_for_angular_updates ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_check_for_angular_updates ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_check_for_angular_updates ; .//main"
       },
       "runOptions": {
         "runOn": "folderOpen",
@@ -39,13 +39,13 @@
       "label": "angular frontend: run",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_run ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_run ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run ; .//main"
       },
       "runOptions": {
         "runOn": "folderOpen",
@@ -56,13 +56,13 @@
       "label": "angular frontend: run compodoc",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_run_compodoc ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_run_compodoc ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_compodoc ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_compodoc ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_compodoc ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_compodoc ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -73,13 +73,13 @@
       "label": "angular frontend: run translate",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_run_translate ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_run_translate ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_translate ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_translate ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_translate ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_run_translate ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -90,13 +90,13 @@
       "label": "angular frontend: update angular",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_update_angular ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\angular_frontend_update_angular ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_update_angular ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_update_angular ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_update_angular ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//angular_frontend_update_angular ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -107,13 +107,13 @@
       "label": "docker: init container",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\docker_init_container ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\docker_init_container ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_init_container ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_init_container ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_init_container ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_init_container ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -121,16 +121,33 @@
       }
     },
     {
+      "label": "docker: backup all images",
+      "type": "shell",
+      "windows": {
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\docker_backup_all_images ; .\\main"
+      },
+      "linux": {
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_backup_all_images ; .//main"
+      },
+      "osx": {
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_backup_all_images ; .//main"
+      },
+      "runOptions": {
+        "runOn": "",
+        "instanceLimit": 1
+      }
+    },
+    {
       "label": "docker: run",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\docker_run ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\docker_run ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_run ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_run ; .//main"
       },
       "runOptions": {
         "runOn": "folderOpen",
@@ -141,13 +158,13 @@
       "label": "docker: ssh into container",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\docker_ssh_into_container ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\docker_ssh_into_container ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_ssh_into_container ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_ssh_into_container ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_ssh_into_container ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//docker_ssh_into_container ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -158,13 +175,13 @@
       "label": "flask backend: run",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\flask_backend_run ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\flask_backend_run ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_run ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_run ; .//main"
       },
       "runOptions": {
         "runOn": "folderOpen",
@@ -175,13 +192,13 @@
       "label": "flask backend: test",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\flask_backend_test ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\flask_backend_test ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_test ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_test ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_test ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//flask_backend_test ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -192,13 +209,13 @@
       "label": "firebase cloud: run emulators",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\firebase_cloud_run_emulators ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\firebase_cloud_run_emulators ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//firebase_cloud_run_emulators ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//firebase_cloud_run_emulators ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//firebase_cloud_run_emulators ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//firebase_cloud_run_emulators ; .//main"
       },
       "runOptions": {
         "runOn": "folderOpen",
@@ -209,13 +226,13 @@
       "label": "git: create branch after merged changes",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_create_branch_after_merged_changes ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_create_branch_after_merged_changes ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_create_branch_after_merged_changes ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_create_branch_after_merged_changes ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_create_branch_after_merged_changes ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_create_branch_after_merged_changes ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -226,13 +243,13 @@
       "label": "git: merge changes from current dev branch",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_merge_changes_from_current_dev_branch ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_merge_changes_from_current_dev_branch ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_merge_changes_from_current_dev_branch ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_merge_changes_from_current_dev_branch ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_merge_changes_from_current_dev_branch ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_merge_changes_from_current_dev_branch ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -243,13 +260,13 @@
       "label": "git: pushing work to git remote",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_pushing_work_to_git_remote ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_pushing_work_to_git_remote ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_pushing_work_to_git_remote ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_pushing_work_to_git_remote ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_pushing_work_to_git_remote ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_pushing_work_to_git_remote ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -260,13 +277,13 @@
       "label": "git: removing a file from being tracked by git",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_removing_a_file_from_being_tracked_by_git ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\git_removing_a_file_from_being_tracked_by_git ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_removing_a_file_from_being_tracked_by_git ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_removing_a_file_from_being_tracked_by_git ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//git_removing_a_file_from_being_tracked_by_git ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//git_removing_a_file_from_being_tracked_by_git ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -277,13 +294,30 @@
       "label": "misc: make a new doc item",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\misc_make_a_new_doc_item ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\misc_make_a_new_doc_item ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//misc_make_a_new_doc_item ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//misc_make_a_new_doc_item ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//misc_make_a_new_doc_item ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//misc_make_a_new_doc_item ; .//main"
+      },
+      "runOptions": {
+        "runOn": "",
+        "instanceLimit": 1
+      }
+    },
+    {
+      "label": "misc: copy to keep projects in sync",
+      "type": "shell",
+      "windows": {
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\misc_copy_to_keep_projects_in_sync ; .\\main"
+      },
+      "linux": {
+        "command": "cd ignore//${input:current_user_0}//go_scripts//misc_copy_to_keep_projects_in_sync ; .//main"
+      },
+      "osx": {
+        "command": "cd ignore//${input:current_user_0}//go_scripts//misc_copy_to_keep_projects_in_sync ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -294,13 +328,30 @@
       "label": "python: install app deps",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\python_install_app_deps ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\python_install_app_deps ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//python_install_app_deps ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//python_install_app_deps ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//python_install_app_deps ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//python_install_app_deps ; .//main"
+      },
+      "runOptions": {
+        "runOn": "",
+        "instanceLimit": 10
+      }
+    },
+    {
+      "label": "python: install specific packages",
+      "type": "shell",
+      "windows": {
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\python_install_specific_packages ; .\\main"
+      },
+      "linux": {
+        "command": "cd ignore//${input:current_user_0}//go_scripts//python_install_specific_packages ; .//main"
+      },
+      "osx": {
+        "command": "cd ignore//${input:current_user_0}//go_scripts//python_install_specific_packages ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -311,13 +362,13 @@
       "label": "sql: get schema via docker",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\sql_get_schema_via_docker ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\sql_get_schema_via_docker ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_get_schema_via_docker ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_get_schema_via_docker ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_get_schema_via_docker ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_get_schema_via_docker ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -328,13 +379,13 @@
       "label": "sql: make db schema update entry",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\sql_make_db_schema_update_entry ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\sql_make_db_schema_update_entry ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_make_db_schema_update_entry ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_make_db_schema_update_entry ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_make_db_schema_update_entry ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//sql_make_db_schema_update_entry ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -345,13 +396,13 @@
       "label": "testng: e2e create testng page",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\testng_e2e_create_testng_page ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\testng_e2e_create_testng_page ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_create_testng_page ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_create_testng_page ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_create_testng_page ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_create_testng_page ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -362,13 +413,13 @@
       "label": "testng: e2e run",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\testng_e2e_run ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\testng_e2e_run ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_run ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_run ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_run ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -379,13 +430,13 @@
       "label": "testng: e2e setup vscode extension",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\testng_e2e_setup_vscode_extension ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\testng_e2e_setup_vscode_extension ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_setup_vscode_extension ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_setup_vscode_extension ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_setup_vscode_extension ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//testng_e2e_setup_vscode_extension ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -393,16 +444,16 @@
       }
     },
     {
-      "label": "yarn: install app deps",
+      "label": "npm: install app deps",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\yarn_install_app_deps ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\npm_install_app_deps ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//yarn_install_app_deps ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//npm_install_app_deps ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//yarn_install_app_deps ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//npm_install_app_deps ; .//main"
       },
       "runOptions": {
         "runOn": "",
@@ -410,16 +461,16 @@
       }
     },
     {
-      "label": "yarn: install specific packages",
+      "label": "npm: install specific packages",
       "type": "shell",
       "windows": {
-        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\yarn_install_specific_packages ; windmillcode_go run . "
+        "command": "cd ignore\\${input:current_user_0}\\go_scripts\\npm_install_specific_packages ; .\\main"
       },
       "linux": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//yarn_install_specific_packages ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//npm_install_specific_packages ; .//main"
       },
       "osx": {
-        "command": "cd ignore//${input:current_user_0}//go_scripts//yarn_install_specific_packages ; windmillcode_go run . "
+        "command": "cd ignore//${input:current_user_0}//go_scripts//npm_install_specific_packages ; .//main"
       },
       "runOptions": {
         "runOn": "",

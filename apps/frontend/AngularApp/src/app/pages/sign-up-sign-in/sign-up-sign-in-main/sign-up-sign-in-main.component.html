@@ -8,12 +8,13 @@
     </div>
     <div [class]="classPrefix('Pod0Item1')">
       <wml-button-one
+      [id]="option.id"
       [class]="classPrefix('Pod0Btn0')"
       [params]="option"
       *ngFor="let option of socialSignBtns"
       ></wml-button-one>
     </div>
-    
+
     <p>
       <ng-container *ngFor="let text of enTranslations.SignUpSignIn.loginAgreement;let i = index">
         <span *ngIf="[0,2].includes(i)">{{"SignUpSignIn.loginAgreement."+i | translate}}</span>

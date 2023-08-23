@@ -21,20 +21,6 @@ export class FormsService {
     })
   }
 
-  productsDetailMain = {
-    mainForm:new FormGroup({
-      [ENV.productsDetailMain.mainForm.titleFormControlName]:new FormControl(""),
-      [ENV.productsDetailMain.mainForm.imgFormControlName]:new FormControl(""),
-      [ENV.productsDetailMain.mainForm.idFormControlName]:new FormControl(""),
-      [ENV.productsDetailMain.mainForm.quantityFormControlName]:new FormControl("",[
-        Validators.required,
-        Validators.min(0),
-        RxwebValidators.digit()
-      ]),
-      [ENV.productsDetailMain.mainForm.colorFormControlName]:new FormArray([],Validators.required),
-      [ENV.productsDetailMain.mainForm.sizeFormControlName]:new FormArray([],Validators.required),
-    })
-  }
 
 
 

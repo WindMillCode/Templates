@@ -1,18 +1,7 @@
 <div [class]="classPrefix('MainPod')">
-  <!-- <ads-zero [params]="ads0" [class]="classPrefix('MainItem0')"></ads-zero> -->
+  <wml-button-zero [params]="btn"></wml-button-zero>
+  <wml-button-zero [params]="btn1"></wml-button-zero>
+  <wml-button-zero [params]="btn2"></wml-button-zero>
 
-  <div [class]="classPrefix('Pod0')">
-    <div [class]="classPrefix('Pod0Item3')">
-      <img [class]="classPrefix('Pod0Img0')" [src]=ads0.src  />
-      <p [class]="classPrefix('Pod0Text0')">www.neutrogena.com</p>
-    </div>
-
-    <div [class]="classPrefix('Pod0Item0')">
-
-      <img [class]="classPrefix('Pod0Img1')"  *ngFor="let img of mechImgs" [src]=img.src [alt]="img.alt | translate" />
-      <!-- <div [class]="classPrefix('Pod0Item1')"></div> -->
-      <!-- <h2 [class]="classPrefix('Pod0Text1')">973-653-3542</h2> -->
-    </div>
-  </div>
 </div>
 

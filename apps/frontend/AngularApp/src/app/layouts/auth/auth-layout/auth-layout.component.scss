@@ -1,5 +1,5 @@
 
-@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_global.scss";
 @import "src/assets/styles/_fonts.scss";
 @import "src/assets/styles/_spacing.scss";
 @import "src/assets/styles/media-queries.scss";
@@ -22,7 +22,7 @@
           height: 100%;
           margin:auto;
           @include WMLFlexColumnCenter;
-          background: var(--wml-primary-gradient);
+          background: var(--wml-gradient-1);
           align-items: stretch;
         }
       }

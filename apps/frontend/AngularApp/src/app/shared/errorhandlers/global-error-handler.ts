@@ -3,6 +3,7 @@ import { BaseService } from '@core/base/base.service';
 import { WmlNotifyBarType } from '@windmillcode/angular-wml-notify';
 import { SentryErrorHandler,ErrorHandlerOptions } from '@sentry/angular-ivy';
 import { ENV } from '@env/environment';
+import { WMLError } from '@core/utility/error-utils';
 
 
 class SentryErrorHandlerOptions implements ErrorHandlerOptions{
@@ -17,8 +18,12 @@ export class GlobalErrorHandler extends SentryErrorHandler {
   }
   private baseService
   override handleError(error:Error) {
-    this.baseService.generateWMLNote('global.systemError',WmlNotifyBarType.Error);
-
+    if(error instanceof WMLError && error?.openSystemErrorBanner === "false"){
+      console.log("not opening default error")
+    }
+    else{
+      this.baseService.openSystemError()
+    }
     if(ENV.type!=="dev"){
       super.handleError(error);
     }

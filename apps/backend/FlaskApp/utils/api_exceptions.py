@@ -1,11 +1,23 @@
 from abc import ABC
 
+from utils.local_deps import local_deps
+local_deps()
+from flask.json import jsonify
+
 
 class APIError(Exception):
     description = "An error occured"
     """All custom API Exceptions"""
     def __init__(self, desc=None):
       self.description = desc if desc else self.description
+
+    def return_flask_response(self):
+      resp_dict = self.__dict__
+      resp = jsonify(resp_dict)
+
+
+      return resp,self.code
+
 
 
 class APIAuthenticationError(APIError):
@@ -15,6 +27,7 @@ class APIAuthenticationError(APIError):
 class APIAuthorizationError(APIError):
   code = 403
   description = "Authorization Error"
+
 class APIServerError(APIError):
   code = 500
   description = "The server is having an issue processing the request please contact developer support"

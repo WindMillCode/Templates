@@ -1,5 +1,5 @@
 
-@import "src/assets/styles/global.scss";
+@import "src/assets/styles/_global.scss";
 @import "src/assets/styles/_fonts.scss";
 @import "src/assets/styles/_spacing.scss";
 @import "src/assets/styles/media-queries.scss";
@@ -13,90 +13,15 @@
 
   &.ScratchpadView{
     display: block;
-    width: 100%;
-    height: 100%;
     .Scratchpad{
       &Main{
         &Pod{
-          height: calc(100/10.6 * 1rem);
-          width: 50%;
-          display: flex;
-          margin:auto;
-          justify-content: center;
+          background-color: var(--wml-primary);
         }
-
       }
       &Pod{
-        &0{
-          height: 100%;
-          width: 100%;
-          display: flex;
-          background-color: tan;
-          padding: 0 $spacing5 0 0 ;
 
-          &Item {
-            &0 {
-              @include outline3;
-              width: 80%;
-              margin:$spacing3 auto;
-              overflow: hidden;
-              position: relative;
-              display: flex;
-            }
-            &1{
-
-              top:3%;
-              left:5%;
-              position: absolute;
-              background-color: rgba(0,0,0,.78);
-              width: 90%;
-              height: 95%;
-              display: flex;
-              justify-content: center;
-
-            }
-            &3{
-              flex:  0 0 20%;
-              width: 20%;
-              @include WMLFlexColumnCenter;
-            }
-
-          }
-          &Text {
-            &0{
-              text-align: center;
-              -webkit-text-stroke: calc(.3/10.6 * 1rem) rgba(var(--wml-original-white));
-              color: rgba(var(--wml-original-white));
-
-              white-space: break-spaces;
-              height: 80%;
-            }
-            &1 {
-
-              top:0;
-              left:25%;
-              // margin:auto;
-              position: absolute;
-              -webkit-text-stroke: calc(1/10.6 * 1rem) rgba(var(--wml-original-white));
-              -webkit-text-fill: rgba(var(--wml-original-black));
-              // font-stretch:expanded;
-
-              font-size: 48px;
-            }
-          }
-          &Img {
-            &0 {
-
-              width: auto;
-              height: 60%;
-            }
-            &1{
-              flex:  0 0 20%;
-              width: 20%;
-              height: auto;
-            }
-          }
-        }
+        &0{}
       }
     }
   }

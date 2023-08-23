@@ -1,0 +1,5 @@
+dispatch:
+- url: "api.preview.windmillcode.com/*"
+  service: api-preview-0
+- url: "api.windmillcode.com/*"
+  service: api-0

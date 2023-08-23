@@ -1,0 +1,11 @@
+# RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive \
+#     apt-get -y install  openssh-server mlocate vim dos2unix tmux \
+#      && echo "root:Docker!" | chpasswd
+
+# # Copy and configure the ssh_setup file
+# RUN mkdir -p /tmp
+# COPY apps/zero/devops/FlaskRenderDocker/ssh_setup.sh /tmp
+# RUN chmod +x /tmp/ssh_setup.sh \
+#     && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
+# # Open port 2222 for SSH access
+# EXPOSE 443 10000

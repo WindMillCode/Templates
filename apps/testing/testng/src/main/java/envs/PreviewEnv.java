@@ -4,6 +4,6 @@ public class PreviewEnv extends DevEnv {
 
 
   public PreviewEnv(){
-    url  = "https://ui.preview.default.com";
+    url  = "https://ui.preview.windmillcode.com";
   }
 }

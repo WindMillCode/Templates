@@ -5,9 +5,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding,  } 
 
 import { UtilityService } from '@app/core/utility/utility.service';
 import { BaseService } from '@core/base/base.service';
-import { AdsZeroParams, AdsZeroTypeParams } from '@shared/components/ads-zero/ads-zero.component';
-
-import { WMLImage, generateClassPrefix } from '@windmillcode/angular-wml-components-base';
+import { generateClassPrefix } from '@windmillcode/angular-wml-components-base';
 
 
 // rxjs
@@ -35,11 +33,13 @@ export class DefaultLayoutComponent  {
   @HostBinding('class') myClass: string = this.classPrefix(`View`);
   ngUnsub= new Subject<void>()
   fullYear =  new Date().getFullYear();
-  ad  = new AdsZeroParams({
-    type:AdsZeroTypeParams.HORIZ,
-  })
 
+  initParticles= ()=>{
+
+
+  }
   ngOnInit(): void {
+    this.initParticles()
   }
 
   ngOnDestroy(){

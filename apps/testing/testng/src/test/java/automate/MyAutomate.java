@@ -6,7 +6,8 @@ import org.testng.annotations.Test;
 
 import baseclasses.UIBaseClass;
 import pages.nav.NavPage;
-
+import pages.productdetail.ProductdetailPage;
+import pages.products.ProductsPage;
 import util.CommonUtils;
 
 
@@ -20,7 +21,14 @@ public class MyAutomate extends UIBaseClass {
 
     e2eUtil
      .waitForScreenToUpdate()
-
+      .moveMouseToElement(driver, NavPage.pricingOption())
+      .moveMouseToElement(driver, NavPage.storeOption())
+      .click(driver, NavPage.productsOption())
+      .clickFromOptions(driver, ProductsPage.selectProductCard(), 0)
+      .enterIntoInput(driver, ProductdetailPage.quantityField(), "5")
+      .clickFromOptions(driver, ProductdetailPage.colorFields(), CommonUtils.chooseRandomOptionFromSequence(colorOptions))
+      .clickFromOptions(driver, ProductdetailPage.sizeFields(), CommonUtils.chooseRandomOptionFromSequence(sizeOptions))
+      .click(driver, ProductdetailPage.buyNowBtn())
       .waitForScreenToUpdate(1000000);
 
     e2eUtil

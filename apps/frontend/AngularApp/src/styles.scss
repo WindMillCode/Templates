@@ -8,63 +8,113 @@
 @import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 @import "node_modules/@fortawesome/fontawesome-free/scss/_screen-reader.scss";
 
+
 @import "assets/styles/material-cdk-overlay.scss";
+
 @import "assets/styles/modern_scrollbar.scss";
-@import "assets/styles/global.scss";
 @import "assets/styles/_fonts.scss";
 @import "assets/styles/_spacing.scss";
 @import "assets/styles/media-queries.scss";
 @import "assets/styles/_color_pallete.scss";
 @import "assets/styles/_common.scss";
+@import "assets/styles/_global.scss";
 @import "assets/styles/_layouts.scss";
-
 
 
 // misc
 @import "src/app/core/not-found/not-found.component.phone.scss";
-
-// app
 @import "src/app/app.component.global.scss";
-@import "src/app/app.component.phone.scss";
 
 // default layouts
 @import "src/app/layouts/default/default-layout/default-layout.component.phone.scss";
 @import "src/app/layouts/default/default-layout/default-layout.component.global.scss";
 
-// carousel
-@import "src/app/shared/components/carousel-zero/carousel-zero.component.global.scss";
-
-
 // nav-zero
+@import "src/app/shared/components/nav-zero/nav-zero.component.global.scss";
 @import "src/app/shared/components/nav-zero/nav-zero.component.phone.scss";
 
-
-// logo-display-zero
-@import "src/app/shared/components/logo-display-zero/logo-display-zero.component.phone.scss";
-@import "src/app/shared/components/logo-display-zero/logo-display-zero.component.global.scss";
-
-// home-zero
-@import "src/app/pages/home-zero/home-zero/home-zero.component.global.scss";
-@import "src/app/pages/home-zero/home-zero/home-zero.component.phone.scss";
+// home-main
 
 
 
-// ads-zero
-@import "src/app/shared/components/ads-zero/ads-zero.component.phone.scss";
-@import "src/app/shared/components/ads-zero/ads-zero.component.global.scss";
 
-// scratchpad
-@import "src/app/pages/scratchpad/scratchpad.component.global.scss";
-@import "src/app/pages/scratchpad/scratchpad.component.phone.scss";
+
+// rating-carousel
+@import "src/app/shared/components/rating-carousel/rating-carousel.component.phone.scss";
+
+// rating-card
+@import "src/app/shared/components/rating-card/rating-card.component.phone.scss";
+
+// contact us form
+@import "src/app/shared/components/contact-us-form/contact-us-form.component.global.scss";
+@import "src/app/shared/components/contact-us-form/contact-us-form.component.phone.scss";
+
+// contact main
+
+
+
+// footer-zero
+@import "src/app/shared/components/footer-zero/footer-zero.component.phone.scss";
+
+
+
+// panel-cart
+@import "src/app/shared/components/panel-cart/panel-cart.component.global.scss";
+
+// checkout
+
+
+// sign-up-sign-in
+
+
+
+// profile-zero
+
+
+
+// card-one
+@import "src/app/shared/components/card-one/card-one.component.phone.scss";
+@import "src/app/shared/components/card-one/card-one.component.global.scss";
+
+// profile-main-zero
+
+
+
+
+// account-billing-zero
+
+
+
+// carousel-zero
+@import "src/app/shared/components/carousel-zero/carousel-zero.component.phone.scss";
+@import "src/app/shared/components/carousel-zero/carousel-zero.component.global.scss";
+
+// card-two
+@import "src/app/shared/components/card-two/card-two.component.phone.scss";
+@import "src/app/shared/components/card-two/card-two.component.global.scss";
+
+// confirm-dialog-zero
+@import "src/app/shared/components/confirm-dialog-zero/confirm-dialog-zero.component.global.scss";
+@import "src/app/shared/components/confirm-dialog-zero/confirm-dialog-zero.component.phone.scss";
+
+// account-manage-your-data-zero
+
+
+
+// dashboard-ctrl-zero
+@import "src/app/shared/components/dashboard-ctrl-zero/dashboard-ctrl-zero.component.global.scss";
+@import "src/app/shared/components/dashboard-ctrl-zero/dashboard-ctrl-zero.component.phone.scss";
 
 
 
 // media-query-marker (IMPT DONT DELETE THIS LINE)
 
+
 :root {
 
   @function provideRandomColor() {
     $result: rgba(random(255), random(255), random(255), random(1));
+
     @return $result;
   }
 
@@ -80,7 +130,8 @@
   }
 
   @function hex-to-filter($hex-color) {
-    $r: red($hex-color);
+    $r: red($hex
+    -color);
     $g: green($hex-color);
     $b: blue($hex-color);
     $filter:  invert(100%) rgba(#{$r}, #{$g}, #{$b}, 1);
